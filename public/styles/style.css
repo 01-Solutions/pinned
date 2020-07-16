@@ -1,0 +1,14 @@
+nav {
+    background-color: aqua;
+    height: 100px;
+}
+
+nav h1 {
+    /* display: flex; */
+    display: inline-block;
+}
+
+nav ul li a {
+    display: inline-block;
+    text-decoration: none;
+}
