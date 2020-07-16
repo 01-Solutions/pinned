@@ -23,6 +23,12 @@ function getPage(req, res) {
     res.render('pages/index');
 }
 
+server.get('/articls', getArticlsPage);
+
+function getArticlsPage(req, res) {
+    res.render('pages/articls');
+}
+
 server.get('/', test);
 
 function test(req, res) {
