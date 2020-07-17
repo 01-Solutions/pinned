@@ -30,7 +30,21 @@ server.get('/test', test);
 
 // if the user is a Signed up user then we will send hem to this rout
 server.get('/home', getHomeData);
-
+function test(){
+    sqlResult.forEach(item => {
+        console.log(item);
+        let myUrl = `https://newsapi.org/v2/everything?q=${item}&apiKey=${key}`;
+        agent.get(myUrl)
+        .then(apiResult => { // filtt the array of result
+            if (JSON.parse(apiResult.text).articles.length >= 3) {
+                for (let i = 0; i < 3; i++) {
+                    finalResult.push(new Article(JSON.parse(apiResult.text).articles[i]))
+                }
+            }
+            
+        })
+    })
+}
 
 function getHomeData(req,res) {
     var sqlResult = [];
@@ -39,30 +53,14 @@ function getHomeData(req,res) {
     client.query(sql)
     .then(sqlData => { // get the SQL result
         sqlResult = arrToObj(sqlData.rows, 'interest_desc')
-        console.log('********************************First');
-    }).then(() => { // get the API result based on the SQL result
-        sqlResult.forEach(item => {
-            console.log(item);
-            let myUrl = `https://newsapi.org/v2/everything?q=${item}&apiKey=${key}`;
-            agent.get(myUrl)
-            .then(apiResult => { // filtt the array of result
-                if (JSON.parse(apiResult.text).articles.length >= 3) {
-                    for (let i = 0; i < 3; i++) {
-                        finalResult.push(new Article(JSON.parse(apiResult.text).articles[i]))
-                    }
-                }
-                console.log('********************************secound');
+        sqlResult = sqlResult.join(' OR ')
+        let myURL = `https://newsapi.org/v2/everything?q=(${sqlResult})&apiKey=${key}`;
+        agent.get(myURL).then(apiResult =>{
+           let result= JSON.parse(apiResult.text).articles.map(item=>{
+                 return new Article(item);
             })
-        })
-        
-    }).then(() => {
-        // resoned the array of result
-        // setTimeout(console.log('third'),3000);
-        setTimeout(function () {
-            console.log(finalResult.length);
-            res.send(finalResult)
-            console.log('********************************third');
-        }, (700));
+            res.send(result)
+        });
     })
 }
 function test(arr) {
@@ -78,26 +76,7 @@ function test(arr) {
     return arrResult
 }
 
-// function getHomeData(req, res) {
-//     let sql = `select interests.interest_desc from interests,users_interests where interests.interest_id = users_interests.interest_id and users_interests.user_id = 1;`;
-//     client.query(sql).then(sqlResult => { // res.send(arrToObj(sqlResult.rows,'interest_desc'))
-//         result = arrToObj(sqlResult.rows, 'interest_desc');
-//         result.forEach(item => {
-//             let myUrl = `https://newsapi.org/v2/everything?q=${item}&apiKey=${key}`
-//             agent.get(myUrl).then(data => {
-//                 let APIResult = JSON.parse(data.text).articles
-//                 for (let index = 0; index < 3; index++) {
 
-//                         myArrticle.push(new Article(APIResult[index]));
-
-//                 }
-//             });
-//         })
-//     }).then(()=>{
-//         res.status(200).send(myArrticle);
-
-//     });
-// }
 // this is a fuction to transfare array of objects to array
 function arrToObj(arr, myProperty) {
     let result = arr.map(item => {
