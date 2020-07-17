@@ -10,6 +10,9 @@ const client = new pgSQL.Client(process.env.DATABASE_URL)
 server.use(cors());
 server.use(express.static('./public'));
 server.set('view engine', 'ejs');
+server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
+
 const PORT = process.env.PORT || 3030;
 /****************************************** */
 const key = process.env.NEWSKEY;
@@ -84,7 +87,8 @@ function test(req, res) {
         let myArticls = APIResult.map(item => {
             return new Article(item);
         });
-        res.status(200).send(myArticls);
+        // console.log(myArticls);
+        res.render('pages/articls', {articlsKey: myArticls});
     });
 };
 
@@ -94,7 +98,8 @@ function Article(articleData) {
     this.img = articleData.urlToImage;
     this.url = articleData.url;
     this.source = (articleData.source.name) ? articleData.source.name : 'Ahmad Shela';
-    this.content = articleData.content;
+    this.description = articleData.description;
+    this.date=new Date(articleData.publishedAt).toDateString();
 }
 client.connect().then(() => {
     server.listen(PORT, () => {
