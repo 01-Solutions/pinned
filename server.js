@@ -13,7 +13,7 @@ server.set('view engine', 'ejs');
 const PORT = process.env.PORT || 3030;
 /****************************************** */
 const key = process.env.NEWSKEY;
-const url = `https://newsapi.org/v2/everything?q=topNews&apiKey=${key}`;
+const url = `https://newsapi.org/v2/everything?q=latest&apiKey=${key}`;
 server.get('/', getPage);
 
 function getPage(req, res) {
@@ -23,21 +23,21 @@ function getPage(req, res) {
 server.get('/test', test);
 // if the user is a Signed up user then we will send hem to this rout
 server.get('/home', getHomeData);
-function test(){
-    sqlResult.forEach(item => {
-        console.log(item);
-        let myUrl = `https://newsapi.org/v2/everything?q=${item}&apiKey=${key}`;
-        agent.get(myUrl)
-        .then(apiResult => { // filtt the array of result
-            if (JSON.parse(apiResult.text).articles.length >= 3) {
-                for (let i = 0; i < 3; i++) {
-                    finalResult.push(new Article(JSON.parse(apiResult.text).articles[i]))
-                }
-            }
+// function test(){
+//     sqlResult.forEach(item => {
+//         console.log(item);
+//         let myUrl = `https://newsapi.org/v2/everything?q=${item}&apiKey=${key}`;
+//         agent.get(myUrl)
+//         .then(apiResult => { // filtt the array of result
+//             if (JSON.parse(apiResult.text).articles.length >= 3) {
+//                 for (let i = 0; i < 3; i++) {
+//                     finalResult.push(new Article(JSON.parse(apiResult.text).articles[i]))
+//                 }
+//             }
             
-        })
-    })
-}
+//         })
+//     })
+// }
 
 function getHomeData(req,res) {
     var sqlResult = [];
@@ -57,17 +57,17 @@ function getHomeData(req,res) {
     })
 }
 
-function test(arr) {
-    let arrResult = [];
-    arr.forEach(item => {
-        agent.get(myUrl).then(result => {
-            for (let i = 0; i < 3; i++) {
-                arrResult.push(result[i])
-            }
-        });
-    });
-    return arrResult
-}
+// function test(arr) {
+//     let arrResult = [];
+//     arr.forEach(item => {
+//         agent.get(myUrl).then(result => {
+//             for (let i = 0; i < 3; i++) {
+//                 arrResult.push(result[i])
+//             }
+//         });
+//     });
+//     return arrResult
+// }
 
 
 // this is a fuction to transfare array of objects to array
