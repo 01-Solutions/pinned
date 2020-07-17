@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS users_articles;
 CREATE TABLE IF NOT EXISTS users(
     user_id SERIAL PRIMARY KEY,
     user_name VARCHAR(255),
-    interest_desc255),
+    interest_desc VARCHAR(255),
     user_sex INT
 );
 CREATE TABLE IF NOT EXISTS interests(
