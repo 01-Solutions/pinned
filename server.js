@@ -8,11 +8,14 @@ const pgSQL = require('pg');
 const server = express();
 const client = new pgSQL.Client(process.env.DATABASE_URL)
 server.use(cors());
+/////////////////////////////////////////////
 server.use(express.static('./public'));
 server.set('view engine', 'ejs');
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
-
+const methodOverride = require('method-override');
+server.use(methodOverride('_method'));
+/////////////////////////////////////////////
 const PORT = process.env.PORT || 3030;
 /****************************************** */
 const key = process.env.NEWSKEY;
@@ -26,21 +29,17 @@ function getPage(req, res) {
 server.get('/test', test);
 // if the user is a Signed up user then we will send hem to this rout
 server.get('/home', getHomeData);
-// function test(){
-//     sqlResult.forEach(item => {
-//         console.log(item);
-//         let myUrl = `https://newsapi.org/v2/everything?q=${item}&apiKey=${key}`;
-//         agent.get(myUrl)
-//         .then(apiResult => { // filtt the array of result
-//             if (JSON.parse(apiResult.text).articles.length >= 3) {
-//                 for (let i = 0; i < 3; i++) {
-//                     finalResult.push(new Article(JSON.parse(apiResult.text).articles[i]))
-//                 }
-//             }
-            
-//         })
-//     })
-// }
+
+/* this route for sine in and check if user have acount ao not on our database */
+server.post('/signin', signinFun);
+
+/* this route for sine in and check if user have acount ao not on our database */
+server.post('/signup', signupFun);
+
+/* this route for move ypo from article page to sign in&&sign up page */
+server.get('/sign/signin-sigup', (req, res) => {
+    res.render('./pages/signin-sigup')
+});
 
 function getHomeData(req,res) {
     var sqlResult = [];
@@ -60,19 +59,6 @@ function getHomeData(req,res) {
     })
 }
 
-// function test(arr) {
-//     let arrResult = [];
-//     arr.forEach(item => {
-//         agent.get(myUrl).then(result => {
-//             for (let i = 0; i < 3; i++) {
-//                 arrResult.push(result[i])
-//             }
-//         });
-//     });
-//     return arrResult
-// }
-
-
 // this is a fuction to transfare array of objects to array
 function arrToObj(arr, myProperty) {
     let result = arr.map(item => {
@@ -83,6 +69,7 @@ function arrToObj(arr, myProperty) {
 
 function test(req, res) {
     agent.get(url).then(result => {
+        // console.log(result.Article);
         let APIResult = JSON.parse(result.text).articles
         let myArticls = APIResult.map(item => {
             return new Article(item);
@@ -91,6 +78,31 @@ function test(req, res) {
         res.render('pages/articls', {articlsKey: myArticls});
     });
 };
+
+/* get data from sign in form */
+function signinFun(req, res){
+    var email = req.body.Email;
+    var password = req.body.Password;
+    console.log(email);
+    console.log(password);
+    
+    // res.render('pages/signin-sigup', {});
+}
+
+
+/* get data from sign up form */
+function signupFun(req, res){
+    var userName = req.body.UserName;
+    var email = req.body.Email;
+    var password = req.body.Password;
+    var conpassword = req.body.confirmPassword;
+    console.log(userName);
+    console.log(email);
+    console.log(password);
+    console.log(conpassword);
+
+    // res.render('pages/signin-sigup', {});
+}
 
 function Article(articleData) {
     this.title = articleData.title;
