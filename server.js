@@ -85,7 +85,24 @@ function signinFun(req, res){
     var password = req.body.Password;
     console.log(email);
     console.log(password);
-    
+    let sql = `select * from users where user_email = '${email}';`;
+    console.log(sql);
+    client.query(sql).then(dbResult =>{
+        console.log(dbResult);
+        if(dbResult.rows.length > 0){
+            if(dbResult.rows[0].user_pass == password){
+                console.log('goog job');
+                res.redirect('/home')
+
+            }else{
+                console.log('FUCK YOU');
+                res.render('pages/signin-sigup', {result: 'PassFalse'});
+            }
+        }else{
+            console.log('sign');
+            res.render('pages/signin-sigup', {result: 'SignUp'});
+        }
+    })
     // res.render('pages/signin-sigup', {});
 }
 
@@ -96,12 +113,13 @@ function signupFun(req, res){
     var email = req.body.Email;
     var password = req.body.Password;
     var conpassword = req.body.confirmPassword;
+    var gender = req.body.gender;
     console.log(userName);
     console.log(email);
     console.log(password);
     console.log(conpassword);
-
-    // res.render('pages/signin-sigup', {});
+    console.log(gender);
+    // check the data withe data base ;
 }
 
 function Article(articleData) {
