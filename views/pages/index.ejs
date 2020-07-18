@@ -7,6 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Page</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="/styles/style.css">
 </head>
 
@@ -26,15 +27,80 @@
       </nav>
     </section>
   </header>
-
   <main>
+
+    <div class="w3-content w3-display-container">
+
+      <div class="w3-display-container mySlides">
+
+        <div id="firstDiv">
+          <img class="firstImg"
+            src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80">
+        </div>
+        <div id="secondDiv">
+          <div id="second1">
+            <img class="secondImg"
+              src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80">
+          </div>
+          <div id="second2">
+            <img class="therdImg"
+              src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80">
+          </div>
+        </div>
+        <!-- <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+                    French Alps
+                </div> -->
+
+      </div>
+
+      <div class="w3-display-container mySlides">
+        <img
+          src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+          style="width:100%">
+        <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+          French Alps
+        </div>
+      </div>
+
+      <div class="w3-display-container mySlides">
+        <img
+          src="https://images.unsplash.com/photo-1519326844852-704caea5679e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2034&q=80"
+          style="width:100%">
+        <div class="w3-display-bottomleft w3-large w3-container w3-padding-16 w3-black">
+          French Alps
+        </div>
+      </div>
+
+
+      <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+      <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+
+    </div>
+
+    <div class="buttons">
+      <h2>CHOOSE WHAT INTEREST YOU </h2>
+      <form action="" method="POST">
+        <button class="btn-hover color-1">BUTTON</button>
+        <button class="btn-hover color-2">BUTTON</button>
+        <button class="btn-hover color-3">BUTTON</button>
+        <button class="btn-hover color-4">BUTTON</button>
+        <button class="btn-hover color-5">BUTTON</button>
+        <button class="btn-hover color-6">BUTTON</button>
+        <button class="btn-hover color-7">BUTTON</button>
+        <button class="btn-hover color-8">BUTTON</button>
+        <button class="btn-hover color-9">BUTTON</button>
+        <button class="btn-hover color-10">BUTTON</button>
+        <button class="btn-hover color-11">BUTTON</button>
+
+      </form>
+    </div>
 
 
   </main>
-  
   <footer>
 
   </footer>
+  <script src="/js/app.js"></script>
 </body>
 
 </html>
