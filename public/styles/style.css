@@ -1,33 +1,56 @@
-<<<<<<< HEAD
-/* * {
-    padding: 0;
-    margin: 0;
-}
-body {
+/* /////// nav style ///////////////////*/
+
+#topbar {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     position: relative;
-    min-height: 100vh;
     font-family: Hack, monospace;
-} */
+}
 
+p {
+    margin: 16px;
+    font-size: 96px;
+    color: #ccc;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all 1s ease-in-out;
+    position: relative;
+}
+
+p::before {
+    content: attr(data-item);
+    transition: all 1s ease-in-out;
+    color: #8254ff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+p:hover::before {
+    width: 100%;
+}
 
 nav {
-    font-family: Hack, monospace;
-    margin: 10px;
-    background: #ffffff;
-    padding: 16px;
+    background: #f9f9f9;
+    width: 100%;
+
 }
+
 nav .menuItems {
     list-style: none;
     display: flex;
 }
+
 nav .menuItems li {
-    margin: 10px;
-    margin-left: 40px;
+    margin: 40px;
+
 }
+
 nav .menuItems li a {
     text-decoration: none;
     color: #8f8f8f;
@@ -50,12 +73,29 @@ nav .menuItems li a::before {
     width: 0;
     overflow: hidden;
 }
+
 nav .menuItems li a:hover::before {
     width: 100%;
     transition: all 0.5s ease-in-out;
 }
 
-=======
+#sign-in {
+    margin-left: 600px;
+    margin-right: 0px;
+}
+
+#sign-up {
+    margin-left: 40px;
+}
+
+/* ///end of nav bar style //// */
+
+/* //////////////////main news css ////////////////// */
+
+/* //////////////////main news css ends ////////////////// */
+
+
+
 /* //////////// article style ///////////*/
 
 * {
@@ -231,4 +271,10 @@ body h1 {
 
 
 /* //////////// END article style ///////////*/
->>>>>>> stage
+
+/*///////// footer ///////////*/
+footer{
+    height: 90px;
+    width: 100%;
+    background-color:#ccc;
+}
