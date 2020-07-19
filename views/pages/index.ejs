@@ -21,8 +21,12 @@
                     <li><a href='#' data-item='About'>About</a></li>
                     <li><a href='#' data-item='Articles'>Articles</a></li>
                     <li><a href='#' data-item='Blog'>Blog</a></li>
-                    <li id="sign-in"><a href='#' data-item='sign-in'>sign-in</a></li>
-                    <li id="sign-up"><a href='#' data-item='sign-up'>sign-up</a></li>
+
+                    <form action="/signupdata" method="POST" id="signupdata">
+                        <button class="submit-btn" name="msg" value="defulte">
+                            signin
+                        </button>
+                    </form>
                 </ul>
             </nav>
         </section>
@@ -40,19 +44,22 @@
 
         <div class="buttons">
             <h2>CHOOSE WHAT INTEREST YOU </h2>
-            <form action="" method="POST">
-                <button class="btn-hover color-1">BUTTON</button>
-                <button class="btn-hover color-2">BUTTON</button>
-                <button class="btn-hover color-3">BUTTON</button>
-                <button class="btn-hover color-4">BUTTON</button>
-                <button class="btn-hover color-5">BUTTON</button>
-                <button class="btn-hover color-6">BUTTON</button>
-                <button class="btn-hover color-7">BUTTON</button>
-                <button class="btn-hover color-8">BUTTON</button>
-                <button class="btn-hover color-9">BUTTON</button>
-                <button class="btn-hover color-10">BUTTON</button>
-                <button class="btn-hover color-11">BUTTON</button>
-                <button class="btn-hover color-12">Done</button>
+            <form action="/interest" method="POST">
+                <button class="btn-hover color-1" name="msg1" value="ibrahem">sport</button>
+                <button class="btn-hover color-2" name="msg2" value="">BUTTON</button>
+                <button class="btn-hover color-3" name="msg3" value="">BUTTON</button>
+                <button class="btn-hover color-4" name="msg4" value="">BUTTON</button>
+                <button class="btn-hover color-5" name="msg5" value="">BUTTON</button>
+                <button class="btn-hover color-6" name="msg6" value="">BUTTON</button>
+                <button class="btn-hover color-7" name="msg7" value="">BUTTON</button>
+                <button class="btn-hover color-8" name="msg8" value="">BUTTON</button>
+                <button class="btn-hover color-9" name="msg9" value="">BUTTON</button>
+                <button class="btn-hover color-10"name="msg10" value="">BUTTON</button>
+
+                <button class="submit-btn">Log in</button>
+
+            </form>
+
         </div>
 
 
