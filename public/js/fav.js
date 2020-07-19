@@ -1,5 +1,8 @@
-  $(function() {
-    $('.love').click(function() {
-      $(this).parents('div').find('#saved,.love').toggleClass( "press", 1000 );
-    });
-  });
+// $("#favbut").click(function (event) {
+  
+// });
+
+$('.love').click(function () {
+  event.preventDefault();
+  $(this).closest('div').find('#saved,.love').toggleClass("press", 1000);
+});
