@@ -3,223 +3,247 @@
 
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="/styles/style.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home Page</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="/styles/style.css">
+    </head>
 
-<body>
-    <header>
+    <body>
+        <header>
 
-        <section id="topbar">
-            <nav>
-                <ul class="menuItems">
-                    <li><a href='#' data-item='Home'>Home</a></li>
-                    <li><a href='#' data-item='About'>About</a></li>
-                    <li><a href='#' data-item='Articles'>Articles</a></li>
-                    <li><a href='#' data-item='Blog'>Blog</a></li>
+            <section id="topbar">
+                <nav>
+                    <ul class="menuItems">
+                        <li>
+                            <a href='#' data-item='Home'>Home</a>
+                        </li>
+                        <li>
+                            <a href='#' data-item='About'>About</a>
+                        </li>
+                        <li>
+                            <a href='#' data-item='Articles'>Articles</a>
+                        </li>
+                        <li>
+                            <a href='#' data-item='Blog'>Blog</a>
+                        </li>
 
-                    <form action="/signupdata" method="POST" id="signupdata">
-                        <button class="submit-btn" name="msg" value="defulte">
-                            signin
-                        </button>
-                    </form>
-                </ul>
-            </nav>
-        </section>
-    </header>
-    <main>
-        <!-- for search  -->
-        <div class="search__container">
-            <p class="search__title">
-                search for your favourite subjects
-            </p>
-            <input class="search__input" type="text" placeholder="Search">
-        </div>
+                        <form action="/signupdata" method="POST" id="signupdata">
+                            <button class="submit-btn" name="msg" value="defulte">
+                                signin
+                            </button>
+                        </form>
+                    </ul>
+                </nav>
+            </section>
+        </header>
+        <main>
+            <!-- for search  -->
+            <div class="search__container">
+                <p class="search__title">
+                    search for your favourite subjects
+                </p>
+                <input class="search__input" type="text" placeholder="Search">
+            </div>
 
-        <!-- end search  -->
+            <!-- end search  -->
 
-        <div class="buttons">
-            <h2>CHOOSE WHAT INTEREST YOU </h2>
-            <form action="/interest" method="POST">
-                <button class="btn-hover color-1" name="msg1" value="ibrahem">sport</button>
-                <button class="btn-hover color-2" name="msg2" value="">BUTTON</button>
-                <button class="btn-hover color-3" name="msg3" value="">BUTTON</button>
-                <button class="btn-hover color-4" name="msg4" value="">BUTTON</button>
-                <button class="btn-hover color-5" name="msg5" value="">BUTTON</button>
-                <button class="btn-hover color-6" name="msg6" value="">BUTTON</button>
-                <button class="btn-hover color-7" name="msg7" value="">BUTTON</button>
-                <button class="btn-hover color-8" name="msg8" value="">BUTTON</button>
-                <button class="btn-hover color-9" name="msg9" value="">BUTTON</button>
-                <button class="btn-hover color-10"name="msg10" value="">BUTTON</button>
+            <div class="buttons">
+                <h2>CHOOSE WHAT INTEREST YOU
+                </h2>
+                <form action="/interest" method="POST">
+                    <button class="btn-hover color-1" name="msg1" value="ibrahem">sport</button>
+                    <button class="btn-hover color-2" name="msg2" value="">BUTTON</button>
+                    <button class="btn-hover color-3" name="msg3" value="">BUTTON</button>
+                    <button class="btn-hover color-4" name="msg4" value="">BUTTON</button>
+                    <button class="btn-hover color-5" name="msg5" value="">BUTTON</button>
+                    <button class="btn-hover color-6" name="msg6" value="">BUTTON</button>
+                    <button class="btn-hover color-7" name="msg7" value="">BUTTON</button>
+                    <button class="btn-hover color-8" name="msg8" value="">BUTTON</button>
+                    <button class="btn-hover color-9" name="msg9" value="">BUTTON</button>
+                    <button class="btn-hover color-10" name="msg10" value="">BUTTON</button>
 
-                <button class="submit-btn">Log in</button>
+                    <button class="submit-btn">Log in</button>
 
-            </form>
+                </form>
 
-        </div>
+            </div>
 
 
-        <div class="w3-content w3-display-container">
-
-            <div class="w3-display-container mySlides">
-                <div id='mainNews'>
-                    <div class="cardsNews">
-                        <div class="cardNews contentNews">
-                            <div class="cardNews-content">
-                                <div class="cardNews-img">
-                                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
-                                        alt="Gamer">
-                                </div>
-                                <div class="cardNews-label">E-Sports</div>
-                                <div class="cardNews-title">
-                                    Fnatic raises $19 million, shakes up leadership team
+            <div class="w3-content w3-display-container">
+                <% let arr = [] %>
+                <% for(let i = 0; i < allArticles.length; i++){ %>
+                    <%   arr.push(allArticles[i]) %>
+                    <%    if(arr.length == 3){ %>
+                        <div class="w3-display-container mySlides">
+                            <div id='mainNews'>
+                                <div class="cardsNews">
+                                    <%      arr.forEach(item =>{ %>
+                                        <div class="cardNews contentNews">
+                                            <div class="cardNews-content">
+                                                <div class="cardNews-img">
+                                                    <img src="<%= item.img %>" alt="Gamer">
+                                                </div>
+                                                <div class="cardNews-label"><%= item.source %></div>
+                                                <div class="cardNews-title">
+                                                    <%= item.title %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <%    }) %>
                                 </div>
                             </div>
                         </div>
-                        <div class="cardNews contentNews">
-                            <div class="cardNews-content">
-                                <div class="cardNews-img">
-                                    <img src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-                                        alt="keyboard">
+                        <%    arr = []; %>
+                    <%    } %>
+                <%  } %>
+                <!-- <div class="w3-display-container mySlides">
+                    <div id='mainNews'>
+                        <div class="cardsNews">
+                            <div class="cardNews contentNews">
+                                <div class="cardNews-content">
+                                    <div class="cardNews-img">
+                                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80" alt="Gamer">
+                                    </div>
+                                    <div class="cardNews-label">E-Sports</div>
+                                    <div class="cardNews-title">
+                                        Fnatic raises $19 million, shakes up leadership team
+                                    </div>
                                 </div>
-                                <div class="cardNews-label">
-                                    Technology
+                            </div>
+                            <div class="cardNews contentNews">
+                                <div class="cardNews-content">
+                                    <div class="cardNews-img">
+                                        <img src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="keyboard">
+                                    </div>
+                                    <div class="cardNews-label">
+                                        Technology
+                                    </div>
+                                    <div class="cardNews-title">
+                                        Google Stadia: The Future of Gaming
+                                    </div>
                                 </div>
-                                <div class="cardNews-title">
-                                    Google Stadia: The Future of Gaming
+                            </div>
+                            <div class="cardNews contentNews">
+                                <div class="cardNews-content">
+                                    <div class="cardNews-img">
+                                        <img src="https://images.unsplash.com/photo-1519326844852-704caea5679e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2034&q=80" alt="Controller">
+                                    </div>
+                                    <div class="cardNews-label">
+                                        Consoles
+                                    </div>
+                                    <div class="cardNews-title">
+                                        PS5 won't launch before mid-2020
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="cardNews contentNews">
-                            <div class="cardNews-content">
-                                <div class="cardNews-img">
-                                    <img src="https://images.unsplash.com/photo-1519326844852-704caea5679e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2034&q=80"
-                                        alt="Controller">
+                    </div>
+
+                </div>
+
+                <div class="w3-display-container mySlides">
+                    <div id='mainNews'>
+                        <div class="cardsNews">
+                            <div class="cardNews contentNews">
+                                <div class="cardNews-content">
+                                    <div class="cardNews-img">
+
+                                        <img src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="keyboard">
+                                    </div>
+                                    <div class="cardNews-label">E-Sports</div>
+                                    <div class="cardNews-title">
+                                        Fnatic raises $19 million, shakes up leadership team
+                                    </div>
                                 </div>
-                                <div class="cardNews-label">
-                                    Consoles
+                            </div>
+                            <div class="cardNews contentNews">
+                                <div class="cardNews-content">
+                                    <div class="cardNews-img">
+                                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80" alt="Gamer">
+                                    </div>
+                                    <div class="cardNews-label">
+                                        Technology
+                                    </div>
+                                    <div class="cardNews-title">
+                                        Google Stadia: The Future of Gaming
+                                    </div>
                                 </div>
-                                <div class="cardNews-title">
-                                    PS5 won't launch before mid-2020
+                            </div>
+                            <div class="cardNews contentNews">
+                                <div class="cardNews-content">
+                                    <div class="cardNews-img">
+                                        <img src="https://images.unsplash.com/photo-1519326844852-704caea5679e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2034&q=80" alt="Controller">
+                                        y
+                                    </div>
+                                    <div class="cardNews-label">
+                                        Consoles
+                                    </div>
+                                    <div class="cardNews-title">
+                                        PS5 won't launch before mid-2020
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-            </div>
+                <div class="w3-display-container mySlides">
+                    <div id='mainNews'>
+                        <div class="cardsNews">
+                            <div class="cardNews contentNews">
+                                <div class="cardNews-content">
+                                    <div class="cardNews-img">
 
-            <div class="w3-display-container mySlides">
-                <div id='mainNews'>
-                    <div class="cardsNews">
-                        <div class="cardNews contentNews">
-                            <div class="cardNews-content">
-                                <div class="cardNews-img">
+                                        <img src="https://images.unsplash.com/photo-1519326844852-704caea5679e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2034&q=80" alt="Controller">
 
-                                    <img src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-                                        alt="keyboard">
-                                </div>
-                                <div class="cardNews-label">E-Sports</div>
-                                <div class="cardNews-title">
-                                    Fnatic raises $19 million, shakes up leadership team
+                                    </div>
+                                    <div class="cardNews-label">E-Sports</div>
+                                    <div class="cardNews-title">
+                                        Fnatic raises $19 million, shakes up leadership team
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="cardNews contentNews">
-                            <div class="cardNews-content">
-                                <div class="cardNews-img">
-                                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
-                                        alt="Gamer">
-                                </div>
-                                <div class="cardNews-label">
-                                    Technology
-                                </div>
-                                <div class="cardNews-title">
-                                    Google Stadia: The Future of Gaming
+                            <div class="cardNews contentNews">
+                                <div class="cardNews-content">
+                                    <div class="cardNews-img">
+                                        <img src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="keyboard">
+                                    </div>
+                                    <div class="cardNews-label">
+                                        Technology
+                                    </div>
+                                    <div class="cardNews-title">
+                                        Google Stadia: The Future of Gaming
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="cardNews contentNews">
-                            <div class="cardNews-content">
-                                <div class="cardNews-img">
-                                    <img src="https://images.unsplash.com/photo-1519326844852-704caea5679e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2034&q=80"
-                                        alt="Controller">
-                                    y </div>
-                                <div class="cardNews-label">
-                                    Consoles
-                                </div>
-                                <div class="cardNews-title">
-                                    PS5 won't launch before mid-2020
+                            <div class="cardNews contentNews">
+                                <div class="cardNews-content">
+                                    <div class="cardNews-img">
+                                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80" alt="Gamer">
+                                    </div>
+                                    <div class="cardNews-label">
+                                        Consoles
+                                    </div>
+                                    <div class="cardNews-title">
+                                        PS5 won't launch before mid-2020
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
+
+                <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+                <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+
             </div>
 
-            <div class="w3-display-container mySlides">
-                <div id='mainNews'>
-                    <div class="cardsNews">
-                        <div class="cardNews contentNews">
-                            <div class="cardNews-content">
-                                <div class="cardNews-img">
-
-                                    <img src="https://images.unsplash.com/photo-1519326844852-704caea5679e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2034&q=80"
-                                        alt="Controller">
-
-                                </div>
-                                <div class="cardNews-label">E-Sports</div>
-                                <div class="cardNews-title">
-                                    Fnatic raises $19 million, shakes up leadership team
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cardNews contentNews">
-                            <div class="cardNews-content">
-                                <div class="cardNews-img">
-                                    <img src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-                                        alt="keyboard">
-                                </div>
-                                <div class="cardNews-label">
-                                    Technology
-                                </div>
-                                <div class="cardNews-title">
-                                    Google Stadia: The Future of Gaming
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cardNews contentNews">
-                            <div class="cardNews-content">
-                                <div class="cardNews-img">
-                                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
-                                        alt="Gamer">
-                                </div>
-                                <div class="cardNews-label">
-                                    Consoles
-                                </div>
-                                <div class="cardNews-title">
-                                    PS5 won't launch before mid-2020
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
-            <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
-
-        </div>
-
-    </main>
-    <footer>
-
-    </footer>
-    <script src="/js/app.js"></script>
-</body>
+        </main>
+        <footer></footer>
+        <script src="/js/app.js"></script>
+    </body>
 
 </html>
