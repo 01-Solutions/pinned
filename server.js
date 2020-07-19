@@ -22,7 +22,9 @@ const PORT = process.env.PORT || 3030;
 const key = process.env.NEWSKEY;
 const url = `https://newsapi.org/v2/everything?q=latest&apiKey=${key}`;
 server.get('/', test);
+
 var user_id ;
+
 function getPage(req, res) {
     // res.render('pages/index');
 }
@@ -40,17 +42,21 @@ server.post('/signup', signupFun);
 
 /* this route for sinein data */
 server.post('/signupdata', dataTOsignin);
+
 function dataTOsignin(req, res){
     var datasignin = req.body.msg;
     console.log(datasignin);
     res.render('pages/signin-sigup',{singinMsg: datasignin})
     // check the data withe data base ;
+
 }
 
 server.post('/interest', datainterest);
 var arrinterest = [];
+
 function datainterest(req, res){
    var ddd=req.body.msg1
+
     console.log(ddd);
     // check the data withe data base ;
 }
@@ -101,6 +107,7 @@ function test(req, res) {
 
 
         res.render('pages/index', {allArticles: myArticls});
+
     });
 };
 
@@ -112,6 +119,7 @@ function signinFun(req, res) {
     console.log(password);
     let sql = `select * from users where user_email = '${email}';`;
     console.log(sql);
+
 
     client.query(sql).then(dbResult =>{
         // console.log(dbResult);
@@ -129,13 +137,13 @@ function signinFun(req, res) {
     })
     
     // res.render('pages/signin-sigup', {});
-
 }
 
 
 /* get data from sign up form */
 
 function signupFun(req, res){
+
     // var userName = req.body.UserName;
     // var email = req.body.Email;
     // var password = req.body.Password;
@@ -147,6 +155,7 @@ function signupFun(req, res){
     // console.log(conpassword);
     // console.log(gender);
     let sql = `select * from users where user_email = '${req.body.Email}';`;
+
     client.query(sql).then(result =>{
         if(result.rows.length > 0){
             // res.render('pages/signin-sigup', {singinMsg: 'WrongPass'});
