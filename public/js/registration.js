@@ -26,3 +26,4 @@ signupBtn.addEventListener('click', (e) => {
 		}
 	});
 });
+console.log(result);

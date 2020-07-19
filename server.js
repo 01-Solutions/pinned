@@ -5,10 +5,13 @@ const https = require('https');
 const cors = require('cors');
 const agent = require('superagent');
 const pgSQL = require('pg');
+var cheerio = require('cheerio'),
+    $ = cheerio.load('pages/index.ejs');
 const server = express();
 const client = new pgSQL.Client(process.env.DATABASE_URL)
 server.use(cors());
 /////////////////////////////////////////////
+const myHtml = express.static('./public/views/pages/index');
 server.use(express.static('./public'));
 server.set('view engine', 'ejs');
 server.use(express.json());
@@ -85,7 +88,23 @@ function signinFun(req, res){
     var password = req.body.Password;
     console.log(email);
     console.log(password);
-    
+    let sql = `select * from users where user_email = '${email}';`;
+    console.log(sql);
+    client.query(sql).then(dbResult =>{
+        // console.log(dbResult);
+        if(dbResult.rows.length > 0){
+            if(dbResult.rows[0].user_pass == password){
+                console.log('goog job');
+                res.redirect('/home')
+
+            }else{
+                res.render('pages/signin-sigup', {result: 'PassFalse'});
+            }
+        }else{
+            console.log(test);
+            res.render('pages/signin-sigup', {result: 'SignUp'});
+        }
+    })
     // res.render('pages/signin-sigup', {});
 }
 
@@ -96,12 +115,13 @@ function signupFun(req, res){
     var email = req.body.Email;
     var password = req.body.Password;
     var conpassword = req.body.confirmPassword;
+    var gender = req.body.gender;
     console.log(userName);
     console.log(email);
     console.log(password);
     console.log(conpassword);
-
-    // res.render('pages/signin-sigup', {});
+    console.log(gender);
+    // check the data withe data base ;
 }
 
 function Article(articleData) {
