@@ -39,6 +39,21 @@ server.post('/signin', signinFun);
 /* this route for sine in and check if user have acount ao not on our database */
 server.post('/signup', signupFun);
 
+server.post('/signupdata', dataTOsignin);
+
+function dataTOsignin(req, res){
+    var datasignin = req.body.msg;
+    console.log(datasignin);
+    // check the data withe data base ;
+}
+server.post('/interest', datainterest);
+
+var arrinterest = [];
+function datainterest(req, res){
+   var ddd=req.body.msg1
+    console.log(ddd);
+    // check the data withe data base ;
+}
 /* this route for move ypo from article page to sign in&&sign up page */
 server.get('/sign/signin-sigup', (req, res) => {
     res.render('./pages/signin-sigup')
