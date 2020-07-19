@@ -14,7 +14,6 @@
     <% }else if(singinMsg == 'notExist'){ %>
     <%    ErrMsg = 'notExist' %>
   <%  }else{ErrMsg = ''} %>
-  <p><%= ErrMsg %></p>
   <main>
     <div class="form-structor">
         <form action="/signin" method="POST" id="signIn">
@@ -23,6 +22,7 @@
             <div class="form-holder">
                 <input type="email" class="input" name="Email" value="" placeholder="Email">
                 <input type="password" class="input" name="Password" value="" placeholder="Password">
+                <p><%= ErrMsg %></p>
             </div>
             <button class="submit-btn" type="submit">Log in</button>
         </div>
