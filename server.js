@@ -23,13 +23,13 @@ const PORT = process.env.PORT || 3030;
 /****************************************** */
 const key = process.env.NEWSKEY;
 const url = `https://newsapi.org/v2/everything?q=latest&apiKey=${key}`;
-server.get('/', getPage);
-
+server.get('/', test);
+var user_id ;
 function getPage(req, res) {
-    res.render('pages/index');
+    // res.render('pages/index');
 }
 // if the user is a 'gust' then we will send hem to this route
-server.get('/test', test);
+// server.get('/test', test);
 // if the user is a Signed up user then we will send hem to this rout
 server.get('/home', getHomeData);
 
@@ -39,6 +39,23 @@ server.post('/signin', signinFun);
 /* this route for sine in and check if user have acount ao not on our database */
 server.post('/signup', signupFun);
 
+
+/* this route for sinein data */
+server.post('/signupdata', dataTOsignin);
+function dataTOsignin(req, res){
+    var datasignin = req.body.msg;
+    console.log(datasignin);
+    res.render('pages/signin-sigup',{singinMsg: datasignin})
+    // check the data withe data base ;
+}
+
+server.post('/interest', datainterest);
+var arrinterest = [];
+function datainterest(req, res){
+   var ddd=req.body.msg1
+    console.log(ddd);
+    // check the data withe data base ;
+}
 /* this route for move ypo from article page to sign in&&sign up page */
 server.get('/sign/signin-sigup', (req, res) => {
     res.render('./pages/signin-sigup')
@@ -46,20 +63,25 @@ server.get('/sign/signin-sigup', (req, res) => {
 
 function getHomeData(req, res) {
     var sqlResult = [];
-    var finalResult = [];
-    let sql = `select interests.interest_desc from interests,users_interests where interests.interest_id = users_interests.interest_id and users_interests.user_id = 1;`;
+    let sql = `select interests.interest_desc from interests,users_interests where interests.interest_id = users_interests.interest_id and users_interests.user_id = ${user_id};`;
     client.query(sql)
-        .then(sqlData => { // get the SQL result
-            sqlResult = arrToObj(sqlData.rows, 'interest_desc')
-            sqlResult = sqlResult.join(' OR ')
-            let myURL = `https://newsapi.org/v2/everything?q=(${sqlResult})&apiKey=${key}`;
-            agent.get(myURL).then(apiResult => {
-                let result = JSON.parse(apiResult.text).articles.map(item => {
-                    return new Article(item);
-                })
-                res.send(result)
-            });
-        })
+
+    .then(sqlData => { // get the SQL result
+        if(sqlData.rows.length < 1){
+            res.redirect('/')
+        }
+        sqlResult = arrToObj(sqlData.rows, 'interest_desc')
+        sqlResult = sqlResult.join(' OR ')
+        let myURL = `https://newsapi.org/v2/everything?q=(${sqlResult})&apiKey=${key}`;
+        agent.get(myURL).then(apiResult =>{
+           let result= JSON.parse(apiResult.text).articles.map(item=>{
+                 return new Article(item);
+            })
+            // res.send(result)
+            res.render('pages/index', {allArticles: result});
+        });
+    })
+
 }
 
 // this is a fuction to transfare array of objects to array
@@ -78,7 +100,9 @@ function test(req, res) {
             return new Article(item);
         });
         // console.log(myArticls);
-        res.render('pages/articls', { articlsKey: myArticls });
+
+
+        res.render('pages/index', {allArticles: myArticls});
     });
 };
 
@@ -90,37 +114,55 @@ function signinFun(req, res) {
     console.log(password);
     let sql = `select * from users where user_email = '${email}';`;
     console.log(sql);
-    client.query(sql).then(dbResult => {
-            // console.log(dbResult);
-            if (dbResult.rows.length > 0) {
-                if (dbResult.rows[0].user_pass == password) {
-                    console.log('goog job');
-                    res.redirect('/home')
 
-                } else {
-                    res.render('pages/signin-sigup', { result: 'PassFalse' });
-                }
-            } else {
-                console.log(test);
-                res.render('pages/signin-sigup', { result: 'SignUp' });
+    client.query(sql).then(dbResult =>{
+        // console.log(dbResult);
+        if(dbResult.rows.length > 0){
+            if(dbResult.rows[0].user_pass == password){
+                user_id = dbResult.rows[0].user_id;
+                res.redirect('/home')
+            }else{
+                res.render('pages/signin-sigup', {singinMsg: 'WrongPass'});
             }
-        })
-        // res.render('pages/signin-sigup', {});
+        }else{
+            res.render('pages/signin-sigup', {singinMsg: 'notExist'});
+        }
+        
+    })
+    
+    // res.render('pages/signin-sigup', {});
+
 }
 
 
 /* get data from sign up form */
-function signupFun(req, res) {
-    var userName = req.body.UserName;
-    var email = req.body.Email;
-    var password = req.body.Password;
-    var conpassword = req.body.confirmPassword;
-    var gender = req.body.gender;
-    console.log(userName);
-    console.log(email);
-    console.log(password);
-    console.log(conpassword);
-    console.log(gender);
+
+function signupFun(req, res){
+    // var userName = req.body.UserName;
+    // var email = req.body.Email;
+    // var password = req.body.Password;
+    // var conpassword = req.body.confirmPassword;
+    // var gender = req.body.gender;
+    // console.log(userName);
+    // console.log(email);
+    // console.log(password);
+    // console.log(conpassword);
+    // console.log(gender);
+    let sql = `select * from users where user_email = '${req.body.Email}';`;
+    client.query(sql).then(result =>{
+        if(result.rows.length > 0){
+            // res.render('pages/signin-sigup', {singinMsg: 'WrongPass'});
+            res.render('pages/signin-sigup',{singinMsg: 'defulte'})
+        }else{
+            let {userName,email,password,gender} = req.body;
+            let sqlQuery = `insert into users(user_name,user_email,user_pass,user_gender) values($1,$2,$3,$4);`;
+            let safeValues = [req.body.UserName,req.body.Email,req.body.Password,req.body.gender];
+            client.query(sqlQuery,safeValues).then(()=>{
+                res.redirect('/')
+            });
+        }
+    })
+
     // check the data withe data base ;
 }
 
