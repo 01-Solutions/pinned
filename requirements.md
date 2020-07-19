@@ -1,20 +1,19 @@
 # vision 
 ​
 What is the vision of this product?
-> our product is about searching and helping people in who need to searchh and try to spread the happiness.
+>out product is about searching for articles and helping people to search easely for news and articles in thier intersts.
 ​
 What pain point does this project solve?
-> at the first, the purpose of our website promotes the principle of social solidarity and giving by make link between donor and the needy people.
-​
+>we are solving the problem of searching for articles more than once by storing the enteristing articles in the useres accounts​
 Why should we care about your product?
->because we are Non-profit organization try to spread the happiness and principles of giving.
+>beacause every one need an environment that includes all of his intersts
 ​
 ​
 ​
 ## our website will do 
-1. promotes giving principle
-2. link between donor and the needy people
-3. make the donation process more easier
+1. search for articles
+2. save articles in the favourits
+3. provide articles bnased on the user interests
 4. save the environment resources by reuse things that we don't need.
 5. there are a form you can by it donate some stuff like "food, book, clothes"
 6. there page that name "contributes" allow to the donor to see what he contributed with
