@@ -6,8 +6,9 @@ DROP TABLE IF EXISTS users_articles;
 CREATE TABLE IF NOT EXISTS users(
     user_id SERIAL PRIMARY KEY,
     user_name VARCHAR(255),
-    interest_desc VARCHAR(255),
-    user_sex INT
+    user_email VARCHAR(255),
+    user_pass VARCHAR(255),
+    user_gender INT
 );
 CREATE TABLE IF NOT EXISTS interests(
     interest_id SERIAL PRIMARY KEY,
@@ -31,7 +32,7 @@ CREATE TABLE IF NOT EXISTS users_articles(
     article_id INT
 );
 
-INSERT INTO users (user_name,user_pass,user_sex) VALUES('shela','123','1');
+INSERT INTO users (user_name,user_email,user_pass,user_gender) VALUES('shela','soso@soso.com','123',1);
 INSERT INTO interests (interest_desc) VALUES('space');
 INSERT INTO interests (interest_desc) VALUES('cars');
 INSERT INTO interests (interest_desc) VALUES('sport');
