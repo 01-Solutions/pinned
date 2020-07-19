@@ -38,7 +38,6 @@ p:hover::before {
 nav {
     background: #f9f9f9;
     width: 100%;
-
 }
 
 nav .menuItems {
@@ -48,7 +47,6 @@ nav .menuItems {
 
 nav .menuItems li {
     margin: 40px;
-
 }
 
 nav .menuItems li a {
@@ -88,12 +86,14 @@ nav .menuItems li a:hover::before {
     margin-left: 40px;
 }
 
+
 /* ///end of nav bar style //// */
+
 
 /* //////////////////main news css ////////////////// */
 
-/* //////////////////main news css ends ////////////////// */
 
+/* //////////////////main news css ends ////////////////// */
 
 
 /* //////////// article style ///////////*/
@@ -272,12 +272,15 @@ body h1 {
 
 /* //////////// END article style ///////////*/
 
+
 /*///////// footer ///////////*/
+
 footer {
     height: 90px;
     width: 100%;
     background-color: #ccc;
 }
+
 
 /* /////////// slider /////// */
 
@@ -329,7 +332,6 @@ footer {
 /* for the three img inside the slider  */
 
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,900");
-
 #mainNews {
     /* background: #252833; */
     width: 100%;
@@ -472,78 +474,136 @@ body * {
 
 /* for search  */
 
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
-
-/* Base styling */
-
-body {
-    font-family: 'Raleway', sans-serif;
+.tb {
+    display: table;
+    width: 98%;
 }
 
-.search__container {
-    padding-top: 64px;
+.td {
+    display: table-cell;
+    vertical-align: middle;
 }
 
-.search__title {
-    font-size: 22px;
-    font-weight: 900;
-    text-align: center;
-    color: #ff8b88;
-}
-
-.search__input {
-    width: 65%;
-    margin-left: 20%;
-    padding: 12px 24px;
+.inputTextSearch,
+.searchButton {
+    font-family: Nunito;
+    padding: 0;
+    margin: 0;
+    border: 0;
     background-color: transparent;
-    transition: transform 250ms ease-in-out;
-    font-size: 14px;
-    line-height: 18px;
-    color: #575756;
+}
+
+#cover {
+    background-color: white;
+    border-radius: 20px;
+    transform: scale(0.6);
+}
+
+
+/* 
+#cover:hover {
+    transform: scale(.66);
+} */
+
+input[type="text"] {
+    width: 100%;
+    height: 96px;
+    font-size: 40px;
+    line-height: 1;
+    padding-left: 35px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input[type="text"]::placeholder {
+    color: #ccc;
+}
+
+#s-cover {
+    width: 1px;
+    padding-left: 35px;
+}
+
+.searchButton {
+    position: relative;
+    display: block;
+    width: 84px;
+    height: 96px;
+    cursor: pointer;
+}
+
+#s-circle {
+    position: relative;
+    top: -8px;
+    left: 14px;
+    width: 60px;
+    height: 60px;
+    margin-top: 0;
+    border-width: 15px;
+    border: 10px solid gray;
     background-color: transparent;
-    /*         background-image: url(http://mihaeltomic.com/codepen/input-search/ic_search_black_24px.svg); */
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-size: 18px 18px;
-    background-position: 95% center;
-    border-radius: 50px;
-    border: 1px solid #575756;
-    transition: all 250ms ease-in-out;
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
+    border-radius: 50%;
+    transition: 0.5s ease all;
 }
 
-.search__input::placeholder {
-    color: rgba(87, 87, 86, 0.8);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
+.searchButton span {
+    position: absolute;
+    top: 68px;
+    left: 43px;
+    display: block;
+    width: 45px;
+    height: 15px;
+    background-color: transparent;
+    border-radius: 10px;
+    transform: rotateZ(52deg);
+    transition: 0.5s ease all;
 }
 
-.search__input:hover,
-.search__input:focus {
-    /* padding: 12px 0; */
-    outline: 0;
-    border: 1px solid transparent;
-    border-bottom: 1px solid #575756;
-    border-radius: 0;
-    background-position: 100% center;
+.searchButton span:before,
+.searchButton span:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 45px;
+    height: 15px;
+    background-color: gray;
+    border-radius: 10px;
+    transform: rotateZ(0);
+    transition: 0.5s ease all;
 }
 
-.credits__text {
-    text-align: center;
-    font-size: 13px;
-    line-height: 18px;
+#s-cover:hover #s-circle {
+    top: -1px;
+    width: 67px;
+    height: 15px;
+    border-width: 0;
+    background-color: gray;
+    border-radius: 20px;
 }
 
-.credits__link {
-    color: #ff8b88;
-    text-decoration: none;
-    transition: color 250ms ease-in;
+#s-cover:hover span {
+    top: 50%;
+    left: 56px;
+    width: 25px;
+    margin-top: -9px;
+    transform: rotateZ(0);
 }
 
-.credits__link:hover,
-.credits__link:focus {
-    color: rgb(191, 137, 135);
+#s-cover:hover button span:before {
+    bottom: 11px;
+    transform: rotateZ(52deg);
+}
+
+#s-cover:hover button span:after {
+    bottom: -11px;
+    transform: rotateZ(-52deg);
+}
+
+#s-cover:hover button span:before,
+#s-cover:hover button span:after {
+    right: -6px;
+    width: 40px;
+    background-color: gray;
 }
 
 
@@ -552,107 +612,92 @@ body {
 
 /* ///// favorate butoon  */
 
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.buttons {
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 5%;
-    margin-bottom: 5%;
+#butTitle {
     text-align: center;
 }
 
-.btn-hover {
-    width: 200px;
-    font-size: 16px;
-    font-weight: 600;
-    color: #fff;
+.mainDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 640px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+}
+
+ul.ks-cboxtags {
+    list-style: none;
+    padding: 20px;
+}
+
+ul.ks-cboxtags li {
+    display: inline;
+}
+
+ul.ks-cboxtags li label {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, .9);
+    border: 2px solid rgba(139, 139, 139, .3);
+    color: #adadad;
+    border-radius: 25px;
+    white-space: nowrap;
+    margin: 3px 0px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .2s;
+}
+
+ul.ks-cboxtags li label {
+    padding: 8px 12px;
     cursor: pointer;
-    margin: 20px;
-    height: 55px;
-    text-align: center;
-    border: none;
-    background-size: 300% 100%;
-    border-radius: 50px;
-    moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
 }
 
-.btn-hover:hover {
-    background-position: 100% 0;
-    moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
+ul.ks-cboxtags li label::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 12px;
+    padding: 2px 6px 2px 2px;
+    content: "\f067";
+    transition: transform .3s ease-in-out;
 }
 
-.btn-hover:focus {
-    outline: none;
+ul.ks-cboxtags li input[type="checkbox"]:checked+label::before {
+    content: "\f00c";
+    transform: rotate(-360deg);
+    transition: transform .3s ease-in-out;
 }
 
-.btn-hover.color-1 {
-    background-color: blue;
-
+ul.ks-cboxtags li input[type="checkbox"]:checked+label {
+    border: 2px solid #1bdbf8;
+    background-color: #12bbd4;
+    color: #fff;
+    transition: all .2s;
 }
 
-.btn-hover.color-2 {
-    background-color: blue;
-
+ul.ks-cboxtags li input[type="checkbox"] {
+    display: absolute;
 }
 
-.btn-hover.color-3 {
-    background-color: blue;
-
+ul.ks-cboxtags li input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
 }
 
-.btn-hover.color-4 {
-    background-color: blue;
-
+ul.ks-cboxtags li input[type="checkbox"]:focus+label {
+    border: 2px solid #e9a1ff;
 }
 
-.btn-hover.color-5 {
-    background-color: blue;
-
-}
-
-.btn-hover.color-6 {
-    background-color: blue;
-
-}
-
-.btn-hover.color-7 {
-    background-color: blue;
-
-}
-
-.btn-hover.color-8 {
-    background-color: blue;
-
-}
-
-.btn-hover.color-9 {
-    background-color: blue;
-
-}
-
-.btn-hover.color-10 {
-    background-color: blue;
-
-}
-
-.btn-hover.color-11 {
-    background-color: blue;
-
-}
-.btn-hover.color-11 {
-    background-color: green;
-
-}
 
 /* End Favorate butoon */
