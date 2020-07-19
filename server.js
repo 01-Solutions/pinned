@@ -5,8 +5,6 @@ const https = require('https');
 const cors = require('cors');
 const agent = require('superagent');
 const pgSQL = require('pg');
-var cheerio = require('cheerio'),
-    $ = cheerio.load('pages/index.ejs');
 const server = express();
 const client = new pgSQL.Client(process.env.DATABASE_URL)
 server.use(cors());

@@ -79,8 +79,8 @@ nav .menuItems li a:hover::before {
     transition: all 0.5s ease-in-out;
 }
 
-#sign-in {
-    margin-left: 600px;
+#sign {
+    margin-left: 700px;
     margin-right: 0px;
 }
 
