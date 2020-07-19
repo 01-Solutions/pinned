@@ -34,7 +34,6 @@ server.get('/', test);
 server.get('/home', getHomeData);
 /* this route for sine in and check if user have acount ao not on our database */
 server.post('/signin', signinFun);
-
 /* this route for sine in and check if user have acount ao not on our database */
 server.post('/signup', signupFun);
 
@@ -58,7 +57,6 @@ function getHomeData(req, res) {
     var sqlResult = [];
     let sql = `select interests.interest_desc from interests,users_interests where interests.interest_id = users_interests.interest_id and users_interests.user_id = ${user_id};`;
     client.query(sql)
-
     .then(sqlData => { // get the SQL result
         if(sqlData.rows.length < 1){
             res.redirect('/')
@@ -69,14 +67,11 @@ function getHomeData(req, res) {
         agent.get(myURL).then(apiResult =>{
            let result= JSON.parse(apiResult.text).articles.map(item=>{
                  return new Article(item);
-            })
-            // res.send(result)
+                })
             res.render('pages/index', {allArticles: result});
         });
     })
-
 }
-
 // this is a fuction to transfare array of objects to array
 function arrToObj(arr, myProperty) {
     let result = arr.map(item => {
@@ -84,7 +79,9 @@ function arrToObj(arr, myProperty) {
     });
     return result;
 }
-
+function strToArr(str) {
+    return str.split(' ');
+}
 function test(req, res) {
     agent.get(url).then(result => {
         let APIResult = JSON.parse(result.text).articles
@@ -96,7 +93,11 @@ function test(req, res) {
         res.render('pages/index', {allArticles: myArticls});
     });
 };
-
+function dataTOsignin(req, res){
+    var datasignin = req.body.msg;
+    console.log(datasignin);
+    res.render('pages/signin-sigup',{singinMsg: datasignin})
+}
 /* get data from sign in form */
 function signinFun(req, res) {
     var email = req.body.Email;
@@ -122,7 +123,6 @@ function signupFun(req, res){
     let sql = `select * from users where user_email = '${req.body.Email}';`;
     client.query(sql).then(result =>{
         if(result.rows.length > 0){
-            // res.render('pages/signin-sigup', {singinMsg: 'WrongPass'});
             res.render('pages/signin-sigup',{singinMsg: 'defulte'})
         }else{
             let {userName,email,password,gender} = req.body;

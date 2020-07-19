@@ -1,0 +1,78 @@
+#faved {
+    height: 20px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#favbtn {
+    background-color: Transparent;
+    border: none;
+}
+
+.love {
+    cursor: pointer;
+    padding: 10px 12px 8px;
+    background: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 0 15px;
+    color: #aaa;
+    transition: .2s;
+}
+
+.love:hover {
+    color: #666;
+}
+
+.love:before {
+    font-family: fontawesome;
+    content: '\f004';
+    font-style: normal;
+}
+
+#saved {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    visibility: hidden;
+    transition: .6s;
+    z-index: -2;
+    font-size: 2px;
+    color: transparent;
+    font-weight: 400;
+}
+
+.love.press {
+    animation: size .4s;
+    color: #e23b3b;
+}
+
+#saved.press {
+    bottom: 40px;
+    font-size: 14px;
+    visibility: visible;
+    animation: fade 1s;
+}
+
+#favbut {
+    border: none;
+    background-color: transparent;
+}
+
+input[type="text"]::placeholder {
+    color: #ccc;
+}
+
+#s-cover {
+    width: 1px;
+    padding-left: 35px;
+}
+
+.searchButton {
+    position: relative;
+    display: block;
+    width: 84px;
+    height: 96px;
+    cursor: pointer;
+}
