@@ -38,6 +38,7 @@ server.post('/signin', signinFun);
 
 /* this route for sine in and check if user have acount ao not on our database */
 server.post('/signup', signupFun);
+server.get('/test',test)
 
 
 /* this route for sinein data */
@@ -106,7 +107,7 @@ function test(req, res) {
         // console.log(myArticls);
 
 
-        res.render('pages/index', {allArticles: myArticls});
+        res.render('pages/articls', {articlsKey: myArticls});
 
     });
 };
