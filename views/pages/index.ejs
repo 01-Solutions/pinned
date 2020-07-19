@@ -7,7 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js">
+
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="/styles/style.css">
 </head>
@@ -15,32 +18,74 @@
 <body>
     <header>
 
-        <section id="topbar">
-            <nav>
-                <ul class="menuItems">
-                    <li>
-                        <a href='#' data-item='Home'>Home</a>
-                    </li>
-                    <li>
-                        <a href='#' data-item='About'>About</a>
-                    </li>
-                    <li>
-                        <a href='#' data-item='Articles'>Articles</a>
-                    </li>
-                    <li>
-                        <a href='#' data-item='Blog'>Blog</a>
-                    </li>
+        <nav>
+            <ul class="menuItems">
+                <a id="anker" href="" target="_blank">Pinned</a>
+                <!-- <h1 id="pinnedLogo">Pinned</h1> -->
+                <li>
+                    <a href='#' data-item='Home'>Home</a>
+                </li>
+                <li>
+                    <a href='#' data-item='About'>About</a>
+                </li>
+                <li>
+                    <a href='#' data-item='Articles'>Articles</a>
+                </li>
+                <li>
+                    <a href='#' data-item='Blog'>Blog</a>
+                </li>
+                <li id="mylist">
+                    <a href='#' data-item='myList'>myList</a>
+                </li>
 
-                    <form action="/signupdata" method="POST" id="signupdata">
-                        <button class="submit-btn" name="msg" value="defulte">
-                            signin
-                        </button>
-                    </form>
-                </ul>
-            </nav>
-        </section>
+                <form action="/signupdata" method="POST" id="signupdata">
+
+                    <button class="login-btn ">Login<i id="logicon" class="fas fa-sign-in-alt"></i> 
+                    </button>
+
+                </form>
+
+            </ul>
+        </nav>
     </header>
+
     <main>
+
+        <div class="w3-content w3-display-container">
+            <% let arr = [] %>
+                <% for(let i = 0; i < allArticles.length; i++){ %>
+                    <%   arr.push(allArticles[i]) %>
+                        <%    if(arr.length == 3){ %>
+                            <div class="w3-display-container mySlides">
+                                <div id='mainNews'>
+                                    <div class="cardsNews">
+                                        <%      arr.forEach(item =>{ %>
+                                            <div class="cardNews contentNews">
+                                                <div class="cardNews-content">
+                                                    <div class="cardNews-img">
+                                                        <img src="<%= item.img %>" alt="Gamer">
+                                                    </div>
+                                                    <div class="cardNews-label">
+                                                        <%= item.source %>
+                                                    </div>
+                                                    <div class="cardNews-title">
+                                                        <%= item.title %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <%    }) %>
+                                    </div>
+                                </div>
+                            </div>
+                            <%    arr = []; %>
+                                <%    } %>
+                                    <%  } %>
+
+
+                                        <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+                                        <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+
+        </div>
         <!-- for search  -->
         <div id="cover">
             <form method="get" action="">
@@ -93,44 +138,51 @@
 
 
 
-        <div class="w3-content w3-display-container">
-            <% let arr = [] %>
-                <% for(let i = 0; i < allArticles.length; i++){ %>
-                    <%   arr.push(allArticles[i]) %>
-                        <%    if(arr.length == 3){ %>
-                            <div class="w3-display-container mySlides">
-                                <div id='mainNews'>
-                                    <div class="cardsNews">
-                                        <%      arr.forEach(item =>{ %>
-                                            <div class="cardNews contentNews">
-                                                <div class="cardNews-content">
-                                                    <div class="cardNews-img">
-                                                        <img src="<%= item.img %>" alt="Gamer">
-                                                    </div>
-                                                    <div class="cardNews-label">
-                                                        <%= item.source %>
-                                                    </div>
-                                                    <div class="cardNews-title">
-                                                        <%= item.title %>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <%    }) %>
-                                    </div>
-                                </div>
-                            </div>
-                            <%    arr = []; %>
-                                <%    } %>
-                                    <%  } %>
 
+    </main>
 
-                                        <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
-                                        <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+    <footer class="footer-distributed">
+
+        <div class="footer-left">
+
+            <h3>Pinned</h3>
+
+            <p class="footer-links">
+                <a href='#' data-item='Home'>Home</a>·
+                <a href="#">About</a> ·
+                <a href="#">Articles</a> ·
+                <a href="#">Blog</a> ·
+                <a href="#">MyList</a> ·
+            </p>
+
+            <p class="footer-company-name">Pinned © 2015</p>
+
+            <div class="footer-icons">
+                <!-- <i class="fab fa-facebook"></i> -->
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+
+            </div>
 
         </div>
 
-    </main>
-    <footer></footer>
+        <div class="footer-right">
+
+            <p>Contact Us</p>
+
+            <form action="#" method="post">
+
+                <input type="text" name="email" placeholder="Email">
+                <textarea name="message" placeholder="Message"></textarea>
+                <button>Send</button>
+
+            </form>
+
+        </div>
+
+    </footer>
     <script src="/js/app.js"></script>
 </body>
 
