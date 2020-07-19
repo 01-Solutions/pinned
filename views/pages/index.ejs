@@ -9,6 +9,7 @@
     <title>Home Page</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="/styles/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -29,29 +30,64 @@
     <main>
         <!-- for search  -->
         <div class="search__container">
-            <p class="search__title">
-                search for your favourite subjects
-            </p>
+            <p class="search__title">search for your favourite subjects</p>
             <input class="search__input" type="text" placeholder="Search">
+            <bttton class="search__but" type="button" value="">search</bttton>
         </div>
 
         <!-- end search  -->
 
-        <div class="buttons">
-            <h2>CHOOSE WHAT INTEREST YOU </h2>
-            <!-- <form action="" method=""> -->
-                <button class="btn-hover color-1">BUTTON</button>
-                <button class="btn-hover color-2">BUTTON</button>
-                <button class="btn-hover color-3">BUTTON</button>
-                <button class="btn-hover color-4">BUTTON</button>
-                <button class="btn-hover color-5">BUTTON</button>
-                <button class="btn-hover color-6">BUTTON</button>
-                <button class="btn-hover color-7">BUTTON</button>
-                <button class="btn-hover color-8">BUTTON</button>
-                <button class="btn-hover color-9">BUTTON</button>
-                <button class="btn-hover color-10">BUTTON</button>
-                <button class="btn-hover color-11">BUTTON</button>
-                <button class="btn-hover color-12">Done</button>
+        <div id='allButtons'>
+            <div class="container">
+                <ul class="ks-cboxtags">
+                    <li><input type="checkbox" id="checkboxOne" value="Rainbow Dash"><label for="checkboxOne">Rainbow
+                            Dash</label>
+                    </li>
+                    <li><input type="checkbox" id="checkboxTwo" value="Cotton Candy" checked><label
+                            for="checkboxTwo">Cotton Candy</label>
+                    </li>
+                    <li><input type="checkbox" id="checkboxThree" value="Rarity" checked><label
+                            for="checkboxThree">Rarity</label>
+                    </li>
+                    <li><input type="checkbox" id="checkboxFour" value="Moondancer"><label
+                            for="checkboxFour">Moondancer</label>
+                    </li>
+                    <li><input type="checkbox" id="checkboxFive" value="Surprise"><label
+                            for="checkboxFive">Surprise</label>
+                    </li>
+                    <li><input type="checkbox" id="checkboxSix" value="Twilight Sparkle" checked><label
+                            for="checkboxSix">Twilight
+                            Sparkle</label></li>
+                    <li><input type="checkbox" id="checkboxSeven" value="Fluttershy"><label
+                            for="checkboxSeven">Fluttershy</label>
+                    </li>
+                    <li><input type="checkbox" id="checkboxEight" value="Derpy Hooves"><label for="checkboxEight">Derpy
+                            Hooves</label>
+                    </li>
+                    <li><input type="checkbox" id="checkboxNine" value="Princess Celestia"><label
+                            for="checkboxNine">Princess
+                            Celestia</label></li>
+                    <li><input type="checkbox" id="checkboxTen" value="Gusty"><label for="checkboxTen">Gusty</label>
+                    </li>
+                    <li class="ks-selected">
+                        <input type="checkbox" id="checkboxEleven" value="Discord"><label
+                            for="checkboxEleven">Discord</label>
+                    </li>
+                    <li><input type="checkbox" id="checkboxTwelve" value="Clover"><label
+                            for="checkboxTwelve">Clover</label>
+                    </li>
+                    <li><input type="checkbox" id="checkboxThirteen" value="Baby Moondancer"><label
+                            for="checkboxThirteen">Baby
+                            Moondancer</label></li>
+                    <li><input type="checkbox" id="checkboxFourteen" value="Medley"><label
+                            for="checkboxFourteen">Medley</label>
+                    </li>
+                    <li><input type="checkbox" id="checkboxFifteen" value="Firefly"><label
+                            for="checkboxFifteen">Firefly</label>
+                    </li>
+                </ul>
+
+            </div>
         </div>
 
 

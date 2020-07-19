@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <title>Articls</title>
     <link rel="stylesheet" href="/styles/style.css">
 </head>
@@ -13,14 +16,25 @@
     <a href="/sign/signin-sigup">signin</a>
     <div class="card-container">
         <% articlsKey.forEach (articl => {  %>
+
+        <form action="" method="">
+
             <div class="card card-1">
-                <div class="card-img"><img src="<%= articl.img %>" alt=""></div>
+
+                <div id="faved">
+                    <button id="favbut"><i class="love"></i>
+                        <span id="saved">Saved!</span>
+                    </button>
+                </div>
+                <div class="card-img">
+                    <img src="<%= articl.img %>" alt=""></div>
                 <a href="" class="card-link">
-                    <div class="card-img-hovered"></div>
+                    <!-- <div class="card-img-hovered"></div> -->
                 </a>
                 <div class="card-info">
                     <div class="card-about">
                         <a class="card-tag tag-news"><%= articl.source %></a>
+
                         <div class="card-time"><%= articl.date %></div>
                     </div>
                     <!-- this is ancour for source link of articl  -->
@@ -31,8 +45,14 @@
                     <div class="card-creator">by <a href=""><%= articl.author %></a></div>
                 </div>
             </div>
-            <% }) %>
+
+        </form>
+        <% }) %>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/js/fav.js"></script>
+
 </body>
 
 </html>
