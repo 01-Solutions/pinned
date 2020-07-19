@@ -4,6 +4,7 @@ const loginBtn = document.getElementById('login');
 const signupBtn = document.getElementById('signup');
 
 loginBtn.addEventListener('click', (e) => {
+	e.preventDefault();
 	let parent = e.target.parentNode.parentNode;
 	Array.from(e.target.parentNode.parentNode.classList).find((element) => {
 		if(element !== "slide-up") {
@@ -16,6 +17,7 @@ loginBtn.addEventListener('click', (e) => {
 });
 
 signupBtn.addEventListener('click', (e) => {
+	e.preventDefault();
 	let parent = e.target.parentNode;
 	Array.from(e.target.parentNode.classList).find((element) => {
 		if(element !== "slide-up") {
@@ -26,4 +28,7 @@ signupBtn.addEventListener('click', (e) => {
 		}
 	});
 });
-console.log(result);
+document.getElementById('btnsignIn').addEventListener('click',e =>{
+	// e.preventDefault();
+	// loginBtn.click();
+});
