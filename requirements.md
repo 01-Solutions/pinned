@@ -14,12 +14,7 @@ Why should we care about your product?
 1. search for articles
 2. save articles in the favourits
 3. provide articles bnased on the user interests
-4. save the environment resources by reuse things that we don't need.
-5. there are a form you can by it donate some stuff like "food, book, clothes"
-6. there page that name "contributes" allow to the donor to see what he contributed with
+4. mark articles as rode articles
 ​
 ## our website will  won't do 
-1. There is no cash donation
-2. No delivery service
-3. There is no repair service for damaged things
-4. we don't have international work until now.
+1. wont provide sharing articles
