@@ -5,10 +5,13 @@ const https = require('https');
 const cors = require('cors');
 const agent = require('superagent');
 const pgSQL = require('pg');
+var cheerio = require('cheerio'),
+    $ = cheerio.load('pages/index.ejs');
 const server = express();
 const client = new pgSQL.Client(process.env.DATABASE_URL)
 server.use(cors());
 /////////////////////////////////////////////
+const myHtml = express.static('./public/views/pages/index');
 server.use(express.static('./public'));
 server.set('view engine', 'ejs');
 server.use(express.json());
@@ -88,18 +91,17 @@ function signinFun(req, res){
     let sql = `select * from users where user_email = '${email}';`;
     console.log(sql);
     client.query(sql).then(dbResult =>{
-        console.log(dbResult);
+        // console.log(dbResult);
         if(dbResult.rows.length > 0){
             if(dbResult.rows[0].user_pass == password){
                 console.log('goog job');
                 res.redirect('/home')
 
             }else{
-                console.log('FUCK YOU');
                 res.render('pages/signin-sigup', {result: 'PassFalse'});
             }
         }else{
-            console.log('sign');
+            console.log(test);
             res.render('pages/signin-sigup', {result: 'SignUp'});
         }
     })
