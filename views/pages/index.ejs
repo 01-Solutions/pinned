@@ -43,11 +43,11 @@
     <main>
         <!-- for search  -->
         <div id="cover">
-            <form method="get" action="/search">
+            <form method="POST" action="/search">
                 <div class="tb">
-                    <div  class="td"><input class="inputTextSearch" id="idForAppend" type="text" placeholder="Search" value="" required></div>
+                    <div  class="td"><input class="inputTextSearch" id="idForAppend" name="search" type="text" placeholder="Search" value="" required></div>
                     <div class="td" id="s-cover">
-                        <button class="searchButton" type="submit">
+                        <button id="searchBtn" class="searchButton" type="submit">
                             <div id="s-circle"></div>
                             <span></span>
                         </button>
@@ -64,24 +64,22 @@
                 <div class="mainDiv">
                     <div id="interestcon" class="container">
                         <ul class="ks-cboxtags">
-                            <li><input type="checkbox" id="checkboxOne" value="Rainbow Dash"><label for="checkboxOne" >Rainbow Dash</label></li>
-                            <li><input type="checkbox" id="checkboxTwo" value="Cotton Candy" ><label for="checkboxTwo">Cotton Candy</label></li>
-                            <li><input type="checkbox" id="checkboxThree" value="Rarity" ><label for="checkboxThree">Rarity</label></li>
-                            <li><input type="checkbox" id="checkboxFour" value="Moondancer"><label for="checkboxFour">Moondancer</label></li>
-                            <li><input type="checkbox" id="checkboxFive" value="Surprise"><label for="checkboxFive">Surprise</label></li>
-                            <li><input type="checkbox" id="checkboxSix" value="Twilight Sparkle" ><label for="checkboxSix">Twilight
-                                    Sparkle</label></li>
-                            <li><input type="checkbox" id="checkboxSeven" value="Fluttershy"><label for="checkboxSeven">Fluttershy</label></li>
-                            <li><input type="checkbox" id="checkboxEight" value="Derpy Hooves"><label for="checkboxEight">Derpy Hooves</label></li>
-                            <li><input type="checkbox" id="checkboxNine" value="Princess Celestia"><label for="checkboxNine">Princess
-                                    Celestia</label></li>
-                            <li><input type="checkbox" id="checkboxTen" value="Gusty"><label for="checkboxTen">Gusty</label></li>
-                            <li class="ks-selected"><input type="checkbox" id="checkboxEleven" value="Discord"><label for="checkboxEleven">Discord</label></li>
+                            <li><input type="checkbox" id="checkboxOne" value="space"><label for="checkboxOne" >space</label></li>
+                            <li><input type="checkbox" id="checkboxTwo" value="cars" ><label for="checkboxTwo">cars</label></li>
+                            <li><input type="checkbox" id="checkboxThree" value="sport" ><label for="checkboxThree">sport</label></li>
+                            <li><input type="checkbox" id="checkboxFour" value="food"><label for="checkboxFour">food</label></li>
+                            <li><input type="checkbox" id="checkboxFive" value="cooking"><label for="checkboxFive">cooking</label></li>
+                            <li><input type="checkbox" id="checkboxSix" value="animals" ><label for="checkboxSix">animals</label></li>
+                            <li><input type="checkbox" id="checkboxSeven" value="ants"><label for="checkboxSeven">ants</label></li>
+                            <li><input type="checkbox" id="checkboxEight" value="history"><label for="checkboxEight">history</label></li>
+                            <li><input type="checkbox" id="checkboxNine" value="movies"><label for="checkboxNine">movies</label></li>
+                            <li><input type="checkbox" id="checkboxTen" value="technology"><label for="checkboxTen">technology</label></li>
+                            <!-- <li class="ks-selected"><input type="checkbox" id="checkboxEleven" value="Discord"><label for="checkboxEleven">Discord</label></li>
                             <li><input type="checkbox" id="checkboxTwelve" value="Clover"><label for="checkboxTwelve">Clover</label></li>
                             <li><input type="checkbox" id="checkboxThirteen" value="Baby Moondancer"><label for="checkboxThirteen">Baby
                                     Moondancer</label></li>
                             <li><input type="checkbox" id="checkboxFourteen" value="Medley"><label for="checkboxFourteen">Medley</label></li>
-                            <li><input type="checkbox" id="checkboxFifteen" value="Firefly"><label for="checkboxFifteen">Firefly</label></li>
+                            <li><input type="checkbox" id="checkboxFifteen" value="Firefly"><label for="checkboxFifteen">Firefly</label></li> -->
                         </ul>
 
                     </div>
@@ -129,6 +127,7 @@
 
     </main>
     <footer></footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/userintrest.js" ></script>
 </body>
