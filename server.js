@@ -8,8 +8,8 @@ const pgSQL = require('pg');
 // var cheerio = require('cheerio'),
 // $ = cheerio.load('pages/index.ejs');
 const server = express();
-const client = new pgSQL.Client(process.env.DATABASE_URL)
 server.use(cors());
+const client = new pgSQL.Client(process.env.DATABASE_URL)
 /////////////////////////////////////////////
 const myHtml = express.static('./public/views/pages/index');
 server.use(express.static('./public'));
@@ -17,49 +17,42 @@ server.set('view engine', 'ejs');
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 const methodOverride = require('method-override');
+const { query } = require('express');
 server.use(methodOverride('_method'));
 /////////////////////////////////////////////
 const PORT = process.env.PORT || 3030;
 /****************************************** */
 const key = process.env.NEWSKEY;
 const url = `https://newsapi.org/v2/everything?q=latest&apiKey=${key}`;
-server.get('/', test);
 var user_id ;
 function getPage(req, res) {
     // res.render('pages/index');
 }
+server.get('/', test);
 // if the user is a 'gust' then we will send hem to this route
-// server.get('/test', test);
 // if the user is a Signed up user then we will send hem to this rout
 server.get('/home', getHomeData);
-
 /* this route for sine in and check if user have acount ao not on our database */
 server.post('/signin', signinFun);
 
 /* this route for sine in and check if user have acount ao not on our database */
 server.post('/signup', signupFun);
 
+/*this route for get search reslut */
+server.post('/search', getSearchResult);
 
 /* this route for sinein data */
 server.post('/signupdata', dataTOsignin);
-function dataTOsignin(req, res){
-    var datasignin = req.body.msg;
-    console.log(datasignin);
-    res.render('pages/signin-sigup',{singinMsg: datasignin})
-    // check the data withe data base ;
-}
 
-server.post('/interest', datainterest);
-var arrinterest = [];
-function datainterest(req, res){
-   var ddd=req.body.msg1
-    console.log(ddd);
-    // check the data withe data base ;
-}
 /* this route for move ypo from article page to sign in&&sign up page */
 server.get('/sign/signin-sigup', (req, res) => {
     res.render('./pages/signin-sigup')
 });
+
+function dataTOsignin(req, res){
+    var datasignin = req.body.msg;
+    res.render('pages/signin-sigup',{singinMsg: datasignin})
+}
 
 function getHomeData(req, res) {
     var sqlResult = [];
@@ -94,12 +87,10 @@ function arrToObj(arr, myProperty) {
 
 function test(req, res) {
     agent.get(url).then(result => {
-        // console.log(result.Article);
         let APIResult = JSON.parse(result.text).articles
         let myArticls = APIResult.map(item => {
             return new Article(item);
         });
-        // console.log(myArticls);
 
 
         res.render('pages/index', {allArticles: myArticls});
@@ -110,13 +101,9 @@ function test(req, res) {
 function signinFun(req, res) {
     var email = req.body.Email;
     var password = req.body.Password;
-    console.log(email);
-    console.log(password);
-    let sql = `select * from users where user_email = '${email}';`;
-    console.log(sql);
 
+    let sql = `select * from users where user_email = '${email}';`;
     client.query(sql).then(dbResult =>{
-        // console.log(dbResult);
         if(dbResult.rows.length > 0){
             if(dbResult.rows[0].user_pass == password){
                 user_id = dbResult.rows[0].user_id;
@@ -129,25 +116,9 @@ function signinFun(req, res) {
         }
         
     })
-    
-    // res.render('pages/signin-sigup', {});
-
 }
-
-
 /* get data from sign up form */
-
 function signupFun(req, res){
-    // var userName = req.body.UserName;
-    // var email = req.body.Email;
-    // var password = req.body.Password;
-    // var conpassword = req.body.confirmPassword;
-    // var gender = req.body.gender;
-    // console.log(userName);
-    // console.log(email);
-    // console.log(password);
-    // console.log(conpassword);
-    // console.log(gender);
     let sql = `select * from users where user_email = '${req.body.Email}';`;
     client.query(sql).then(result =>{
         if(result.rows.length > 0){
@@ -162,9 +133,69 @@ function signupFun(req, res){
             });
         }
     })
-
-    // check the data withe data base ;
 }
+
+function getSearchResult(req,res){
+    console.log(req.body);
+    var searchData = req.body.search;
+     var searchStr= searchData.split(' ').join(' OR ');
+     
+    //  console.log(searchData.split(' '));
+     let sql=`select * from interests;`;
+     let intrestarr=[];
+     let userID =getUserIdByEmail(req.body.email);
+     client.query(sql).then(dbintrest=>{
+        intrestarr = dbintrest;
+     })
+     searchData.split(' ').forEach(element => {
+         if(intrestarr.includes(element)){
+             let interstId = getinterestIdByEmail(element)
+             if(checkIfexists(userID,interstId)){
+
+                 let sql=`insert into users_interests (user_id,interest_id) VALUES($1,$2);`;
+                 let safeValues = [userID,interstId];
+                 client.query(sql,safeValues).then(()=>{
+                    let myURL = `https://newsapi.org/v2/everything?q=(${searchStr})&apiKey=${key}`;
+                    agent.get(myURL).then(apiData=>{
+                       let resultarr = JSON.parse(apiData.text).articles.map(item=>{
+                            return new Article(item);
+                        })
+                        res.render('pages/articls', {articlsKey: resultarr});
+                    })
+                 })
+             }
+         }
+     });
+   
+}
+
+function getUserIdByEmail(str){
+let sql =`select user_id from users where user_email='${str}';`
+client.query(sql).then(userId=>{
+    if(userId.rows.length > 1){
+        return userId.rows[0].user_id;
+    }
+})
+}
+function getinterestIdByEmail(str){
+let sql =`select interest_id from interests where interest_desc='${str}';`
+client.query(sql).then(userId=>{
+    if(userId.rows.length > 1){
+        return userId.rows[0].interest_id;
+    }
+})
+}
+function checkIfexists(userid,intrestid){
+let sql =`select * from users_interests where interest_id='${intrestid}' and user_id='${userid}' ;`
+client.query(sql).then(userId=>{
+    if(userId.rows.length > 1){
+        return true;
+    }else{
+        return false;
+    }
+})
+}
+
 
 function Article(articleData) {
     this.title = articleData.title;
