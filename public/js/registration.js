@@ -1,3 +1,4 @@
+
 console.clear();
 
 const loginBtn = document.getElementById('login');
@@ -28,7 +29,32 @@ signupBtn.addEventListener('click', (e) => {
 		}
 	});
 });
-document.getElementById('btnsignIn').addEventListener('click',e =>{
+
+
+
+
+document.getElementById('signIn').addEventListener('click', getEmail);
 	// e.preventDefault();
 	// loginBtn.click();
-});
+
+const logIn =document.getElementById('getUserEmail');
+
+// document.getElementById('getdata').addEventListener('click',getEmail)
+var emailforjson;
+function getEmail(event){
+	// event.preventDefault();
+	if (event.target.textContent == "Log in") {
+		let userEmail =logIn.value;
+		emailforjson = userEmail;
+		setlocal();
+	}
+}
+
+
+function setlocal(){
+	var sendJson = JSON.stringify(emailforjson);
+	// console.log('done',emailforjson);
+	localStorage.setItem('key',sendJson)
+}
+
+
