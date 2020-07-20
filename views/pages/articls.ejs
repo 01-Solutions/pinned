@@ -52,7 +52,7 @@
     <!-- <a href="/sign/signin-sigup">signin</a> -->
     <div class="card-container">
         <% articlsKey.forEach (articl => {  %>
-            <form action="" method="">
+            <form action="" method="post">
 
                 <div class="card card-1">
 
@@ -62,28 +62,28 @@
                     </button>
                     </div>
 
-                    <div class="card-img"><img src="<%= articl.img %>" alt=""></div>
+                    <div class="card-img"><img id="artIMG" src="<%= articl.img %>" alt=""></div>
                     <a href="" class="card-link">
                         <div class="card-img-hovered"></div>
                     </a>
                     <div class="card-info">
                         <div class="card-about">
-                            <a class="card-tag tag-news">
+                            <a id="cardTag" class="card-tag tag-news">
                                 <%= articl.source %>
                             </a>
-                            <div class="card-time">
+                            <div id="cardTime" class="card-time">
                                 <%= articl.date %>
                             </div>
                         </div>
                         <!-- this is ancour for source link of articl  -->
-                        <a href="<%= articl.url %>" class="card-title">read more</a>
-                        <h1 class="card-title">
+                        <a id="cardUrl" href="<%= articl.url %>" class="card-title">read more</a>
+                        <h1 id="cardTitle" class="card-title">
                             <%= articl.title %>
                         </h1>
                         <!-- this is the description we need to style it and make the font siza smaller. -->
                         <!-- <h1 class="card-title"><%= articl.description %></h1> -->
                         <div class="card-creator">by
-                            <a href="">
+                            <a id="cardAuthor" href="">
                                 <%= articl.author %>
                             </a>
                         </div>
@@ -136,7 +136,8 @@
 
     </footer>
     <!-- //End Footer //  -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="/js/fav.js"></script>
 </body>
 

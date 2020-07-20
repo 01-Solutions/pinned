@@ -27,23 +27,20 @@ const url = `https://newsapi.org/v2/everything?q=latest&apiKey=${key}`;
 var user_id;
 var user_email;
 
-function getPage(req, res) {
-    // res.render('pages/index');
-}
 server.get('/', test);
 
-server.get('/list',(req,res)=>{
-    res.render('./pages/list')
-})
-// if the user is a 'gust' then we will send hem to this route
-// if the user is a Signed up user then we will send hem to this rout
-server.get('/art', test)
+server.get('/list', (req, res) => {
+        res.render('./pages/list')
+    })
+    // if the user is a 'gust' then we will send hem to this route
+    // if the user is a Signed up user then we will send hem to this rout
+    // server.get('/art', test)
     // server.get('/about', aboutus);
     // function aboutus(req, res) {
     //     res.render('pages/aboutUs');
     // }
     // if the user is a Signed up user then we will send hem to this rout
-// server.get('/art', test)
+    // server.get('/art', test)
 server.get('/about', aboutus);
 
 function aboutus(req, res) {
@@ -63,12 +60,14 @@ server.post('/getUserEmail', (req, res) => {
     user_email = req.body.email;
 });
 /* this route for sinein data */
-server.post('/signupdata', dataTOsignin);
+server.get('/signupdata', dataTOsignin);
 
 /* this route for move ypo from article page to sign in&&sign up page */
 server.get('/sign/signin-sigup', (req, res) => {
     res.render('./pages/signin-sigup')
 });
+
+server.post('/saveFavorate', saveFavFun);
 
 function dataTOsignin(req, res) {
     var datasignin = req.body.msg;
@@ -161,63 +160,84 @@ function signupFun(req, res) {
 }
 
 function getSearchResult(req, res) {
-
-    // console.log(req.body);
     var searchData = req.body.search;
     var searchStr = searchData.split(' ').join(' OR ');
     var userID;
     let interstId;
     let intrestarr = [];
     let finalArray = [];
-    //  console.log(searchData.split(' '));
-    let sql = `select * from interests;`;
-    client.query(sql)
-        .then(dbintrest => {
-            intrestarr = dbintrest.rows.map(item => {
-                return item['interest_desc'];
-            });
-            console.log('--------------------------------first');
-            console.log('dfghjksd', intrestarr);
-            userID = getUserIdByEmail(user_email)
-                .then((user_id) => {
-                    console.log('user id is here', user_id);
-                    // console.log(searchData.split(' '));
-                    searchData.split(' ').forEach(element => {
-                        if (intrestarr.includes(element)) {
-                            console.log(element);
-                            interstId = getinterestIdByEmail(element)
-                                .then((intrestId) => {
-                                    checkIfexists(user_id, intrestId).then((result) => {
-                                        if (!result) {
-                                            console.log('it is in database');
-                                            let sql = `insert into users_interests (user_id,interest_id) VALUES($1,$2);`;
-                                            let safeValues = [user_id, intrestId];
-                                            return client.query(sql, safeValues)
 
-                                        }
+    if (!user_email) {
+        let myURL = `https://newsapi.org/v2/everything?q=(${searchStr})&apiKey=${key}`;
+        agent.get(myURL)
+            .then(apiData => {
+                let resultarr = JSON.parse(apiData.text).articles.map(item => {
+                    return new Article(item);
+                })
+                console.log('--------------------------------secound');
+                finalArray = resultarr;
+                console.log('--------------------------------therids');
+                res.render('pages/articls', { articlsKey: finalArray });
+            })
+    } else {
+
+
+        // console.log(req.body);
+        // var searchData = req.body.search;
+        // var searchStr = searchData.split(' ').join(' OR ');
+        // var userID;
+        // let interstId;
+        // let intrestarr = [];
+        // let finalArray = [];
+        //  console.log(searchData.split(' '));
+        let sql = `select * from interests;`;
+        client.query(sql)
+            .then(dbintrest => {
+                intrestarr = dbintrest.rows.map(item => {
+                    return item['interest_desc'];
+                });
+                console.log('--------------------------------first');
+                console.log('dfghjksd', intrestarr);
+                userID = getUserIdByEmail(user_email)
+                    .then((user_id) => {
+                        console.log('user id is here', user_id);
+                        // console.log(searchData.split(' '));
+                        searchData.split(' ').forEach(element => {
+                            if (intrestarr.includes(element)) {
+                                console.log(element);
+                                interstId = getinterestIdByEmail(element)
+                                    .then((intrestId) => {
+                                        checkIfexists(user_id, intrestId).then((result) => {
+                                            if (!result) {
+                                                console.log('it is in database');
+                                                let sql = `insert into users_interests (user_id,interest_id) VALUES($1,$2);`;
+                                                let safeValues = [user_id, intrestId];
+                                                return client.query(sql, safeValues)
+
+                                            }
+                                        })
                                     })
-                                })
-                        }
-                    });
+                            }
+                        });
 
 
-                })
-        })
-        .then(() => {
-            let myURL = `https://newsapi.org/v2/everything?q=(${searchStr})&apiKey=${key}`;
-            agent.get(myURL)
-                .then(apiData => {
-                    let resultarr = JSON.parse(apiData.text).articles.map(item => {
-                        return new Article(item);
                     })
-                    console.log('--------------------------------secound');
-                    finalArray = resultarr;
-                    console.log('--------------------------------therids');
-                    res.render('pages/articls', { articlsKey: finalArray });
-                })
-        })
+            })
+            .then(() => {
+                let myURL = `https://newsapi.org/v2/everything?q=(${searchStr})&apiKey=${key}`;
+                agent.get(myURL)
+                    .then(apiData => {
+                        let resultarr = JSON.parse(apiData.text).articles.map(item => {
+                            return new Article(item);
+                        })
+                        console.log('--------------------------------secound');
+                        finalArray = resultarr;
+                        console.log('--------------------------------therids');
+                        res.render('pages/articls', { articlsKey: finalArray });
+                    })
+            })
 
-
+    }
 
 }
 
@@ -254,6 +274,27 @@ function checkIfexists(userid, intrestid) {
     })
 }
 
+function saveFavFun(req, res) {
+    // console.log(req.body.articlIMG);
+    console.log('hiiii', user_id);
+
+    let SQL = ' INSERT INTO articles(title,author,img,url,source,conten) VALUES($1,$2,$3,$4,$5,$6);';
+    let safeValues = [req.body.articlTitle, req.body.articlAuthor, req.body.articlIMG, req.body.articlURL, req.body.articlSource, req.body.articlDate];
+    client.query(SQL, safeValues)
+        .then(() => {
+            console.log('saved', safeValues);
+            let q = `INSERT INTO users_articles(user_id,article_id) VALUES((select max(article_id) FROM articles),$1);`;
+            let safeVal = [user_id];
+            console.log('this is user id');
+
+            client.query(q, safeVal)
+                .then(() => {
+                    console.log('done');
+                })
+        })
+
+
+}
 
 function Article(articleData) {
     this.title = articleData.title;
