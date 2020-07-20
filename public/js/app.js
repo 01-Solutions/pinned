@@ -33,7 +33,7 @@ function searchBtnHandler(){
     // event.preventDefault();
     let localStorageData = getlocal();
 
-    $.post('/search', { 
+    $.post('/getUserEmail', { 
         email: localStorageData,
          search: searshStr.value
         });
