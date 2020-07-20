@@ -24,13 +24,12 @@ function showDivs(n) {
 
 
 
-const searchBtn = document.getElementById('searchBtn');
-const searshStr =document.getElementById('idForAppend');
 ///////////////////////////* start style with js *///////////////////////
 
-
+/* this is for send data to back-end (useremail-search&&intrest) */
+const searchBtn = document.getElementById('searchBtn');
+const searshStr =document.getElementById('idForAppend');
 searchBtn.addEventListener('click',searchBtnHandler)
-
 function searchBtnHandler(){
     // event.preventDefault();
     let localStorageData = getlocal();
@@ -40,9 +39,6 @@ function searchBtnHandler(){
          search: searshStr.value
         });
 }
-
-
-
 function getlocal(){
     
     if(localStorage.getItem('key')){
@@ -52,8 +48,11 @@ function getlocal(){
     return getdatafromJson;
 }
 
-// /* to check if there data in locale storage that mean the user was signin */
-// function ifuserOrnot(){
-//     var dataInlocal = JSON.parse(localStorage.getItem('key'))
-// }
+
+
+
+/* to check if there data in locale storage that mean the user was signin */
+function ifuserOrnot(){
+    var dataInlocal = JSON.parse(localStorage.getItem('key'))
+}
 
