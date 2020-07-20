@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,57 +13,58 @@
     <link rel="stylesheet" href="/styles/articles.css">
     <link rel="stylesheet" href="/styles/footer.css">
     <link rel="stylesheet" href="/styles/nav.css">
-    
 </head>
+
 <body>
-    <%- include('nav.ejs') %> 
-    <!-- <a href="signin&signyp.ejs">go to signin</a> -->
-    <!-- <a href="/sign/signin-sigup">signin</a> -->
-    <div class="card-container">
-        <% articlsKey.forEach (articl => {  %>
-            <form action="" method="post">
-                <div class="card card-1">
-                    <div id="faved">
-                        <button id="favbut"><i class="love"></i>
+    <%- include('nav.ejs') %>
+        <!-- <a href="signin&signyp.ejs">go to signin</a> -->
+        <!-- <a href="/sign/signin-sigup">signin</a> -->
+        <div class="card-container">
+            <% articlsKey.forEach (articl => {  %>
+                <form action="" method="post">
+                    <div class="card card-1">
+                        <div id="faved">
+                            <button id="favbut"><i class="love"></i>
                         <span id="saved">Saved!</span>
                     </button>
-                    </div>
-                    <div class="card-img"><img id="artIMG" src="<%= articl.img %>" alt=""></div>
-                    <a href="" class="card-link">
-                        <div class="card-img-hovered"></div>
-                    </a>
-                    <div class="card-info">
-                        <div class="card-about">
-                            <a id="cardTag" class="card-tag tag-news">
-                                <%= articl.source %>
-                            </a>
-                            <div id="cardTime" class="card-time">
-                                <%= articl.date %>
+                        </div>
+                        <div class="card-img"><img id="artIMG" src="<%= articl.img %>" alt=""></div>
+                        <a href="" class="card-link">
+                            <div class="card-img-hovered"></div>
+                        </a>
+                        <div class="card-info">
+                            <div class="card-about">
+                                <a id="cardTag" class="card-tag tag-news">
+                                    <%= articl.source %>
+                                </a>
+                                <div id="cardTime" class="card-time">
+                                    <%= articl.date %>
+                                </div>
+                            </div>
+                            <!-- this is ancour for source link of articl  -->
+                            <a id="cardUrl" href="<%= articl.url %>" class="card-title">read more</a>
+                            <h1 id="cardTitle" class="card-title">
+                                <%= articl.title %>
+                            </h1>
+                            <!-- this is the description we need to style it and make the font siza smaller. -->
+                            <!-- <h1 class="card-title"><%= articl.description %></h1> -->
+                            <div class="card-creator">by
+                                <a id="cardAuthor" href="">
+                                    <%= articl.author %>
+                                </a>
                             </div>
                         </div>
-                        <!-- this is ancour for source link of articl  -->
-                        <a id="cardUrl" href="<%= articl.url %>" class="card-title">read more</a>
-                        <h1 id="cardTitle" class="card-title">
-                            <%= articl.title %>
-                        </h1>
-                        <!-- this is the description we need to style it and make the font siza smaller. -->
-                        <!-- <h1 class="card-title"><%= articl.description %></h1> -->
-                        <div class="card-creator">by
-                            <a id="cardAuthor" href="">
-                                <%= articl.author %>
-                            </a>
-                        </div>
                     </div>
-                </div>
-            </form>
-            <% }) %>
-    </div>
-    <!-- // Footer //  -->
-    <%- include ('footer.ejs') %> 
-   
-    <!-- //End Footer //  -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="/js/fav.js"></script>
+                </form>
+                <% }) %>
+        </div>
+        <!-- // Footer //  -->
+        <%- include ('footer.ejs') %>
+
+            <!-- //End Footer //  -->
+            <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <script src="/js/fav.js"></script>
 </body>
+
 </html>
