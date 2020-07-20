@@ -1,53 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signin</title>
     <link rel="stylesheet" href="/styles/registration.css">
 </head>
+
 <body>
     <% console.log(singinMsg) %>
-    <% var ErrMsg ='' %>
-    <% if(singinMsg == 'WrongPass'){ %>
-       <% ErrMsg = 'WrongPAss' %>
-    <% }else if(singinMsg == 'notExist'){ %>
-    <%    ErrMsg = 'notExist' %>
-  <%  }else{ErrMsg = ''} %>
-  <main>
-    <div class="form-structor">
-        <form action="/signin" method="POST" id="signIn">
-            <div class="signup">
-            <h2 class="form-title" id="signup"><span>or</span>Log in</h2>
-            <div class="form-holder">
-                <input type="email" class="input" name="Email" value="" placeholder="Email">
-                <input type="password" class="input" name="Password" value="" placeholder="Password">
-                <p><%= ErrMsg %></p>
-            </div>
-            <button class="submit-btn" type="submit">Log in</button>
-        </div>
-    </form>
-    <form action="/signup" method="POST" id="signUp">
-        <div class="login slide-up">
-            <div class="center">
-                <h2 class="form-title" id="login"><span>or</span>Sign up</h2>
-                <div class="form-holder">
-                    <input type="text" class="input" name="UserName" value="" placeholder="Name">
-                    <input type="email" class="input" name="Email" value="" placeholder="Email">
-                    <input type="password" class="input" name="Password" value="" placeholder="Password">
-                    <input type="password" class="input" name="confirmPassword" value="" placeholder="confirm password">
-                    <input type="radio" id="male" name="gender" value="1">
-                    <label for="male">Male</label>
-                    <input type="radio" id="female" name="gender" value="0">
-                    <label for="female">Female</label>
-                </div>
-                <button class="submit-btn" type="submit">Sign up</button>
-            </div>
-        </div>
-        </form>
-    </div>
-</main>
-
-<script src="/js/registration.js"></script>
+        <% var ErrMsg ='' %>
+            <% if(singinMsg == 'WrongPass'){ %>
+                <% ErrMsg = 'WrongPAss' %>
+                    <% }else if(singinMsg == 'notExist'){ %>
+                        <%    ErrMsg = 'notEdddddddxist' %>
+                            <%  }else{ErrMsg = ''} %>
+                                <main>
+                                    <div class="form-structor">
+                                        <form action="/signin" method="POST" id="signIn">
+                                            <div class="signup">
+                                                <h2 class="form-title" id="signup"><span>or</span>Log in</h2>
+                                                <div class="form-holder">
+                                                    <input id="getUserEmail" type="email" class="input" name="Email" value="" placeholder="Email">
+                                                    <input type="password" class="input" name="Password" value="" placeholder="Password">
+                                                    <p>
+                                                        <%= ErrMsg %>
+                                                    </p>
+                                                </div>
+                                                <button id="getdata" class="submit-btn" type="submit">Log in</button>
+                                            </div>
+                                        </form>
+                                        <form action="/signup" method="POST" id="signUp">
+                                            <div class="login slide-up">
+                                                <div class="center">
+                                                    <h2 class="form-title" id="login"><span>or</span>Sign up</h2>
+                                                    <div class="form-holder">
+                                                        <input type="text" class="input" name="UserName" value="" placeholder="Name">
+                                                        <input type="email" class="input" name="Email" value="" placeholder="Email">
+                                                        <input type="password" class="input" name="Password" value="" placeholder="Password">
+                                                        <input type="password" class="input" name="confirmPassword" value="" placeholder="confirm password">
+                                                        <input type="radio" id="male" name="gender" value="1">
+                                                        <label for="male">Male</label>
+                                                        <input type="radio" id="female" name="gender" value="0">
+                                                        <label for="female">Female</label>
+                                                    </div>
+                                                    <button class="submit-btn" type="submit">Sign up</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </main>
+                                <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+                                <script src="/js/registration.js"></script>
 </body>
+
 </html>
