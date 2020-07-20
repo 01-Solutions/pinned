@@ -43,7 +43,6 @@ server.get('/art', test)
     //     res.render('pages/aboutUs');
     // }
     // if the user is a Signed up user then we will send hem to this rout
-server.get('/', home);
 // server.get('/art', test)
 server.get('/about', aboutus);
 
