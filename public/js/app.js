@@ -1,6 +1,18 @@
 'use strict';
 
 
+/* this is for check if the user login or not when he open the site */
+if(localStorage.getItem('key')){
+    var testlocal = JSON.parse(localStorage.getItem('key'))
+    console.log(testlocal);
+
+    $.post('/getUserEmail', { 
+        email: testlocal,
+        sex:'sex'
+        });
+}
+
+
 ///////////////////////////* start style with js *///////////////////////
 
 /* for slider */
@@ -24,13 +36,12 @@ function showDivs(n) {
 
 
 
-const searchBtn = document.getElementById('searchBtn');
-const searshStr =document.getElementById('idForAppend');
 ///////////////////////////* start style with js *///////////////////////
 
-
+/* this is for send data to back-end (useremail-search&&intrest) */
+const searchBtn = document.getElementById('searchBtn');
+const searshStr =document.getElementById('idForAppend');
 searchBtn.addEventListener('click',searchBtnHandler)
-
 function searchBtnHandler(){
     // event.preventDefault();
     let localStorageData = getlocal();
@@ -40,18 +51,18 @@ function searchBtnHandler(){
          search: searshStr.value
         });
 }
-
-
-
 function getlocal(){
     
     if(localStorage.getItem('key')){
         var getdatafromJson = JSON.parse(localStorage.getItem('key'))
-        console.log(getdatafromJson);
+        // console.log(getdatafromJson);
     }
     return getdatafromJson;
 }
 
+
+
+// const header =document.getElementById('userHeader');
 // /* to check if there data in locale storage that mean the user was signin */
 // function ifuserOrnot(){
 //     var dataInlocal = JSON.parse(localStorage.getItem('key'))
