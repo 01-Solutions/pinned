@@ -5,10 +5,6 @@ const https = require('https');
 const cors = require('cors');
 const agent = require('superagent');
 const pgSQL = require('pg');
-
-var LocalStorage = require('node-localstorage').LocalStorage,
-localStorage = new LocalStorage('./scratch');
-
 const server = express();
 server.use(cors());
 const client = new pgSQL.Client(process.env.DATABASE_URL)
@@ -50,8 +46,10 @@ server.post('/signup', signupFun);
 /*this route for get search reslut */
 server.post('/search', getSearchResult);
 server.post('/getUserEmail', (req, res) => {
-    console.log('****************getUserEmail');
     user_email = req.body.email;
+    getUserIdByEmail(user_email).then(result_id=>{
+        user_id = result_id;
+    })
 });
 /* this route for sinein data */
 server.get('/signupdata', dataTOsignin);
@@ -62,6 +60,7 @@ server.get('/sign/signin-sigup', (req, res) => {
 });
 server.post('/saveFavorate', saveFavFun);
 
+server.get('/favList',getUserFavList)
 // server.post('/saveFavorate', saveFavFun);
 
 function dataTOsignin(req, res) {
@@ -70,6 +69,7 @@ function dataTOsignin(req, res) {
 }
 
 function getHomeData(req, res) {
+    console.log('hooooooooooooooooooooooom');
     var sqlResult = [];
     let sql = `select interests.interest_desc from interests,users_interests where interests.interest_id= users_interests.interest_id and users_interests.user_id = ${user_id};`;
     client.query(sql)
@@ -97,16 +97,21 @@ function arrToObj(arr, myProperty) {
 }
 
 function indexPage(req, res) {
-    console.log(user_email);
-    agent.get(url).then(result => {
-        let APIResult = JSON.parse(result.text).articles
-        let myArticls = APIResult.map(item => {
-            return new Article(item);
-        });
-
-
-        res.render('index', { allArticles: myArticls });
-    });
+    if(user_email){
+       setTimeout(res.redirect('/home'),1000);
+    }else{
+        console.log('hehehehhehehheh');
+            agent.get(url).then(result => {
+                let APIResult = JSON.parse(result.text).articles
+                let myArticls = APIResult.map(item => {
+                    return new Article(item);
+                });
+        
+        
+                res.render('index', { allArticles: myArticls });
+            });
+           
+    }
 };
 
 function dataTOsignin(req, res) {
@@ -265,7 +270,7 @@ function saveFavFun(req, res) {
         client.query(SQL, safeValues)
             .then(() => {
                 console.log('saved', safeValues);
-                let q = `INSERT INTO users_articles(user_id,article_id) VALUES((select max(article_id) FROM articles),$1);`;
+                let q = `INSERT INTO users_articles(user_id,article_id) VALUES($1,(select max(article_id) FROM articles));`;
                 let safeVal = [user_id];
                 console.log('this is user id');
                 client.query(q, safeVal)
@@ -276,6 +281,12 @@ function saveFavFun(req, res) {
     }else{
         res.redirect('/signupdata')
     }
+}
+function getUserFavList(req,res) {
+    let sql = `select * from articles,users_articles where articles.article_id = users_articles.article_id and users_articles.user_id = ${user_id};`;
+    client.query(sql).then(result =>{
+        res.render('list',{userFavList : favList})
+    })
 }
 
 function Article(articleData) {
