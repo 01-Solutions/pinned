@@ -25,13 +25,29 @@ const PORT = process.env.PORT || 3030;
 const key = process.env.NEWSKEY;
 const url = `https://newsapi.org/v2/everything?q=latest&apiKey=${key}`;
 var user_id;
+<<<<<<< HEAD
 var user_email;
 function getPage(req, res) {
     // res.render('pages/index');
 }
 server.get('/', test);
 // if the user is a 'gust' then we will send hem to this route
+=======
+let mytestString = 'sport cars sex food ';
+// if the user is a 'gust' then we will send hem to this route
+server.get('/', test);
+server.get('/list',(req,res)=>{
+    res.render('./pages/signin-sigup')
+})
+>>>>>>> d01862ac0ca9d387213a4bf2f4df14f78fc919c0
 // if the user is a Signed up user then we will send hem to this rout
+server.get('/', home);
+server.get('/art', test)
+    // server.get('/about', aboutus);
+    // function aboutus(req, res) {
+    //     res.render('pages/aboutUs');
+    // }
+    // if the user is a Signed up user then we will send hem to this rout
 server.get('/home', getHomeData);
 /* this route for sine in and check if user have acount ao not on our database */
 server.post('/signin', signinFun);
@@ -47,14 +63,47 @@ server.post('/getUserEmail', (req, res) => {
 /* this route for sinein data */
 server.post('/signupdata', dataTOsignin);
 
+<<<<<<< HEAD
+=======
+function dataTOsignin(req, res) {
+    var datasignin = req.body.msg;
+    console.log(datasignin);
+    res.render('pages/signin-sigup', { singinMsg: datasignin })
+        // check the data withe data base ;
+}
+server.post('/interest', datainterest);
+var arrinterest = [];
+
+function datainterest(req, res) {
+    var ddd = req.body.msg1
+    console.log(ddd);
+    // check the data withe data base ;
+}
+>>>>>>> d01862ac0ca9d387213a4bf2f4df14f78fc919c0
 /* this route for move ypo from article page to sign in&&sign up page */
 server.get('/sign/signin-sigup', (req, res) => {
     res.render('./pages/signin-sigup')
 });
+<<<<<<< HEAD
 
 function dataTOsignin(req, res) {
     var datasignin = req.body.msg;
     res.render('pages/signin-sigup', { singinMsg: datasignin })
+=======
+server.get('/search', getSearchResult);
+
+function getSearchResult(req, res) {
+    // let sqlResult = req.body.searchString;
+    let sqlResult = strToArr(mytestString);
+    sqlResult = sqlResult.join(' OR ')
+    let myURL = `https://newsapi.org/v2/everything?q=(${sqlResult})&apiKey=${key}`;
+    agent.get(myURL).then(apiResult => {
+        let result = JSON.parse(apiResult.text).articles.map(item => {
+            return new Article(item);
+        })
+        res.render('pages/index', { allArticles: result });
+    });
+>>>>>>> d01862ac0ca9d387213a4bf2f4df14f78fc919c0
 }
 
 function getHomeData(req, res) {
@@ -83,20 +132,39 @@ function arrToObj(arr, myProperty) {
     });
     return result;
 }
+
 function strToArr(str) {
     return str.split(' ');
 }
+
 function test(req, res) {
     agent.get(url).then(result => {
         let APIResult = JSON.parse(result.text).articles
         let myArticls = APIResult.map(item => {
             return new Article(item);
         });
+<<<<<<< HEAD
 
 
         res.render('pages/index', { allArticles: myArticls });
     });
 };
+=======
+        res.render('pages/articls', { articlsKey: myArticls });
+    });
+};
+
+function home(req, res) {
+    agent.get(url).then(result => {
+        let APIResult = JSON.parse(result.text).articles
+        let myArticls = APIResult.map(item => {
+            return new Article(item);
+        });
+        res.render('pages/index', { allArticles: myArticls });
+    });
+};
+
+>>>>>>> d01862ac0ca9d387213a4bf2f4df14f78fc919c0
 function dataTOsignin(req, res) {
     var datasignin = req.body.msg;
     console.log(datasignin);
@@ -108,6 +176,10 @@ function signinFun(req, res) {
     var password = req.body.Password;
 
     let sql = `select * from users where user_email = '${email}';`;
+<<<<<<< HEAD
+=======
+    console.log(sql);
+>>>>>>> d01862ac0ca9d387213a4bf2f4df14f78fc919c0
     client.query(sql).then(dbResult => {
         if (dbResult.rows.length > 0) {
             if (dbResult.rows[0].user_pass == password) {
@@ -126,6 +198,7 @@ function signinFun(req, res) {
 function signupFun(req, res) {
     let sql = `select * from users where user_email = '${req.body.Email}';`;
     client.query(sql).then(result => {
+<<<<<<< HEAD
         if (result.rows.length > 0) {
             res.render('pages/signin-sigup', { singinMsg: 'defulte' })
         } else {
@@ -232,6 +305,22 @@ function checkIfexists(userid, intrestid) {
 }
 
 
+=======
+            if (result.rows.length > 0) {
+                res.render('pages/signin-sigup', { singinMsg: 'defulte' })
+            } else {
+                let { userName, email, password, gender } = req.body;
+                let sqlQuery = `insert into users(user_name,user_email,user_pass,user_gender) values($1,$2,$3,$4);`;
+                let safeValues = [req.body.UserName, req.body.Email, req.body.Password, req.body.gender];
+                client.query(sqlQuery, safeValues).then(() => {
+                    res.redirect('/')
+                });
+            }
+        })
+        // check the data withe data base ;
+}
+
+>>>>>>> d01862ac0ca9d387213a4bf2f4df14f78fc919c0
 function Article(articleData) {
     this.title = articleData.title;
     this.author = articleData.author;
