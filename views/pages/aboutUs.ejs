@@ -10,41 +10,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="/styles/aboutUs.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+    <link rel="stylesheet" href="/styles/nav.css">
 </head>
 
 <body>
-    <header>
-
-        <nav>
-            <ul class="menuItems">
-                <a id="anker" href="" target="_blank">Pinned</a>
-
-                <li>
-                    <a href='#' data-item='Home'>Home</a>
-                </li>
-                <li>
-                    <a href='#' data-item='About'>About</a>
-                </li>
-                <li>
-                    <a href='#' data-item='Articles'>Articles</a>
-                </li>
-                <li>
-                    <a href='#' data-item='Blog'>Blog</a>
-                </li>
-                <li id="mylist">
-                    <a href='#' data-item='myList'>myList</a>
-                </li>
-
-                <form action="/signupdata" method="POST" id="signupdata">
-
-                    <button class="login-btn ">Login<i id="logicon" class="fas fa-sign-in-alt"></i> 
-                    </button>
-
-                </form>
-
-            </ul>
-        </nav>
-    </header>
+    <%- include ('nav.ejs')  %> 
     <main>
         <div class="card__collection clear-fix">
             <div class="cards cards--two">
@@ -81,6 +52,9 @@
         </div>
     </main>
 
+    <!-- // Footer //  -->
+    <%- include ('footer.ejs')  %> 
+    <!-- //End Footer //  -->
 </body>
 
 </html>

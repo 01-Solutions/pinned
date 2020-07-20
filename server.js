@@ -8,15 +8,19 @@ const pgSQL = require('pg');
 const server = express();
 server.use(cors());
 const client = new pgSQL.Client(process.env.DATABASE_URL)
-    /////////////////////////////////////////////
+/////////////////////////////////////////////
 const myHtml = express.static('./public/views/pages/index');
 server.use(express.static('./public'));
 server.set('view engine', 'ejs');
 server.set("views", ["views/pages", "views/partials"])
 server.use(express.json());
-server.use(express.urlencoded({ extended: true }));
+server.use(express.urlencoded({
+    extended: true
+}));
 const methodOverride = require('method-override');
-const { query } = require('express');
+const {
+    query
+} = require('express');
 server.use(methodOverride('_method'));
 /////////////////////////////////////////////
 const PORT = process.env.PORT || 3030;
@@ -39,21 +43,19 @@ server.get('/home', getHomeData);
 server.post('/signin', signinFun);
 /* this route for sine in and check if user have acount ao not on our database */
 server.post('/signup', signupFun);
-
 /*this route for get search reslut */
 server.post('/search', getSearchResult);
-
 server.post('/getUserEmail', (req, res) => {
     user_email = req.body.email;
 });
 /* this route for sinein data */
 server.get('/signupdata', dataTOsignin);
-
 /* this route for move ypo from article page to sign in&&sign up page */
 
 server.get('/sign/signin-sigup', (req, res) => {
     res.render('signin-sigup')
 });
+server.post('/saveFavorate', saveFavFun);
 
 server.post('/saveFavorate', saveFavFun);
 
@@ -109,7 +111,6 @@ function dataTOsignin(req, res) {
 function signinFun(req, res) {
     var email = req.body.Email;
     var password = req.body.Password;
-
     let sql = `select * from users where user_email = '${email}';`;
     client.query(sql).then(dbResult => {
         if (dbResult.rows.length > 0) {
@@ -122,7 +123,6 @@ function signinFun(req, res) {
         } else {
             res.render('signin-sigup', { singinMsg: 'notExist' });
         }
-
     })
 }
 /* get data from sign up form */
@@ -132,7 +132,12 @@ function signupFun(req, res) {
         if (result.rows.length > 0) {
             res.render('signin-sigup', { singinMsg: 'defulte' })
         } else {
-            let { userName, email, password, gender } = req.body;
+            let {
+                userName,
+                email,
+                password,
+                gender
+            } = req.body;
             let sqlQuery = `insert into users(user_name,user_email,user_pass,user_gender) values($1,$2,$3,$4);`;
             let safeValues = [req.body.UserName, req.body.Email, req.body.Password, req.body.gender];
             client.query(sqlQuery, safeValues).then(() => {
@@ -149,7 +154,6 @@ function getSearchResult(req, res) {
     let interstId;
     let intrestarr = [];
     let finalArray = [];
-
     if (!user_email) {
         let myURL = `https://newsapi.org/v2/everything?q=(${searchStr})&apiKey=${key}`;
         agent.get(myURL)
@@ -187,7 +191,6 @@ function getSearchResult(req, res) {
                                                 let sql = `insert into users_interests (user_id,interest_id) VALUES($1,$2);`;
                                                 let safeValues = [user_id, intrestId];
                                                 return client.query(sql, safeValues)
-
                                             }
                                         })
                                     })
@@ -250,7 +253,6 @@ function checkIfexists(userid, intrestid) {
 
 function saveFavFun(req, res) {
     console.log('hiiii', user_id);
-
     let SQL = ' INSERT INTO articles(title,author,img,url,source,conten) VALUES($1,$2,$3,$4,$5,$6);';
     let safeValues = [req.body.articlTitle, req.body.articlAuthor, req.body.articlIMG, req.body.articlURL, req.body.articlSource, req.body.articlDate];
     client.query(SQL, safeValues)
@@ -259,7 +261,6 @@ function saveFavFun(req, res) {
             let q = `INSERT INTO users_articles(user_id,article_id) VALUES((select max(article_id) FROM articles),$1);`;
             let safeVal = [user_id];
             console.log('this is user id');
-
             client.query(q, safeVal)
                 .then(() => {
                     console.log('done');
