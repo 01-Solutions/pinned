@@ -108,10 +108,9 @@ nav {
     margin-top: 20px;
     font-family: Hack, monospace;
     background: #d9524a;
-    color: #1D1D1D;
+    color: white;
     cursor: pointer;
     font-size: 2em;
-    /* padding: 1.5rem; */
     border: 0;
     transition: all 0.5s;
     border-radius: 10px;
@@ -134,22 +133,21 @@ nav {
 .login-btn:hover {
     transition: all 0.5s;
     border-radius: 10px;
-    box-shadow: 0px 6px 15px #00f 61;
-    padding: 1.5rem 3rem 1.5rem 1.5rem;
-    color: #fff;
+    padding: 0.2rem 1rem 0.2rem 1rem;
+    color: black;
 }
 
 .login-btn:hover::after {
     opacity: 1;
     transition: all 0.5s;
-    color: #fff;
+    color: black;
 }
 
 #logicon {
     display: none;
 }
 
-.login-btn:hover #logicon:not(:hover) {
+.login-btn:hover #logicon {
     display: inline;
 }
 
