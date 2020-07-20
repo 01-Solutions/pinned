@@ -5,6 +5,10 @@ const https = require('https');
 const cors = require('cors');
 const agent = require('superagent');
 const pgSQL = require('pg');
+
+var LocalStorage = require('node-localstorage').LocalStorage,
+localStorage = new LocalStorage('./scratch');
+
 const server = express();
 server.use(cors());
 const client = new pgSQL.Client(process.env.DATABASE_URL)
@@ -19,7 +23,7 @@ server.use(express.urlencoded({
 }));
 const methodOverride = require('method-override');
 const {
-    query
+    query, json
 } = require('express');
 server.use(methodOverride('_method'));
 /////////////////////////////////////////////
@@ -46,6 +50,7 @@ server.post('/signup', signupFun);
 /*this route for get search reslut */
 server.post('/search', getSearchResult);
 server.post('/getUserEmail', (req, res) => {
+    console.log('****************getUserEmail');
     user_email = req.body.email;
 });
 /* this route for sinein data */
@@ -57,7 +62,7 @@ server.get('/sign/signin-sigup', (req, res) => {
 });
 server.post('/saveFavorate', saveFavFun);
 
-server.post('/saveFavorate', saveFavFun);
+// server.post('/saveFavorate', saveFavFun);
 
 function dataTOsignin(req, res) {
     var datasignin = req.body.msg;
@@ -92,6 +97,7 @@ function arrToObj(arr, myProperty) {
 }
 
 function indexPage(req, res) {
+    console.log(user_email);
     agent.get(url).then(result => {
         let APIResult = JSON.parse(result.text).articles
         let myArticls = APIResult.map(item => {
@@ -253,21 +259,23 @@ function checkIfexists(userid, intrestid) {
 
 function saveFavFun(req, res) {
     console.log('hiiii', user_id);
-    let SQL = ' INSERT INTO articles(title,author,img,url,source,conten) VALUES($1,$2,$3,$4,$5,$6);';
-    let safeValues = [req.body.articlTitle, req.body.articlAuthor, req.body.articlIMG, req.body.articlURL, req.body.articlSource, req.body.articlDate];
-    client.query(SQL, safeValues)
-        .then(() => {
-            console.log('saved', safeValues);
-            let q = `INSERT INTO users_articles(user_id,article_id) VALUES((select max(article_id) FROM articles),$1);`;
-            let safeVal = [user_id];
-            console.log('this is user id');
-            client.query(q, safeVal)
-                .then(() => {
-                    console.log('done');
-                })
-        })
-
-
+    if (user_id) {
+        let SQL = ' INSERT INTO articles(title,author,img,url,source,conten) VALUES($1,$2,$3,$4,$5,$6);';
+        let safeValues = [req.body.articlTitle, req.body.articlAuthor, req.body.articlIMG, req.body.articlURL, req.body.articlSource, req.body.articlDate];
+        client.query(SQL, safeValues)
+            .then(() => {
+                console.log('saved', safeValues);
+                let q = `INSERT INTO users_articles(user_id,article_id) VALUES((select max(article_id) FROM articles),$1);`;
+                let safeVal = [user_id];
+                console.log('this is user id');
+                client.query(q, safeVal)
+                    .then(() => {
+                        console.log('done');
+                    })
+            })   
+    }else{
+        res.redirect('/signupdata')
+    }
 }
 
 function Article(articleData) {
