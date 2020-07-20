@@ -5,8 +5,6 @@ const https = require('https');
 const cors = require('cors');
 const agent = require('superagent');
 const pgSQL = require('pg');
-// var cheerio = require('cheerio'),
-// $ = cheerio.load('pages/index.ejs');
 const server = express();
 server.use(cors());
 const client = new pgSQL.Client(process.env.DATABASE_URL)
@@ -14,6 +12,7 @@ const client = new pgSQL.Client(process.env.DATABASE_URL)
 const myHtml = express.static('./public/views/pages/index');
 server.use(express.static('./public'));
 server.set('view engine', 'ejs');
+server.set("views", ["views/pages", "views/partials"])
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 const methodOverride = require('method-override');
@@ -27,24 +26,12 @@ const url = `https://newsapi.org/v2/everything?q=latest&apiKey=${key}`;
 var user_id;
 var user_email;
 
-server.get('/', test);
+server.get('/', indexPage);
 
-server.get('/list', (req, res) => {
-        res.render('./pages/list')
-    })
-    // if the user is a 'gust' then we will send hem to this route
-    // if the user is a Signed up user then we will send hem to this rout
-    // server.get('/art', test)
-    // server.get('/about', aboutus);
-    // function aboutus(req, res) {
-    //     res.render('pages/aboutUs');
-    // }
-    // if the user is a Signed up user then we will send hem to this rout
-    // server.get('/art', test)
 server.get('/about', aboutus);
 
 function aboutus(req, res) {
-    res.render('pages/aboutUs');
+    res.render('aboutUs');
 }
 // if the user is a Signed up user then we will send hem to this rout
 server.get('/home', getHomeData);
@@ -65,14 +52,14 @@ server.get('/signupdata', dataTOsignin);
 /* this route for move ypo from article page to sign in&&sign up page */
 
 server.get('/sign/signin-sigup', (req, res) => {
-    res.render('./pages/signin-sigup')
+    res.render('signin-sigup')
 });
 
 server.post('/saveFavorate', saveFavFun);
 
 function dataTOsignin(req, res) {
     var datasignin = req.body.msg;
-    res.render('pages/signin-sigup', { singinMsg: datasignin })
+    res.render('signin-sigup', { singinMsg: datasignin })
 }
 
 function getHomeData(req, res) {
@@ -90,7 +77,7 @@ function getHomeData(req, res) {
                 let result = JSON.parse(apiResult.text).articles.map(item => {
                     return new Article(item);
                 })
-                res.render('pages/index', { allArticles: result });
+                res.render('index', { allArticles: result });
             });
         })
 }
@@ -101,15 +88,8 @@ function arrToObj(arr, myProperty) {
     });
     return result;
 }
-function strToArr(str) {
-    return str.split(' ');
-}
 
-function strToArr(str) {
-    return str.split(' ');
-}
-
-function test(req, res) {
+function indexPage(req, res) {
     agent.get(url).then(result => {
         let APIResult = JSON.parse(result.text).articles
         let myArticls = APIResult.map(item => {
@@ -117,14 +97,13 @@ function test(req, res) {
         });
 
 
-        res.render('pages/index', { allArticles: myArticls });
+        res.render('index', { allArticles: myArticls });
     });
 };
 
 function dataTOsignin(req, res) {
     var datasignin = req.body.msg;
-    console.log(datasignin);
-    res.render('pages/signin-sigup', { singinMsg: datasignin })
+    res.render('signin-sigup', { singinMsg: datasignin })
 }
 /* get data from sign in form */
 function signinFun(req, res) {
@@ -138,10 +117,10 @@ function signinFun(req, res) {
                 user_id = dbResult.rows[0].user_id;
                 res.redirect('/home')
             } else {
-                res.render('pages/signin-sigup', { singinMsg: 'WrongPass' });
+                res.render('signin-sigup', { singinMsg: 'WrongPass' });
             }
         } else {
-            res.render('pages/signin-sigup', { singinMsg: 'notExist' });
+            res.render('signin-sigup', { singinMsg: 'notExist' });
         }
 
     })
@@ -151,7 +130,7 @@ function signupFun(req, res) {
     let sql = `select * from users where user_email = '${req.body.Email}';`;
     client.query(sql).then(result => {
         if (result.rows.length > 0) {
-            res.render('pages/signin-sigup', { singinMsg: 'defulte' })
+            res.render('signin-sigup', { singinMsg: 'defulte' })
         } else {
             let { userName, email, password, gender } = req.body;
             let sqlQuery = `insert into users(user_name,user_email,user_pass,user_gender) values($1,$2,$3,$4);`;
@@ -178,29 +157,20 @@ function getSearchResult(req, res) {
                 let resultarr = JSON.parse(apiData.text).articles.map(item => {
                     return new Article(item);
                 })
-                console.log('--------------------------------secound');
+                // console.log('--------------------------------secound');
                 finalArray = resultarr;
-                console.log('--------------------------------therids');
-                res.render('pages/articls', { articlsKey: finalArray });
+                // console.log('--------------------------------therids');
+                res.render('articls', { articlsKey: finalArray });
             })
     } else {
 
-
-        // console.log(req.body);
-        // var searchData = req.body.search;
-        // var searchStr = searchData.split(' ').join(' OR ');
-        // var userID;
-        // let interstId;
-        // let intrestarr = [];
-        // let finalArray = [];
-        //  console.log(searchData.split(' '));
         let sql = `select * from interests;`;
         client.query(sql)
             .then(dbintrest => {
                 intrestarr = dbintrest.rows.map(item => {
                     return item['interest_desc'];
                 });
-                console.log('--------------------------------first');
+                // console.log('--------------------------------first');
                 console.log('dfghjksd', intrestarr);
                 userID = getUserIdByEmail(user_email)
                     .then((user_id) => {
@@ -234,10 +204,10 @@ function getSearchResult(req, res) {
                         let resultarr = JSON.parse(apiData.text).articles.map(item => {
                             return new Article(item);
                         })
-                        console.log('--------------------------------secound');
+                        // console.log('--------------------------------secound');
                         finalArray = resultarr;
-                        console.log('--------------------------------therids');
-                        res.render('pages/articls', { articlsKey: finalArray });
+                        // console.log('--------------------------------therids');
+                        res.render('articls', { articlsKey: finalArray });
                     })
             })
 
@@ -279,7 +249,6 @@ function checkIfexists(userid, intrestid) {
 }
 
 function saveFavFun(req, res) {
-    // console.log(req.body.articlIMG);
     console.log('hiiii', user_id);
 
     let SQL = ' INSERT INTO articles(title,author,img,url,source,conten) VALUES($1,$2,$3,$4,$5,$6);';
