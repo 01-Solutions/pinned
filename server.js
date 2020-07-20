@@ -32,7 +32,6 @@ function getPage(req, res) {
 server.get('/', test);
 // if the user is a 'gust' then we will send hem to this route
 // if the user is a Signed up user then we will send hem to this rout
-server.get('/', home);
 server.get('/art', test)
     // server.get('/about', aboutus);
     // function aboutus(req, res) {
@@ -66,7 +65,7 @@ function dataTOsignin(req, res) {
 
 function getHomeData(req, res) {
     var sqlResult = [];
-    let sql = `select interests.interest_desc from interests,users_interests where interests.interest= users_interests.interest_id and users_interests.user_id = ${user_id};`;
+    let sql = `select interests.interest_desc from interests,users_interests where interests.interest_id= users_interests.interest_id and users_interests.user_id = ${user_id};`;
     client.query(sql)
         .then(sqlData => { // get the SQL result
             if (sqlData.rows.length < 1) {
