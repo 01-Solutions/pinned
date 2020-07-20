@@ -273,6 +273,9 @@ body {
     transition-delay: .4s;
 }
 
+
+/* ////////////////////////////////// */
+
 .card__collection .cards--three {
     position: relative;
     z-index: 10;

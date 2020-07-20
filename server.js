@@ -29,7 +29,9 @@ const key = process.env.NEWSKEY;
 const url = `https://newsapi.org/v2/everything?q=latest&apiKey=${key}`;
 var user_id;
 var user_email;
+
 server.get('/', indexPage);
+
 server.get('/about', aboutus);
 
 function aboutus(req, res) {
@@ -49,16 +51,17 @@ server.post('/getUserEmail', (req, res) => {
 /* this route for sinein data */
 server.get('/signupdata', dataTOsignin);
 /* this route for move ypo from article page to sign in&&sign up page */
+
 server.get('/sign/signin-sigup', (req, res) => {
     res.render('signin-sigup')
 });
 server.post('/saveFavorate', saveFavFun);
 
+server.post('/saveFavorate', saveFavFun);
+
 function dataTOsignin(req, res) {
     var datasignin = req.body.msg;
-    res.render('signin-sigup', {
-        singinMsg: datasignin
-    })
+    res.render('signin-sigup', { singinMsg: datasignin })
 }
 
 function getHomeData(req, res) {
@@ -76,9 +79,7 @@ function getHomeData(req, res) {
                 let result = JSON.parse(apiResult.text).articles.map(item => {
                     return new Article(item);
                 })
-                res.render('index', {
-                    allArticles: result
-                });
+                res.render('index', { allArticles: result });
             });
         })
 }
@@ -96,17 +97,15 @@ function indexPage(req, res) {
         let myArticls = APIResult.map(item => {
             return new Article(item);
         });
-        res.render('index', {
-            allArticles: myArticls
-        });
+
+
+        res.render('index', { allArticles: myArticls });
     });
 };
 
 function dataTOsignin(req, res) {
     var datasignin = req.body.msg;
-    res.render('signin-sigup', {
-        singinMsg: datasignin
-    })
+    res.render('signin-sigup', { singinMsg: datasignin })
 }
 /* get data from sign in form */
 function signinFun(req, res) {
@@ -119,14 +118,10 @@ function signinFun(req, res) {
                 user_id = dbResult.rows[0].user_id;
                 res.redirect('/home')
             } else {
-                res.render('signin-sigup', {
-                    singinMsg: 'WrongPass'
-                });
+                res.render('signin-sigup', { singinMsg: 'WrongPass' });
             }
         } else {
-            res.render('signin-sigup', {
-                singinMsg: 'notExist'
-            });
+            res.render('signin-sigup', { singinMsg: 'notExist' });
         }
     })
 }
@@ -135,9 +130,7 @@ function signupFun(req, res) {
     let sql = `select * from users where user_email = '${req.body.Email}';`;
     client.query(sql).then(result => {
         if (result.rows.length > 0) {
-            res.render('signin-sigup', {
-                singinMsg: 'defulte'
-            })
+            res.render('signin-sigup', { singinMsg: 'defulte' })
         } else {
             let {
                 userName,
@@ -171,11 +164,10 @@ function getSearchResult(req, res) {
                 // console.log('--------------------------------secound');
                 finalArray = resultarr;
                 // console.log('--------------------------------therids');
-                res.render('articls', {
-                    articlsKey: finalArray
-                });
+                res.render('articls', { articlsKey: finalArray });
             })
     } else {
+
         let sql = `select * from interests;`;
         client.query(sql)
             .then(dbintrest => {
@@ -204,6 +196,8 @@ function getSearchResult(req, res) {
                                     })
                             }
                         });
+
+
                     })
             })
             .then(() => {
@@ -216,12 +210,12 @@ function getSearchResult(req, res) {
                         // console.log('--------------------------------secound');
                         finalArray = resultarr;
                         // console.log('--------------------------------therids');
-                        res.render('articls', {
-                            articlsKey: finalArray
-                        });
+                        res.render('articls', { articlsKey: finalArray });
                     })
             })
+
     }
+
 }
 
 function getUserIdByEmail(str) {
@@ -272,6 +266,8 @@ function saveFavFun(req, res) {
                     console.log('done');
                 })
         })
+
+
 }
 
 function Article(articleData) {
