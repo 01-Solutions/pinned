@@ -1,12 +1,13 @@
-/*PEN STYLES*/
 * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    background: #f1f1f1;
-    margin: 2rem;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #ebecf0;
+  font-family: "Open Sans", sans-serif;
+}
   
   .blog-card {
     display: -webkit-box;
@@ -203,4 +204,3 @@
       padding-left: 25px;
     }
   }
-  

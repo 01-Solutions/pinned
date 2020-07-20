@@ -31,6 +31,10 @@ function getPage(req, res) {
     // res.render('pages/index');
 }
 server.get('/', test);
+
+server.get('/list',(req,res)=>{
+    res.render('./pages/list')
+})
 // if the user is a 'gust' then we will send hem to this route
 // if the user is a Signed up user then we will send hem to this rout
 server.get('/art', test)
