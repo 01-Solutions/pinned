@@ -1,11 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #ebecf0;
+    font-family: "Open Sans", sans-serif;
+    min-height: 100vh;
+}
+
+
 /* ////// new nav Bar //////  */
 
 @import url("https://fonts.googleapis.com/css?family=Varela+Round");
 nav {
-    /* position: fixed; */
     background: #1c1d22;
     ;
-    /* width: 100%; */
 }
 
 .menuItems {
@@ -152,14 +163,7 @@ nav {
 }
 
 
-/* ---------------------------------------- */
-
-
 /* ///// end nav bar //////  */
-
-
-/* //////////// article style ///////////*/
-
 
 
 /* /////////// slider /////// */
@@ -213,18 +217,11 @@ nav {
 
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,900");
 #mainNews {
-    /* background: #252833; */
     width: 100%;
-    /* height: 100%; */
     margin-top: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-html *,
-body * {
-    box-sizing: border-box;
 }
 
 .cardsNews {
