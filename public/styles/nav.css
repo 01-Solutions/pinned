@@ -99,11 +99,26 @@ nav {
 }
 
 #mylist {
-    margin-left: 15%;
+    margin-left: 31%;
     color: black;
 }
 
 .login-btn {
+    margin-top: 20px;
+    font-family: Hack, monospace;
+    background: #d9524a;
+    color: white;
+    cursor: pointer;
+    font-size: 2em;
+    border: 0;
+    transition: all 0.5s;
+    border-radius: 10px;
+    width: auto;
+    position: relative;
+    min-width: 165px;
+    margin-left: 380%;
+}
+.login-btn-alt {
     margin-top: 20px;
     font-family: Hack, monospace;
     background: #d9524a;
