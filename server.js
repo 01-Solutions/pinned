@@ -10,7 +10,7 @@ const pgSQL = require('pg');
 const server = express();
 server.use(cors());
 const client = new pgSQL.Client(process.env.DATABASE_URL)
-/////////////////////////////////////////////
+    /////////////////////////////////////////////
 const myHtml = express.static('./public/views/pages/index');
 server.use(express.static('./public'));
 server.set('view engine', 'ejs');
@@ -26,6 +26,7 @@ const key = process.env.NEWSKEY;
 const url = `https://newsapi.org/v2/everything?q=latest&apiKey=${key}`;
 var user_id;
 var user_email;
+
 function getPage(req, res) {
     // res.render('pages/index');
 }
@@ -38,6 +39,14 @@ server.get('/art', test)
     //     res.render('pages/aboutUs');
     // }
     // if the user is a Signed up user then we will send hem to this rout
+server.get('/', home);
+// server.get('/art', test)
+server.get('/about', aboutus);
+
+function aboutus(req, res) {
+    res.render('pages/aboutUs');
+}
+// if the user is a Signed up user then we will send hem to this rout
 server.get('/home', getHomeData);
 /* this route for sine in and check if user have acount ao not on our database */
 server.post('/signin', signinFun);
@@ -105,6 +114,7 @@ function test(req, res) {
         res.render('pages/index', { allArticles: myArticls });
     });
 };
+
 function dataTOsignin(req, res) {
     var datasignin = req.body.msg;
     console.log(datasignin);
@@ -167,7 +177,7 @@ function getSearchResult(req, res) {
             console.log('dfghjksd', intrestarr);
             userID = getUserIdByEmail(user_email)
                 .then((user_id) => {
-                    console.log('user id is here',user_id);
+                    console.log('user id is here', user_id);
                     // console.log(searchData.split(' '));
                     searchData.split(' ').forEach(element => {
                         if (intrestarr.includes(element)) {
@@ -187,20 +197,20 @@ function getSearchResult(req, res) {
                         }
                     });
 
-                    
+
                 })
         })
         .then(() => {
             let myURL = `https://newsapi.org/v2/everything?q=(${searchStr})&apiKey=${key}`;
-             agent.get(myURL)
+            agent.get(myURL)
                 .then(apiData => {
                     let resultarr = JSON.parse(apiData.text).articles.map(item => {
                         return new Article(item);
                     })
                     console.log('--------------------------------secound');
-                 finalArray = resultarr;
-                 console.log('--------------------------------therids');
-                 res.render('pages/articls', { articlsKey: finalArray });
+                    finalArray = resultarr;
+                    console.log('--------------------------------therids');
+                    res.render('pages/articls', { articlsKey: finalArray });
                 })
         })
 
@@ -217,15 +227,17 @@ function getUserIdByEmail(str) {
         }
     })
 }
+
 function getinterestIdByEmail(str) {
     let sql = `select interest_id from interests where interest_desc='${str}';`
     return client.query(sql).then(interestid => {
         if (interestid.rows.length > 0) {
-            console.log('eeeeeeeee',interestid.rows[0].interest_id);
+            console.log('eeeeeeeee', interestid.rows[0].interest_id);
             return interestid.rows[0].interest_id;
         }
     })
 }
+
 function checkIfexists(userid, intrestid) {
     console.log('fffaaa', userid);
     console.log('rrrrrrrrrrrrrrrrrrrrrr', intrestid);
