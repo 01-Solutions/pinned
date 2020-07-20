@@ -1,8 +1,9 @@
 'use strict';
 
 
-// for slider
+///////////////////////////* start style with js *///////////////////////
 
+/* for slider */
 var slideIndex = 1;
 showDivs(slideIndex);
 
@@ -25,6 +26,7 @@ function showDivs(n) {
 
 const searchBtn = document.getElementById('searchBtn');
 const searshStr =document.getElementById('idForAppend');
+///////////////////////////* start style with js *///////////////////////
 
 
 searchBtn.addEventListener('click',searchBtnHandler)
@@ -50,4 +52,8 @@ function getlocal(){
     return getdatafromJson;
 }
 
-/* just for test */
+// /* to check if there data in locale storage that mean the user was signin */
+// function ifuserOrnot(){
+//     var dataInlocal = JSON.parse(localStorage.getItem('key'))
+// }
+
