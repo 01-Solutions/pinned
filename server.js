@@ -26,6 +26,11 @@ const url = `https://newsapi.org/v2/everything?q=latest&apiKey=${key}`;
 var user_id;
 let mytestString = 'sport cars sex food ';
 // if the user is a 'gust' then we will send hem to this route
+server.get('/', test);
+server.get('/list',(req,res)=>{
+    res.render('./pages/signin-sigup')
+})
+// if the user is a Signed up user then we will send hem to this rout
 server.get('/', home);
 server.get('/art', test)
     // server.get('/about', aboutus);
