@@ -285,7 +285,7 @@ function saveFavFun(req, res) {
 function getUserFavList(req,res) {
     let sql = `select * from articles,users_articles where articles.article_id = users_articles.article_id and users_articles.user_id = ${user_id};`;
     client.query(sql).then(result =>{
-        res.render('list',{userFavList : favList})
+        res.render('list',{userFavList : result.rows})
     })
 }
 
