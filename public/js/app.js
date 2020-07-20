@@ -7,8 +7,7 @@ if(localStorage.getItem('key')){
     console.log(testlocal);
 
     $.post('/getUserEmail', { 
-        email: testlocal,
-        sex:'sex'
+        email: testlocal
         });
 }
 
