@@ -1,3 +1,8 @@
+
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,900");
+@import url("https://fonts.googleapis.com/css?family=Varela+Round");
+
+
 * {
     margin: 0;
     padding: 0;
@@ -6,14 +11,13 @@
 
 body {
     background: #ebecf0;
-    font-family: "Open Sans", sans-serif;
     min-height: 100vh;
 }
 
 
 /* ////// new nav Bar //////  */
 
-@import url("https://fonts.googleapis.com/css?family=Varela+Round");
+
 nav {
     background: #1c1d22;
     ;
@@ -86,7 +90,7 @@ nav {
 
 .menuItems li a {
     font-size: 22px;
-    color: #777;
+    color: rgb(255, 255, 255);
     text-decoration: none;
     transition: all 0.45s;
 }
@@ -215,7 +219,6 @@ nav {
 
 /* for the three img inside the slider  */
 
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,900");
 #mainNews {
     width: 100%;
     margin-top: 50px;
@@ -480,7 +483,14 @@ input[type="text"]::placeholder {
 
 
 /* End Search  */
+/* ////legend///////// */
 
+#fieldset {
+    border: 3px solid #c0c0c0;
+    margin: 0 27%;
+    padding: .35em .625em .75em;
+    width: 700px;
+}
 
 /* ///// favorate butoon  */
 
@@ -603,8 +613,10 @@ ul.ks-cboxtags li input[type="checkbox"]:focus+label {
 
 .footer-distributed h3 {
     color: #ffffff;
-    font: normal 36px 'Roboto', cursive;
+    font:'Verdana',sans-serif;
     margin: 0 0 10px;
+    font-size: 30px;
+    font-size: bold;
 }
 
 .footer-distributed h3 span {
