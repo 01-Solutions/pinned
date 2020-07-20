@@ -4,14 +4,52 @@
 <head>
 	<meta charset="">
 	<meta name="viewport" content="width=, initial-scale=">
+	<link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="/styles/list.css">
+		<link rel="stylesheet" href="/styles/list.css">
+		<link rel="stylesheet" href="/styles/footnav.css">
+		<link rel="stylesheet" href="/styles/nav.css">
+
 	<title></title>
 </head>
 
 <body>
+	<header>
 
+		<nav>
+			<ul class="menuItems">
+				<a id="anker" href="" target="_blank">Pinned</a>
+
+				<li>
+					<a href='#' data-item='Home'>Home</a>
+				</li>
+				<li>
+					<a href='#' data-item='About'>About</a>
+				</li>
+				<li>
+					<a href='#' data-item='Articles'>Articles</a>
+				</li>
+				<li>
+					<a href='#' data-item='Blog'>Blog</a>
+				</li>
+				<li id="mylist">
+					<a href='#' data-item='myList'>myList</a>
+				</li>
+
+				<form action="/signupdata" method="POST" id="signupdata">
+
+					<button class="login-btn ">Login<i id="logicon" class="fas fa-sign-in-alt"></i>
+					</button>
+
+				</form>
+
+			</ul>
+		</nav>
+	</header>
 	<div class="blog-card alt">
 		<div class="meta">
 			<div class="photo"
@@ -39,6 +77,48 @@
 			</p>
 		</div>
 	</div>
+	<!-- // Footer //  -->
+	<footer class="footer-distributed">
+
+		<div class="footer-left">
+
+			<h3 id="pindFooter">Pinned</h3>
+
+			<p class="footer-links">
+				<a href='#' data-item='Home'>Home</a>·
+				<a href="#">About</a> ·
+				<a href="#">Articles</a> ·
+				<a href="#">Blog</a> ·
+				<a href="#">MyList</a> ·
+			</p>
+
+			<p class="footer-company-name">Pinned © 2015</p>
+
+			<div class="footer-icons">
+				<a href="#"><i class="fab fa-facebook"></i></a>
+				<a href="#"><i class="fab fa-twitter"></i></a>
+				<a href="#"><i class="fab fa-linkedin"></i></a>
+				<a href="#"><i class="fab fa-github"></i></a>
+
+			</div>
+
+		</div>
+
+		<div class="footer-right">
+
+			<p>Contact Us</p>
+
+			<form action="#">
+
+				<input type="text" name="email" placeholder="Email">
+				<textarea name="message" placeholder="Message"></textarea>
+				<button>Send</button>
+
+			</form>
+
+		</div>
+
+	</footer>
 </body>
 
 </html>
