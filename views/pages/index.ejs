@@ -59,7 +59,7 @@
             <div class="weatherCard">
                 <div class="currentTemp">
                     <span class="temp"><%= weather.temp %>&deg;</span>
-                    <span class="location">Brussels</span>
+                    <span class="location"><%= weather.location%></span>
                 </div>
                 <div class="currentWeather">
                     <span class="conditions">&#xf00d;</span>
@@ -172,6 +172,7 @@
     <!-- // Footer //  -->
     <%- include ('footer.ejs')  %>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="/js/forHeader.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/userintrest.js"></script>
 </body>
