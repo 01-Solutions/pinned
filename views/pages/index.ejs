@@ -10,6 +10,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js" rel="stylesheet">
 
+    <link rel="stylesheet" href="/styles/weather.css">
     <link rel="stylesheet" href="/styles/style.css">
     <link rel="stylesheet" href="/styles/footer.css">
     <link rel="stylesheet" href="/styles/nav.css">
@@ -50,19 +51,33 @@
         <div id="heroTit">
             <p id="mainTit">Get news about what <br> intrests you.</p>
             <p class="subtitle fancy"><span id="line">Get latest news, breaking science & discovery news at <span
-                    id="PinnedLogoText">Pinned</span></span>.</p>
+                        id="PinnedLogoText">Pinned</span></span>.</p>
         </div>
+        <!-- wether wedgit -->
+        <div id="weather_wrapper">
+            <div class="weatherCard">
+                <div class="currentTemp">
+                    <span class="temp"><%= weather.temp %>&deg;</span>
+                    <span class="location">Brussels</span>
+                </div>
+                <div class="currentWeather">
+                    <span class="conditions">&#xf00d;</span>
+                    <div class="info">
+                        <span class="rain">1.3 MM</span>
+                        <span class="wind"><%= weather.wind_spd %> MPH</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- wether wedgit  end-->
 
-        <!-- <hr id="hr"> -->
+
+
 
         <div class="buttons">
-            <!-- <fieldset id="fieldset"> -->
-                <!-- <legend style="margin-left: 17.5%; padding: 0.2em 0.8em "> -->
-                    <!-- <h2 id="butTitle">CHOOSE WHAT INTEREST YOU </h2> -->
-                </legend>
                 <form action="">
 
-                    <div class="mainDiv">
+                    <div class="mainDiv fieldset">
                         <div id="interestcon" class="container">
                             <ul class="ks-cboxtags">
                                 <li><input type="checkbox" id="checkboxOne" value="space"><label
@@ -92,7 +107,6 @@
 
                     </div>
                 </form>
-            </fieldset>
         </div>
         <!-- for search  -->
         <div id="cover">
@@ -114,7 +128,7 @@
 
         <div id="newsPar">
             <p id='bottick'></p>
-            <h3> Editor's Picks</h3>
+            <h3> Editors' Picks</h3>
         </div>
         <div class="w3-content w3-display-container">
             <% let arr = [] %>
@@ -151,13 +165,6 @@
             <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
 
         </div>
-
-
-
-
-
-
-
     </main>
 
     <!-- // Footer //  -->

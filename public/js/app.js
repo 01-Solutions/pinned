@@ -2,11 +2,11 @@
 
 
 /* this is for check if the user login or not when he open the site */
-if(localStorage.getItem('key')){
+if (localStorage.getItem('key')) {
     var testlocal = JSON.parse(localStorage.getItem('key'))
-    $.post('/getUserEmail', { 
+    $.post('/getUserEmail', {
         email: testlocal
-        });
+    });
 }
 
 
@@ -37,27 +37,29 @@ function showDivs(n) {
 
 /* this is for send data to back-end (useremail-search&&intrest) */
 const searchBtn = document.getElementById('searchBtn');
-const searshStr =document.getElementById('idForAppend');
-searchBtn.addEventListener('click',searchBtnHandler)
-function searchBtnHandler(){
+const searshStr = document.getElementById('idForAppend');
+searchBtn.addEventListener('click', searchBtnHandler)
+
+function searchBtnHandler() {
     // event.preventDefault();
     let localStorageData = getlocal();
 
-    $.post('/getUserEmail', { 
+    $.post('/getUserEmail', {
         email: localStorageData,
-         search: searshStr.value
-        });
+        search: searshStr.value
+    });
 }
-function getlocal(){
-    
-    if(localStorage.getItem('key')){
+
+function getlocal() {
+
+    if (localStorage.getItem('key')) {
         var getdatafromJson = JSON.parse(localStorage.getItem('key'))
-        // console.log(getdatafromJson);
+            // console.log(getdatafromJson);
     }
     return getdatafromJson;
 }
 
-const ifuser =`<li id="mylist">
+const ifuser = `<li id="mylist">
 <a href='/favList' data-item='My List'>My List</a>
 </li>
 
@@ -69,8 +71,8 @@ const ifuser =`<li id="mylist">
 </form>`
 
 /* to check if there data in locale storage that mean the user was signin */
-function ifuserOrnot(){
-    if(localStorage.getItem('key')){
+function ifuserOrnot() {
+    if (localStorage.getItem('key')) {
         var dataInlocal = JSON.parse(localStorage.getItem('key'))
         console.log('done :) ', dataInlocal);
         $('#signupdata').remove();
@@ -79,9 +81,7 @@ function ifuserOrnot(){
 }
 ifuserOrnot();
 
-$('#logOut').on('click',()=>{
+$('#logOut').on('click', () => {
 
     localStorage.clear();
 })
-
-

@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Kadwa&display=swap');
+
 /* font-family: 'Kadwa', serif; */
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 /* font-family: 'Montserrat', sans-serif; */
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,900");
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
@@ -13,9 +15,10 @@
 }
 
 body {
-    background: #fff;
+    background: rgb(255, 255, 255);
     min-height: 100vh;
 }
+
 
 /* /////////// slider /////// */
 
@@ -60,7 +63,9 @@ body {
     height: 150px;
 }
 
+
 /* End Slider  */
+
 
 /* for the three img inside the slider  */
 
@@ -87,7 +92,7 @@ body {
 
 /* line  style*/
 .subtitle{
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
   .fancy {
@@ -280,7 +285,9 @@ body {
     opacity: 0.7;
 }
 
+
 /* End the three img for the slider  */
+
 
 /* for search  */
 
@@ -302,7 +309,6 @@ body {
     border: 0;
     background-color: transparent;
 }
-
 
 #cover {
     margin-top: 30px;
@@ -331,8 +337,6 @@ input[type="text"] {
 input[type="text"]::placeholder {
     color: #ccc;
 }
-
-
 
 #s-cover {
     width: 1px;
@@ -422,7 +426,9 @@ input[type="text"]::placeholder {
     background-color: #d9524a;
 }
 
+
 /* End Search  */
+
 
 /* ////legend///////// */
 
@@ -446,18 +452,17 @@ input[type="text"]::placeholder {
 
 }
 
+
 #fieldset legend {
-
     text-align: center;
-
 }
 
 #fieldset li {
     font-family: 'Montserrat';
     font-size: 1.3em;
     text-align: center;
-
 }
+
 
 /* ///// favorate butoon  */
 
@@ -479,6 +484,7 @@ input[type="text"]::placeholder {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: .8em;
     font-weight: 600;
+    /* margin-top: 3%; */
 }
 
 ul.ks-cboxtags {
@@ -553,5 +559,6 @@ ul.ks-cboxtags li input[type="checkbox"] {
 ul.ks-cboxtags li input[type="checkbox"]:focus+label {
     border: 2px solid #e9a1ff;
 }
+
 
 /* End Favorate butoon */
