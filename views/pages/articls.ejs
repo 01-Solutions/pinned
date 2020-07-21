@@ -13,18 +13,44 @@
     <link rel="stylesheet" href="/styles/articles.css">
     <link rel="stylesheet" href="/styles/footer.css">
     <link rel="stylesheet" href="/styles/nav.css">
+    
 </head>
 
 <body>
-    <%- include('nav.ejs') %>
-        <!-- <a href="signin&signyp.ejs">go to signin</a> -->
-        <!-- <a href="/sign/signin-sigup">signin</a> -->
-        <div class="card-container">
-            <% articlsKey.forEach (articl => {  %>
-                <form action="" method="post">
-                    <div class="card card-1">
-                        <div id="faved">
-                            <button id="favbut"><i class="love"></i>
+    <header id="userHeader">
+        <nav>
+            <ul class="menuItems">
+                <a id="anker" href="/" target="_blank">Pinned</a>
+
+                <li>
+                    <a href='/' data-item='Home'>Home</a>
+                </li>
+                <li>
+                    <a href='/about' data-item='About'>About</a>
+                </li>
+
+
+                <!-- <li id="mylist">
+                    <a href='#' data-item='My List'>My List</a>
+                </li> -->
+
+                <form action="/signupdata" method="GET" id="signupdata">
+
+                    <button class="login-btn ">Login<i id="logicon" class="fas fa-sign-in-alt"></i>
+                    </button>
+
+                </form>
+
+            </ul>
+        </nav>
+    </header>    <!-- <a href="signin&signyp.ejs">go to signin</a> -->
+    <!-- <a href="/sign/signin-sigup">signin</a> -->
+    <div class="card-container">
+        <% articlsKey.forEach (articl => {  %>
+            <form action="" method="post">
+                <div class="card card-1">
+                    <div id="faved">
+                        <button id="favbut"><i class="love"></i>
                         <span id="saved">Saved!</span>
                     </button>
                         </div>
@@ -65,6 +91,7 @@
             <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
             <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
             <script src="/js/fav.js"></script>
+            <script src="/js/jsForindex.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,6 @@
 
+'use strict';
+
 console.clear();
 
 const loginBtn = document.getElementById('login');

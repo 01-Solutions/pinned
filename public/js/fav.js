@@ -1,3 +1,5 @@
+'use strict';
+
 $('.love').click(function() {
     event.preventDefault();
     sendDataToBackEnd();

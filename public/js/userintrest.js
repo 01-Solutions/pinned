@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const interest =document.getElementById('interestcon');
 const appendSearsh =document.getElementById('idForAppend');
