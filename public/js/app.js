@@ -5,7 +5,7 @@
 if(localStorage.getItem('key')){
     var testlocal = JSON.parse(localStorage.getItem('key'))
     $.post('/getUserEmail', { 
-        email: testlocal,
+        email: testlocal
         });
 }
 
