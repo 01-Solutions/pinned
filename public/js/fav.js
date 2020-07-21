@@ -10,12 +10,12 @@ $('.love').click(function(event) {
     event.preventDefault();
     $(this).closest('div').find('#saved,.love').toggleClass("press", 1000);
     artIMG = $(this).parents('form').find('#artIMG').attr('src');
-    cardTag = $(this).parents('form').find('#artIMG').text();
-    cardTime = $(this).parents('form').find('#artIMG').text();
-    cardUrl = $(this).parents('form').find('#artIMG').attr('href');
-    cardTitle = $(this).parents('form').find('#artIMG').text();
-    cardAuthor = $(this).parents('form').find('#artIMG').text();
-    articlDesc = $(this).parents('form').find('#artIMG').text();
+    cardTag = $(this).parents('form').find('#cardTag').text();
+    cardTime = $(this).parents('form').find('#cardTime').text();
+    cardUrl = $(this).parents('form').find('#cardUrl').attr('href');
+    cardTitle = $(this).parents('form').find('#cardTitle').text();
+    cardAuthor = $(this).parents('form').find('#cardAuthor').text();
+    articlDesc = $(this).parents('form').find('#articlDesc').text();
 
     sendDataToBackEnd();
     // alert(event.target.parentElement.parentElement.parentElement.parentElement.id)
