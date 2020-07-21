@@ -58,6 +58,10 @@ server.post('/getUserEmail', (req, res) => {
         user_id = result_id;
     })
 });
+server.get('/logOut',(req,res)=>{
+    user_id = '';
+    res.redirect('/')
+})
 /* this route for sinein data */
 server.get('/signupdata', dataTOsignin);
 /* this route for move ypo from article page to sign in&&sign up page */
@@ -104,7 +108,7 @@ function arrToObj(arr, myProperty) {
 }
 
 function indexPage(req, res) {
-    if (user_email && user_id) {
+    if (user_email && user_id && user_id != '') {
         getWeatherData(longitud,latitud,'').then(()=>{
             console.log('I am User');
             // res.redirect('/home');
@@ -363,6 +367,7 @@ function getWeatherData(lang,lat,locationCity) {
 }
 
 function Weather(data) {
+    this.location = data.timezone;
     this.temp = data.temp;
     this.description = data.weather.description;
     this.wind_spd = data.wind_spd;
