@@ -43,7 +43,7 @@ function aboutus(req, res) {
     res.render('aboutUs');
 }
 // if the user is a Signed up user then we will send hem to this rout
-server.get('/home', getHomeData);
+// server.get('/home', getHomeData);
 /* this route for sine in and check if user have acount ao not on our database */
 server.post('/signin', signinFun);
 /* this route for sine in and check if user have acount ao not on our database */
@@ -58,6 +58,10 @@ server.post('/getUserEmail', (req, res) => {
         user_id = result_id;
     })
 });
+server.get('/logOut',(req,res)=>{
+    user_id = '';
+    res.redirect('/')
+})
 /* this route for sinein data */
 server.get('/signupdata', dataTOsignin);
 /* this route for move ypo from article page to sign in&&sign up page */
@@ -77,23 +81,23 @@ function dataTOsignin(req, res) {
 
 function getHomeData(req, res) {
     // getWeatherData();
-    var sqlResult = [];
-    let sql = `select interests.interest_desc from interests,users_interests where interests.interest_id= users_interests.interest_id and users_interests.user_id = ${user_id};`;
-    client.query(sql)
-        .then(sqlData => { // get the SQL result
-            if (sqlData.rows.length < 1) {
-                res.redirect('/')
-            }
-            sqlResult = arrToObj(sqlData.rows, 'interest_desc')
-            sqlResult = sqlResult.join(' OR ')
-            let myURL = `https://newsapi.org/v2/everything?q=(${sqlResult})&apiKey=${key}`;
-            agent.get(myURL).then(apiResult => {
-                let result = JSON.parse(apiResult.text).articles.map(item => {
-                    return new Article(item);
-                })
-                res.render('index', { allArticles: result, weather: weatherData });
-            });
-        })
+    // var sqlResult = [];
+    // let sql = `select interests.interest_desc from interests,users_interests where interests.interest_id= users_interests.interest_id and users_interests.user_id = ${user_id};`;
+    // client.query(sql)
+    //     .then(sqlData => { // get the SQL result
+    //         if (sqlData.rows.length < 1) {
+    //             res.redirect('/')
+    //         }
+    //         sqlResult = arrToObj(sqlData.rows, 'interest_desc')
+    //         sqlResult = sqlResult.join(' OR ')
+    //         let myURL = `https://newsapi.org/v2/everything?q=(${sqlResult})&apiKey=${key}`;
+    //         agent.get(myURL).then(apiResult => {
+    //             let result = JSON.parse(apiResult.text).articles.map(item => {
+    //                 return new Article(item);
+    //             })
+    //             res.render('index', { allArticles: result, weather: weatherData });
+    //         });
+    //     })
 }
 // this is a fuction to transfare array of objects to array
 function arrToObj(arr, myProperty) {
@@ -104,13 +108,36 @@ function arrToObj(arr, myProperty) {
 }
 
 function indexPage(req, res) {
-    if (user_email) {
+    if (user_email && user_id && user_id != '') {
         getWeatherData(longitud,latitud,'').then(()=>{
-            res.redirect('/home');
+            console.log('I am User');
+            // res.redirect('/home');
+            var sqlResult = [];
+            let myURL;
+            let sql = `select interests.interest_desc from interests,users_interests where interests.interest_id= users_interests.interest_id and users_interests.user_id = ${user_id};`;
+            client.query(sql)
+                .then(sqlData => { // get the SQL result
+                    console.log('***********',sqlData.rows);
+                    if (sqlData.rows.length < 1) {
+                        // res.redirect('/')
+                        myURL = `https://newsapi.org/v2/everything?q=TopNews&apiKey=${key}`;
+                    }else{
+                        sqlResult = arrToObj(sqlData.rows, 'interest_desc')
+                        sqlResult = sqlResult.join(' OR ')
+                        myURL = `https://newsapi.org/v2/everything?q=(${sqlResult})&apiKey=${key}`;
+                    }
+                    // let myURL = `https://newsapi.org/v2/everything?q=(${sqlResult})&apiKey=${key}`;
+                    agent.get(myURL).then(apiResult => {
+                        let result = JSON.parse(apiResult.text).articles.map(item => {
+                            return new Article(item);
+                        })
+                        res.render('index', { allArticles: result, weather: weatherData });
+                    });
+                })
         })
     } else {
         getWeatherData('','','Amman').then(()=>{
-            console.log('Guuuuuuuuuuuuuuust');
+            console.log('I am Gust');
             agent.get(url).then(result => {
                 let APIResult = JSON.parse(result.text).articles
                 let myArticls = APIResult.map(item => {
@@ -196,19 +223,19 @@ function getSearchResult(req, res) {
                     return item['interest_desc'];
                 });
                 // console.log('--------------------------------first');
-                console.log('dfghjksd', intrestarr);
+                // console.log('dfghjksd', intrestarr);
                 userID = getUserIdByEmail(user_email)
                     .then((user_id) => {
-                        console.log('user id is here', user_id);
+                        // console.log('user id is here', user_id);
                         // console.log(searchData.split(' '));
                         searchData.split(' ').forEach(element => {
                             if (intrestarr.includes(element)) {
-                                console.log(element);
+                                // console.log(element);
                                 interstId = getinterestIdByEmail(element)
                                     .then((intrestId) => {
                                         checkIfexists(user_id, intrestId).then((result) => {
                                             if (!result) {
-                                                console.log('it is in database');
+                                                // console.log('it is in database');
                                                 let sql = `insert into users_interests (user_id,interest_id) VALUES($1,$2);`;
                                                 let safeValues = [user_id, intrestId];
                                                 return client.query(sql, safeValues)
@@ -242,7 +269,7 @@ function getSearchResult(req, res) {
 function getUserIdByEmail(str) {
     let sql = `select user_id from users where user_email='${str}';`
     return client.query(sql).then(userId => {
-        console.log('momomomomomo', userId.rows[0].user_id);
+        // console.log('momomomomomo', userId.rows[0].user_id);
         if (userId.rows.length > 0) {
             return userId.rows[0].user_id;
         }
@@ -253,15 +280,15 @@ function getinterestIdByEmail(str) {
     let sql = `select interest_id from interests where interest_desc='${str}';`
     return client.query(sql).then(interestid => {
         if (interestid.rows.length > 0) {
-            console.log('eeeeeeeee', interestid.rows[0].interest_id);
+            // console.log('eeeeeeeee', interestid.rows[0].interest_id);
             return interestid.rows[0].interest_id;
         }
     })
 }
 
 function checkIfexists(userid, intrestid) {
-    console.log('fffaaa', userid);
-    console.log('rrrrrrrrrrrrrrrrrrrrrr', intrestid);
+    // console.log('fffaaa', userid);
+    // console.log('rrrrrrrrrrrrrrrrrrrrrr', intrestid);
     let sql = `select * from users_interests where interest_id=${intrestid} and user_id=${userid};`
     return client.query(sql).then(userId => {
         if (userId.rows.length > 0) {
@@ -273,21 +300,33 @@ function checkIfexists(userid, intrestid) {
 }
 
 function saveFavFun(req, res) {
-    console.log('hiiii', user_id);
+    // console.log('hiiii', user_id);
     if (user_id) {
-        let SQL = ' INSERT INTO articles(title,author,img,src_url,source,articl_date,conten) VALUES($1,$2,$3,$4,$5,$6,$7);';
-        let safeValues = [req.body.articlTitle, req.body.articlAuthor, req.body.articlIMG, req.body.articlURL, req.body.articlSource, req.body.articlDate, req.body.articlDes];
-        client.query(SQL, safeValues)
-            .then(() => {
-                console.log('saved', safeValues);
-                let q = `INSERT INTO users_articles(user_id,article_id) VALUES($1,(select max(article_id) FROM articles));`;
-                let safeVal = [user_id];
-                console.log('this is user id');
-                client.query(q, safeVal)
+        client.query(`select * from articles where title = '${req.body.articlTitle}';`).then(dbResult=>{
+            if (dbResult.rows.length <= 0){
+
+                let SQL = ' INSERT INTO articles(title,author,img,src_url,source,articl_date,conten) VALUES($1,$2,$3,$4,$5,$6,$7);';
+                let safeValues = [req.body.articlTitle, req.body.articlAuthor, req.body.articlIMG, req.body.articlURL, req.body.articlSource, req.body.articlDate, req.body.articlDes];
+                client.query(SQL, safeValues)
                     .then(() => {
-                        console.log('done');
+                        // console.log('saved', safeValues);
+                        let q = `INSERT INTO users_articles(user_id,article_id) VALUES($1,(select max(article_id) FROM articles));`;
+                        let safeVal = [user_id];
+                        // console.log('this is user id');
+                        client.query(q, safeVal)
                     })
-            })
+            }else{
+                client.query(`select * from users_articles where user_id = ${user_id} and article_id = ${dbResult.rows[0].article_id};`)
+                .then(artResult =>{
+                    if(artResult.rows.length <= 0){
+                        let q = `INSERT INTO users_articles(user_id,article_id) VALUES($1,(select max(article_id) FROM articles));`;
+                        let safeVal = [user_id];
+                        // console.log('this is user id');
+                        client.query(q, safeVal)
+                    }
+                })
+            }
+        })
     } else {
         res.redirect('/signupdata')
     }
@@ -303,17 +342,17 @@ function getUserFavList(req, res) {
 
 
 function getWeatherData(lang,lat,locationCity) {
-    console.log(lang,lat,locationCity);
+    // console.log(lang,lat,locationCity);
     let URL ;
     let weatherKey = process.env.WEATHER_KEY;
     if(locationCity != ''){
-        console.log('city');
+        // console.log('city');
         URL = `https://api.weatherbit.io/v2.0/current?city=${locationCity}&key=${weatherKey}`;
     }else if(lang != '' && lat != '' && lat && lang){
-        console.log('location');
+        // console.log('location');
         URL = `https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lang}&key=${weatherKey}`;
     }else{
-        console.log('else');
+        // console.log('else');
         URL = `https://api.weatherbit.io/v2.0/current?city=Amman&key=${weatherKey}`;
     }
    return agent.get(URL)
@@ -328,6 +367,7 @@ function getWeatherData(lang,lat,locationCity) {
 }
 
 function Weather(data) {
+    this.location = data.timezone;
     this.temp = data.temp;
     this.description = data.weather.description;
     this.wind_spd = data.wind_spd;
