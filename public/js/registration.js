@@ -63,7 +63,7 @@ function signUpgetEmail(event){
 		// alert('this is me')
 		let userEmail =logUp.value;
 		localStorage.setItem('key',JSON.stringify(userEmail))
-		// getLocation()
+		getLocation()
 	}
 }
 
@@ -72,16 +72,18 @@ function setlocal(value){
 	localStorage.setItem('key',JSON.stringify(value))
 }
 
-// function getLocation() {
-// 	if (navigator.geolocation) {
-// 		navigator.geolocation.getCurrentPosition(showPosition);
-// 	}
-// }
+function getLocation() {
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showPosition);
+	}
+}
 
-// function showPosition(position) {
-// 	lat =  position.coords.latitude;
-// 	longlong = position.coords.longitude;
-// 	localStorage.setItem('lat',JSON.stringify(lat))
-// 	localStorage.setItem('long',JSON.stringify(long))
-//   }
+function showPosition(position) {
+	lat =  position.coords.latitude;
+	long = position.coords.longitude;
+	// localStorage.setItem('lat',JSON.stringify(lat))
+	// localStorage.setItem('long',JSON.stringify(long))
+	localStorage.setItem('lat',JSON.stringify(33.5102))
+	localStorage.setItem('long',JSON.stringify(36.29128))
+  }
 
