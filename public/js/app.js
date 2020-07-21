@@ -13,19 +13,7 @@ if (localStorage.getItem('key')) {
     });
 }
 
-function getLocation() {
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(showPosition);
-	}
-}
 
-function showPosition(position) {
-	lat =  position.coords.latitude;
-	longlong = position.coords.longitude;
-	localStorage.setItem('lat',JSON.stringify(lat))
-	localStorage.setItem('long',JSON.stringify(long))
-  }
-getLocation()
 ///////////////////////////* start style with js *///////////////////////
 
 /* for slider */
