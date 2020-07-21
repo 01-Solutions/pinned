@@ -53,7 +53,7 @@ $('.love').click(function () {
 function sendDataToBackEnd() {
     let localData = getlocal();
     if (localData) {
-        alert('im in');
+        // alert('im in');
         // console.log('im in');
         let artIMG = document.getElementById('artIMG').src;
         let cardTag = document.getElementById('cardTag').textContent;
@@ -72,7 +72,7 @@ function sendDataToBackEnd() {
         $.post('/saveFavorate', { articlIMG: artIMG, articlSource: cardTag, articlDes: articlDesc, articlURL: cardUrl, articlTitle: cardTitle, articlDate: cardTime, articlAuthor: cardAuthor });
     } else {
         // console.log('im out');
-        alert('im out');
+        // alert('im out');
         // window.redirect('/signupdata');
         window.location.replace('/signupdata');
 
