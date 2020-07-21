@@ -2,27 +2,25 @@
 
 /* font-family: 'Kadwa', serif; */
 
-@import url('https://fonts.googleapis.com/css2?family=Allan&display=swap');
 /* font-family: 'Allan', cursive; */
 
 
-@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
 
 /* font-family: 'Concert One', cursive; */
 /* ////// new nav Bar //////  */
 
 @import url("https://fonts.googleapis.com/css?family=Varela+Round");
+
 nav {
     background: #1c1d22;
-    font-family: 'Allan', cursive;
 
-    ;
 }
 
 .menuItems {
     display: flex;
     height: 85px;
     list-style: none;
+    font-family:'Kadwa';
 }
 
 
@@ -32,35 +30,40 @@ nav {
     0% {
         transform: translateX(-50%) translateY(-50%) rotate(0deg);
     }
+
     100% {
         transform: translateX(-50%) translateY(-50%) rotate(360deg);
     }
 }
 
 #anker {
-font-family: 'Varela', cursive;
+    /* font-family: 'Varela', cursive; */
     color: #fffbf1;
-    text-shadow: 0 20px 25px #2e2e31, 0 40px 60px #2e2e31;
     font-size: 30px;
     font-weight: bold;
     text-decoration: none;
-    letter-spacing: -3px;
+    letter-spacing: -1px;
     margin-right: 6%;
     padding-left: 20px;
     transform: translateX(35%) translateY(15%);
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'Varela';
+
 }
+
 
 #anker:before,
 #anker:after {
     content: '';
     padding: .9em .4em;
     position: absolute;
-    left: 55%;
+    left: 62%;
     width: 100%;
-    top: 40%;
+    top: 33%;
     display: block;
-    border: 7px solid red;
-    transform: translateX(50%) translateY(-50%) rotate(0deg);
+    border: 7px solid #d9524a;
+    transform: translateX(-50%) translateY(-50%) rotate(0deg);
     animation: 10s infinite alternate ease-in-out tipsy;
 }
 
@@ -71,7 +74,7 @@ font-family: 'Varela', cursive;
 
 #anker:after {
     border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #d9524a #d9524a;
-    box-shadow: 25px 25px 25px rgba(46, 46, 49, .8);
+    box-shadow: 5px 5px 5px rgba(46, 46, 49, .8);
 }
 
 
@@ -117,8 +120,8 @@ font-family: 'Varela', cursive;
 }
 
 .login-btn {
-    margin-top: 20px;
-    font-family: 'Varela', cursive;
+    /* margin-top: 20px; */
+    font-family: 'Kadwa';
     background: #d9524a;
     color: white;
     cursor: pointer;
@@ -129,8 +132,32 @@ font-family: 'Varela', cursive;
     width: auto;
     position: relative;
     min-width: 165px;
-    margin-left: 380%;
+    margin-bottom: 20px;
 }
+
+#signupdata {
+
+    width: 100px;
+    margin-left: 87%;
+    margin-top: -65px
+}
+
+
+@media only screen and (max-width : 1224px) {
+    /* Styles */
+
+
+    /* Styles */
+    #signupdata {
+
+        margin-left: 70%;
+
+    }
+
+}
+
+
+
 
 .login-btn-alt:hover {
     transition: all 0.5s;
@@ -144,6 +171,7 @@ font-family: 'Varela', cursive;
     transition: all 0.5s;
     color: black;
 }
+
 .login-btn-alt {
     margin-top: 20px;
     font-family: 'Varela', cursive;
@@ -193,6 +221,3 @@ font-family: 'Varela', cursive;
 
 
 /* ///// end nav bar //////  */
-
-
-

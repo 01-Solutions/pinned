@@ -105,6 +105,10 @@ body {
     padding-bottom: 0.75rem;
     transition: all 350ms ease-in-out;
 }
+ #articlDesc {
+     display: none;
+
+ }
 
 .card .card-info .card-creator {
     padding-bottom: 0.75rem;
