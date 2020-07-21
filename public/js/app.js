@@ -58,7 +58,7 @@ function getlocal(){
 }
 
 const ifuser =`<li id="mylist">
-<a href='#' data-item='My List'>My List</a>
+<a href='/favList' data-item='My List'>My List</a>
 </li>
 
 <form id='logOut' action="/signupdata" method="GET" id="signupdata">
