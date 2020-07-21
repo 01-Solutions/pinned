@@ -20,7 +20,9 @@
     <header id="userHeader">
         <nav>
             <ul class="menuItems">
-                <a id="anker" href="/" ><p>Pinned</p></a>
+                <a id="anker" href="/">
+                    <p>Pinned</p>
+                </a>
 
                 <li>
                     <a href='/' data-item='Home'>Home</a>
@@ -45,59 +47,13 @@
 
     <main>
 
-        <div class="w3-content w3-display-container">
-            <% let arr = [] %>
-            <% for(let i = 0; i < allArticles.length; i++){ %>
-            <%   arr.push(allArticles[i]) %>
-            <%    if(arr.length == 3){ %>
-            <div class="w3-display-container mySlides">
-                <div id='mainNews'>
-                    <div class="cardsNews">
-                        <%      arr.forEach(item =>{ %>
-                        <div class="cardNews contentNews">
-                            <div class="cardNews-content">
-                                <div class="cardNews-img">
-                                    <img src="<%= item.img %>" alt="Gamer">
-                                </div>
-                                <div class="cardNews-label">
-                                    <%= item.source %>
-                                </div>
-                                <div class="cardNews-title">
-                                    <%= item.title %>
-                                </div>
-                            </div>
-                        </div>
-                        <%    }) %>
-                    </div>
-                </div>
-            </div>
-            <%    arr = []; %>
-            <%    } %>
-            <%  } %>
-
-
-            <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
-            <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
-
-        </div>
-        <!-- for search  -->
-        <div id="cover">
-            <form method="POST" action="/search">
-                <div class="tb">
-                    <div class="td"><input class="inputTextSearch" id="idForAppend" name="search" type="text"
-                            placeholder="Search" value="" required></div>
-                    <div class="td" id="s-cover">
-                        <button id="searchBtn" class="searchButton" type="submit">
-                            <div id="s-circle"></div>
-                            <span></span>
-                        </button>
-                    </div>
-                </div>
-            </form>
+        <div id="heroTit">
+            <p id="mainTit">Get news about what <br> intrests you.</p>
+            <p id="secondTit">Get latest news, breaking science & discovery news at <span
+                    id="PinnedLogoText">Pinned</span>.</p>
         </div>
 
-        <!-- end search  -->
-
+        <hr id="hr">
 
         <div class="buttons">
             <fieldset id="fieldset">
@@ -136,8 +92,69 @@
 
                     </div>
                 </form>
+            </fieldset>
         </div>
-        </fieldset>
+        <!-- for search  -->
+        <div id="cover">
+            <form method="POST" action="/search">
+                <div class="tb">
+                    <div class="td"><input class="inputTextSearch" id="idForAppend" name="search" type="text"
+                            placeholder="Search" value="" required></div>
+                    <div class="td" id="s-cover">
+                        <button id="searchBtn" class="searchButton" type="submit">
+                            <div id="s-circle"></div>
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- end search  -->
+
+        <div id="newsPar">
+            <p id='bottick'></p>
+            <h3> Editor's Picks</h3>
+        </div>
+        <div class="w3-content w3-display-container">
+            <% let arr = [] %>
+            <% for(let i = 0; i < allArticles.length; i++){ %>
+            <%   arr.push(allArticles[i]) %>
+            <%    if(arr.length == 3){ %>
+            <div class="w3-display-container mySlides">
+                <div id='mainNews'>
+                    <div class="cardsNews">
+                        <%      arr.forEach(item =>{ %>
+                        <div class="cardNews contentNews">
+                            <div class="cardNews-content">
+                                <div class="cardNews-img">
+                                    <img src="<%= item.img %>" alt="Gamer">
+                                </div>
+                                <div class="cardNews-label">
+                                    <%= item.source %>
+                                </div>
+                                <div class="cardNews-title">
+                                    <%= item.title %>
+                                </div>
+                            </div>
+                        </div>
+                        <%    }) %>
+                    </div>
+                </div>
+            </div>
+            <%    arr = []; %>
+            <%    } %>
+            <%  } %>
+
+
+            <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+
+        </div>
+
+
+
+
 
 
 

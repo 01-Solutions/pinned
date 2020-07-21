@@ -4,6 +4,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 /* font-family: 'Montserrat', sans-serif; */
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,900");
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -62,9 +64,64 @@ body {
 
 /* for the three img inside the slider  */
 
+#heroTit {
+    margin-top: 50px;
+    display: block;
+    text-align: center;
+}
+
+
+#mainTit {
+    font-size: 70px;
+    line-height: 80px;
+    font-family: 'Playfair Display', serif;
+}
+#secondTit {
+    font-size: 22px;
+    line-height: 28px;
+    font-family: 'Roboto';
+    margin-top: 10px;
+}
+#PinnedLogoText{
+    font-family: 'Varela';
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+
+#newsPar {
+    margin-left: 24%;
+    margin-top: 5%;
+
+}
+
+#newsPar h3 {
+    font-family: 'Varela' !important;
+    font-weight: bold !important;
+}
+
+#hr{
+    width: 52%;
+    text-align: center;
+    border: 0.5px solid #d9524a;
+    background-color: #d9524a;
+    margin: 24px 24%;
+}
+
+#bottick {
+    content: "";
+    height: 5px;
+    background: #d9524a;
+    width: 35px;
+    top: 30px;
+    border-radius: 3px;
+}
+
+
 #mainNews {
     width: 100%;
-    margin-top: 90px;
+    /* margin-top: 90px; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -130,7 +187,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-  
+
 }
 
 .cardNews-img {
@@ -206,7 +263,8 @@ body {
     vertical-align: middle;
 }
 
-.inputTextSearch, .searchButton {
+.inputTextSearch,
+.searchButton {
     font-family: Nunito;
     padding: 0;
     margin: 0;
@@ -285,7 +343,8 @@ input[type="text"]::placeholder {
     transition: 0.5s ease all;
 }
 
-.searchButton span:before, .searchButton span:after {
+.searchButton span:before,
+.searchButton span:after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -325,7 +384,8 @@ input[type="text"]::placeholder {
     transform: rotateZ(-52deg);
 }
 
-#s-cover:hover button span:before, #s-cover:hover button span:after {
+#s-cover:hover button span:before,
+#s-cover:hover button span:after {
     right: -6px;
     width: 40px;
     background-color: #d9524a;
@@ -338,25 +398,29 @@ input[type="text"]::placeholder {
 #fieldset {
     font-family: 'Montserrat';
     border: 1px solid #d9524a;
-    margin: 0 26% 90px 26%;
+    margin: 0 26% 25px 26%;
     padding: .35em .625em .75em;
     width: 48%;
 }
+
 #fieldset h2 {
     text-align: center;
     font-family: 'Montserrat';
 
 }
+
 #fieldset input {
     text-align: center;
     font-family: 'Montserrat';
 
 }
+
 #fieldset legend {
 
     text-align: center;
 
 }
+
 #fieldset li {
     font-family: 'Montserrat';
     font-size: 1.3em;
@@ -387,7 +451,7 @@ input[type="text"]::placeholder {
 }
 
 ul.ks-cboxtags {
-margin:-20px 12.5% 20px 12.5% ;
+    margin: -20px 12.5% 20px 12.5%;
     list-style: none;
     width: 75%;
 }
@@ -400,7 +464,7 @@ ul.ks-cboxtags li label {
     display: inline-block;
     background-color: rgba(255, 255, 255, .9);
     border: 2px solid rgba(139, 139, 139, .3);
-    color: #adadad;
+    color: #000000;
     border-radius: 25px;
     white-space: nowrap;
     margin: 3px 0px;
