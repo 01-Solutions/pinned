@@ -54,9 +54,10 @@ function searchBtnHandler() {
     });
 }
 
-function getlocal() {
 
-    if (localStorage.getItem('key')) {
+function getlocal(){
+    
+    if(localStorage.getItem('key')){
         var getdatafromJson = JSON.parse(localStorage.getItem('key'))
             // console.log(getdatafromJson);
     }
@@ -67,7 +68,7 @@ const ifuser = `<li id="mylist">
 <a href='/favList' data-item='My List'>My List</a>
 </li>
 
-<form id='logOut' action="/signupdata" method="GET" id="signupdata">
+<form id='logOut' action="/signupdata" method="GET">
 
 <button class="login-btn-alt ">Log-out<i id="logicon" class="fas fa-sign-in-alt"></i>
 </button>

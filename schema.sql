@@ -22,11 +22,11 @@ CREATE TABLE IF NOT EXISTS articles(
      article_id SERIAL PRIMARY KEY,
      title VARCHAR(255),
     author VARCHAR(255),
-    img VARCHAR(255),
-    url VARCHAR(255),
+    img TEXT,
+    src_url VARCHAR(255),
     source VARCHAR(255),
     articl_date VARCHAR(255),
-    conten text
+    conten TEXT
 );
 CREATE TABLE IF NOT EXISTS users_articles(
         user_id INT,

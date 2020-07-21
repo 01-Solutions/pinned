@@ -46,11 +46,11 @@
     </header>    <!-- <a href="signin&signyp.ejs">go to signin</a> -->
     <!-- <a href="/sign/signin-sigup">signin</a> -->
     <div class="card-container">
-        <% articlsKey.forEach (articl => {  %>
+        <% articlsKey.forEach ((articl,idx) => {  %>
             <form action="" method="post">
                 <div class="card card-1">
                     <div id="faved">
-                        <button id="favbut"><i class="love"></i>
+                        <button id="<%=idx%>"><i class="love"></i>
                         <span id="saved">Saved!</span>
                     </button>
                         </div>
