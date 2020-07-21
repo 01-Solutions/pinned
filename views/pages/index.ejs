@@ -53,6 +53,7 @@
             <p class="subtitle fancy"><span id="line">Get latest news, breaking science & discovery news at <span
                         id="PinnedLogoText">Pinned</span></span>.</p>
         </div>
+
         <!-- wether wedgit -->
         <div id="weather_wrapper">
             <div class="weatherCard">
@@ -65,48 +66,45 @@
                     <div class="info">
                         <span class="rain">1.3 MM</span>
                         <span class="wind"><%= weather.wind_spd %> MPH</span>
+
                     </div>
                 </div>
             </div>
         </div>
-        <!-- wether wedgit  end-->
-
-
-
 
         <div class="buttons">
-                <form action="">
+            <form action="">
 
-                    <div class="mainDiv fieldset">
-                        <div id="interestcon" class="container">
-                            <ul class="ks-cboxtags">
-                                <li><input type="checkbox" id="checkboxOne" value="space"><label
-                                        for="checkboxOne">space</label></li>
-                                <li><input type="checkbox" id="checkboxTwo" value="cars"><label
-                                        for="checkboxTwo">cars</label></li>
-                                <li><input type="checkbox" id="checkboxThree" value="sport"><label
-                                        for="checkboxThree">sport</label></li>
-                                <li><input type="checkbox" id="checkboxFour" value="food"><label
-                                        for="checkboxFour">food</label></li>
-                                <li><input type="checkbox" id="checkboxFive" value="cooking"><label
-                                        for="checkboxFive">cooking</label></li>
-                                <li><input type="checkbox" id="checkboxSix" value="animals"><label
-                                        for="checkboxSix">animals</label></li>
-                                <li><input type="checkbox" id="checkboxSeven" value="ants"><label
-                                        for="checkboxSeven">ants</label></li>
-                                <li><input type="checkbox" id="checkboxEight" value="history"><label
-                                        for="checkboxEight">history</label></li>
-                                <li><input type="checkbox" id="checkboxNine" value="movies"><label
-                                        for="checkboxNine">movies</label></li>
-                                <li><input type="checkbox" id="checkboxTen" value="technology"><label
-                                        for="checkboxTen">technology</label></li>
+                <div class="mainDiv fieldset">
+                    <div id="interestcon" class="container">
+                        <ul class="ks-cboxtags">
+                            <li><input type="checkbox" id="checkboxOne" value="space"><label
+                                    for="checkboxOne">space</label></li>
+                            <li><input type="checkbox" id="checkboxTwo" value="cars"><label
+                                    for="checkboxTwo">cars</label></li>
+                            <li><input type="checkbox" id="checkboxThree" value="sport"><label
+                                    for="checkboxThree">sport</label></li>
+                            <li><input type="checkbox" id="checkboxFour" value="food"><label
+                                    for="checkboxFour">food</label></li>
+                            <li><input type="checkbox" id="checkboxFive" value="cooking"><label
+                                    for="checkboxFive">cooking</label></li>
+                            <li><input type="checkbox" id="checkboxSix" value="animals"><label
+                                    for="checkboxSix">animals</label></li>
+                            <li><input type="checkbox" id="checkboxSeven" value="ants"><label
+                                    for="checkboxSeven">ants</label></li>
+                            <li><input type="checkbox" id="checkboxEight" value="history"><label
+                                    for="checkboxEight">history</label></li>
+                            <li><input type="checkbox" id="checkboxNine" value="movies"><label
+                                    for="checkboxNine">movies</label></li>
+                            <li><input type="checkbox" id="checkboxTen" value="technology"><label
+                                    for="checkboxTen">technology</label></li>
 
-                            </ul>
-
-                        </div>
+                        </ul>
 
                     </div>
-                </form>
+
+                </div>
+            </form>
         </div>
         <!-- for search  -->
         <div id="cover">
@@ -130,40 +128,44 @@
             <p id='bottick'></p>
             <h3> Editors' Picks</h3>
         </div>
-        <div class="w3-content w3-display-container">
-            <% let arr = [] %>
-            <% for(let i = 0; i < allArticles.length; i++){ %>
-            <%   arr.push(allArticles[i]) %>
-            <%    if(arr.length == 3){ %>
-            <div class="w3-display-container mySlides">
-                <div id='mainNews'>
-                    <div class="cardsNews">
-                        <%      arr.forEach(item =>{ %>
-                        <div class="cardNews contentNews">
-                            <div class="cardNews-content">
-                                <div class="cardNews-img">
-                                    <img src="<%= item.img %>" alt="Gamer">
-                                </div>
-                                <div class="cardNews-label">
-                                    <%= item.source %>
-                                </div>
-                                <div class="cardNews-title">
-                                    <%= item.title %>
+
+        <div class="slidDiv">
+
+            <div class="w3-content w3-display-container">
+                <% let arr = [] %>
+                <% for(let i = 0; i < allArticles.length; i++){ %>
+                <%   arr.push(allArticles[i]) %>
+                <%    if(arr.length == 3){ %>
+                <div class="w3-display-container mySlides">
+                    <div id='mainNews'>
+                        <div class="cardsNews">
+                            <%      arr.forEach(item =>{ %>
+                            <div class="cardNews contentNews">
+                                <div class="cardNews-content">
+                                    <div class="cardNews-img">
+                                        <img src="<%= item.img %>" alt="Gamer">
+                                    </div>
+                                    <div class="cardNews-label">
+                                        <%= item.source %>
+                                    </div>
+                                    <div class="cardNews-title">
+                                        <%= item.title %>
+                                    </div>
                                 </div>
                             </div>
+                            <%    }) %>
                         </div>
-                        <%    }) %>
                     </div>
                 </div>
+                <%    arr = []; %>
+                <%    } %>
+                <%  } %>
+
+
+                <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+                <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+
             </div>
-            <%    arr = []; %>
-            <%    } %>
-            <%  } %>
-
-
-            <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
-            <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
-
         </div>
     </main>
 
