@@ -62,7 +62,7 @@
                                 <%= ErrMsg %>
                             </p>
                         </div>
-                        <button id="getdata" class="submit-btn" type="submit">Log in</button>
+                        <button id="signInBtn" class="submit-btn" type="submit">Log in</button>
                     </div>
                 </form>
                 <form action="/signup" method="POST" id="signUp">
@@ -71,7 +71,7 @@
                             <h2 class="form-title" id="login"><span>or</span>Sign up</h2>
                             <div class="form-holder">
                                 <input type="text" class="input" name="UserName" value="" placeholder="Name">
-                                <input type="email" class="input" name="Email" value="" placeholder="Email">
+                                <input id="getUserEmail2" type="email" class="input" name="Email" value="" placeholder="Email">
                                 <input type="password" class="input" name="Password" value="" placeholder="Password">
                                 <input type="password" class="input" name="confirmPassword" value=""
                                     placeholder="confirm password">
@@ -80,7 +80,7 @@
                                 <input type="radio" id="female" name="gender" value="0">
                                 <label for="female">Female</label>
                             </div>
-                            <button class="submit-btn" type="submit">Sign up</button>
+                            <button id="signUpBtn" class="submit-btn" type="submit">Sign up</button>
                         </div>
                     </div>
                 </form>
