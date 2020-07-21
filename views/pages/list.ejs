@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="">
-
 <head>
     <meta charset="">
     <meta name="viewport" content="width=, initial-scale=">
@@ -11,73 +10,53 @@
     <link rel="stylesheet" href="/styles/list.css">
     <link rel="stylesheet" href="/styles/footer.css">
     <link rel="stylesheet" href="/styles/nav.css">
-
     <title></title>
 </head>
-
 <body>
-	<header id="userHeader">
+    <header id="userHeader">
         <nav>
             <ul class="menuItems">
                 <a id="anker" href="/" target="_blank">Pinned</a>
-
                 <li>
                     <a href='/' data-item='Home'>Home</a>
                 </li>
                 <li>
                     <a href='/about' data-item='About'>About</a>
                 </li>
-
-
                 <!-- <li id="mylist">
                     <a href='#' data-item='My List'>My List</a>
                 </li> -->
-
                 <form action="/signupdata" method="GET" id="signupdata">
-
                     <button class="login-btn ">Login<i id="logicon" class="fas fa-sign-in-alt"></i>
                     </button>
-
                 </form>
-
             </ul>
         </nav>
-	</header>
+	</header>  
+	<% for(let i = 0; i < userFavList.length; i++){ %>
 
-	<%= userFavList.forEach(item=>{ %>
-	<div class="blog-card alt">
-
-		<div class="meta">
-			<div class="photo"
-				style="background-image: url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-2.jpg)">
-			</div>
-			<ul class="details">
-				<li class="author"><a ><%= item.author %></a></li>
-				<li class="date"><%= item.conten %></li>
-				<!-- <li class="tags">
-					<ul>
-						<li><a href="#">Learn</a></li>
-						<li><a href="#">Code</a></li>
-						<li><a href="#">JavaScript</a></li>
-					</ul>
-				</li> -->
-			</ul>
-		</div>
-		<div class="description">
-			<h1><%= item.title %></h1>
-			<!-- <h2>Java is not the same as JavaScript</h2> -->
-			<p><%= item.description %></p>
-			<p class="read-more">
-				<a href="<%= item.url %>">Read More</a>
-			</p>
-		</div>
+    <div class="blog-card alt">
+        <div class="meta">
+            <div class="photo">
+				<img src="<%= userFavList[i].img %>" alt="">
+            </div>
+            <ul class="details">
+                <li class="author"><a href="#"><%= userFavList[i].author %></a></li>
+                <li class="date"><%= userFavList[i].articl_date %></li>
+            </ul>
+        </div>
+        <div class="description">
+            <h1><%= userFavList[i].title %></h1>
+            <p><%= userFavList[i].conten %></p>
+            <p class="read-more">
+                <a href="<%= userFavList[i].url %>">read more</a>
+            </p>
+        </div>
 	</div>
-	<%= })  %>
-
-	<!-- // Footer //  -->
-	<%- include ('footer.ejs')  %> 
+	<%  } %>
+    <!-- // Footer //  -->
+    <%- include ('footer.ejs')  %> 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="/js/jsForindex.js"></script>
 </body>
-
 </html>

@@ -1,6 +1,6 @@
 
 'use strict';
-
+/*this function for style registration */
 console.clear();
 
 const loginBtn = document.getElementById('login');
@@ -31,6 +31,8 @@ signupBtn.addEventListener('click', (e) => {
 		}
 	});
 });
+
+/*END function of style registration */
 
 
 

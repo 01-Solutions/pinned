@@ -47,7 +47,7 @@ server.post('/signup', signupFun);
 server.post('/search', getSearchResult);
 server.post('/getUserEmail', (req, res) => {
     user_email = req.body.email;
-    getUserIdByEmail(user_email).then(result_id=>{
+    getUserIdByEmail(user_email).then(result_id => {
         user_id = result_id;
     })
 });
@@ -60,7 +60,7 @@ server.get('/sign/signin-sigup', (req, res) => {
 });
 server.post('/saveFavorate', saveFavFun);
 
-server.get('/favList',getUserFavList)
+server.get('/favList', getUserFavList)
 // server.post('/saveFavorate', saveFavFun);
 
 function dataTOsignin(req, res) {
@@ -97,20 +97,20 @@ function arrToObj(arr, myProperty) {
 }
 
 function indexPage(req, res) {
-    if(user_email){
-       setTimeout(res.redirect('/home'),1000);
-    }else{
+    if (user_email) {
+        setTimeout(res.redirect('/home'), 1000);
+    } else {
         console.log('hehehehhehehheh');
-            agent.get(url).then(result => {
-                let APIResult = JSON.parse(result.text).articles
-                let myArticls = APIResult.map(item => {
-                    return new Article(item);
-                });
-        
-        
-                res.render('index', { allArticles: myArticls });
+        agent.get(url).then(result => {
+            let APIResult = JSON.parse(result.text).articles
+            let myArticls = APIResult.map(item => {
+                return new Article(item);
             });
-           
+
+
+            res.render('index', { allArticles: myArticls });
+        });
+
     }
 };
 
@@ -265,8 +265,8 @@ function checkIfexists(userid, intrestid) {
 function saveFavFun(req, res) {
     console.log('hiiii', user_id);
     if (user_id) {
-        let SQL = ' INSERT INTO articles(title,author,img,url,source,articl_date,conten) VALUES($1,$2,$3,$4,$5,$6,$7);';
-        let safeValues = [req.body.articlTitle, req.body.articlAuthor, req.body.articlIMG, req.body.articlURL, req.body.articlSource,req.body.articlDate, req.body.articlDes];
+        let SQL = ' INSERT INTO articles(title,author,img,src_url,source,articl_date,conten) VALUES($1,$2,$3,$4,$5,$6,$7);';
+        let safeValues = [req.body.articlTitle, req.body.articlAuthor, req.body.articlIMG, req.body.articlURL, req.body.articlSource, req.body.articlDate, req.body.articlDes];
         client.query(SQL, safeValues)
             .then(() => {
                 console.log('saved', safeValues);
@@ -277,17 +277,17 @@ function saveFavFun(req, res) {
                     .then(() => {
                         console.log('done');
                     })
-            })   
-    }else{
+            })
+    } else {
         res.redirect('/signupdata')
     }
 }
-function getUserFavList(req,res) {
+function getUserFavList(req, res) {
     let sql = `select * from articles,users_articles where articles.article_id = users_articles.article_id and users_articles.user_id = ${user_id};`;
-    client.query(sql).then(result =>{
-        // res.render('list',{userFavList : result.rows})
+    client.query(sql).then(result => {
+        // res.render('list', { userFavList: result.rows })
+
         res.send(result.rows)
-        
     })
 }
 
