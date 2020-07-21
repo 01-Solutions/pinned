@@ -8,7 +8,7 @@ const pgSQL = require('pg');
 const server = express();
 server.use(cors());
 const client = new pgSQL.Client(process.env.DATABASE_URL)
-/////////////////////////////////////////////
+    /////////////////////////////////////////////
 const myHtml = express.static('./public/views/pages/index');
 server.use(express.static('./public'));
 server.set('view engine', 'ejs');
@@ -19,7 +19,8 @@ server.use(express.urlencoded({
 }));
 const methodOverride = require('method-override');
 const {
-    query, json
+    query,
+    json
 } = require('express');
 server.use(methodOverride('_method'));
 /////////////////////////////////////////////
@@ -29,6 +30,7 @@ const key = process.env.NEWSKEY;
 const url = `https://newsapi.org/v2/everything?q=latest&apiKey=${key}`;
 var user_id;
 var user_email;
+var weatherData;
 
 server.get('/', indexPage);
 
@@ -37,6 +39,34 @@ server.get('/about', aboutus);
 function aboutus(req, res) {
     res.render('aboutUs');
 }
+
+///// weather  /////
+// d0f619d98f6d165a30d828fe48ead772
+
+// 4996ab66816f4acb960aea5f5e56ecad
+
+function getWeatherData(req, res) {
+    let weatherKey = process.env.WEATHER_KEY;
+    let URL = `https://api.weatherbit.io/v2.0/current?city=arar&key=${weatherKey}`;
+
+    agent.get(URL)
+        .then(result => {
+            let weatherResult = result.body.data.map((item, idx) => {
+                let weatherOBJ = new Weather(item);
+                return weatherOBJ;
+            })
+            weatherData = weatherResult[0];
+
+        })
+}
+
+function Weather(data) {
+    this.temp = data.temp;
+    this.description = data.weather.description;
+    this.wind_spd = data.wind_spd;
+}
+///// end weather /////
+
 // if the user is a Signed up user then we will send hem to this rout
 server.get('/home', getHomeData);
 /* this route for sine in and check if user have acount ao not on our database */
@@ -61,7 +91,7 @@ server.get('/sign/signin-sigup', (req, res) => {
 server.post('/saveFavorate', saveFavFun);
 
 server.get('/favList', getUserFavList)
-// server.post('/saveFavorate', saveFavFun);
+    // server.post('/saveFavorate', saveFavFun);
 
 function dataTOsignin(req, res) {
     var datasignin = req.body.msg;
@@ -69,7 +99,7 @@ function dataTOsignin(req, res) {
 }
 
 function getHomeData(req, res) {
-    console.log('hooooooooooooooooooooooom');
+    getWeatherData();
     var sqlResult = [];
     let sql = `select interests.interest_desc from interests,users_interests where interests.interest_id= users_interests.interest_id and users_interests.user_id = ${user_id};`;
     client.query(sql)
@@ -84,7 +114,7 @@ function getHomeData(req, res) {
                 let result = JSON.parse(apiResult.text).articles.map(item => {
                     return new Article(item);
                 })
-                res.render('index', { allArticles: result });
+                res.render('index', { allArticles: result, weather: weatherData });
             });
         })
 }
@@ -100,15 +130,15 @@ function indexPage(req, res) {
     if (user_email) {
         setTimeout(res.redirect('/home'), 1000);
     } else {
+        getWeatherData();
         console.log('hehehehhehehheh');
         agent.get(url).then(result => {
             let APIResult = JSON.parse(result.text).articles
             let myArticls = APIResult.map(item => {
                 return new Article(item);
             });
-
-
-            res.render('index', { allArticles: myArticls });
+            // console.log(weatherData);
+            res.render('index', { allArticles: myArticls, weather: weatherData });
         });
 
     }
@@ -170,9 +200,9 @@ function getSearchResult(req, res) {
         agent.get(myURL)
             .then(apiData => {
                 let resultarr = JSON.parse(apiData.text).articles.map(item => {
-                    return new Article(item);
-                })
-                // console.log('--------------------------------secound');
+                        return new Article(item);
+                    })
+                    // console.log('--------------------------------secound');
                 finalArray = resultarr;
                 // console.log('--------------------------------therids');
                 res.render('articls', { articlsKey: finalArray });
@@ -216,9 +246,9 @@ function getSearchResult(req, res) {
                 agent.get(myURL)
                     .then(apiData => {
                         let resultarr = JSON.parse(apiData.text).articles.map(item => {
-                            return new Article(item);
-                        })
-                        // console.log('--------------------------------secound');
+                                return new Article(item);
+                            })
+                            // console.log('--------------------------------secound');
                         finalArray = resultarr;
                         // console.log('--------------------------------therids');
                         res.render('articls', { articlsKey: finalArray });
