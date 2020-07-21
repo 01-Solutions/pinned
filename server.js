@@ -23,7 +23,8 @@ const {
     json
 } = require('express');
 server.use(methodOverride('_method'));
-/////////////////////////////////////////////
+
+
 const PORT = process.env.PORT || 3030;
 /****************************************** */
 const key = process.env.NEWSKEY;
