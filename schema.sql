@@ -25,7 +25,8 @@ CREATE TABLE IF NOT EXISTS articles(
     img VARCHAR(255),
     url VARCHAR(255),
     source VARCHAR(255),
-    conten VARCHAR(255)
+    articl_date VARCHAR(255),
+    conten text
 );
 CREATE TABLE IF NOT EXISTS users_articles(
         user_id INT,
