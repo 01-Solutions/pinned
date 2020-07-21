@@ -15,7 +15,33 @@
 </head>
 
 <body>
-    <%- include ('nav.ejs')  %> 
+    <header id="userHeader">
+        <nav>
+            <ul class="menuItems">
+                <a id="anker" href="/" target="_blank">Pinned</a>
+
+                <li>
+                    <a href='/' data-item='Home'>Home</a>
+                </li>
+                <li>
+                    <a href='/about' data-item='About'>About</a>
+                </li>
+
+
+                <!-- <li id="mylist">
+                    <a href='#' data-item='My List'>My List</a>
+                </li> -->
+
+                <form action="/signupdata" method="GET" id="signupdata">
+
+                    <button class="login-btn ">Login<i id="logicon" class="fas fa-sign-in-alt"></i>
+                    </button>
+
+                </form>
+
+            </ul>
+        </nav>
+    </header>
     <main>
         <div class="card__collection clear-fix">
             <div class="cards cards--two">
@@ -34,13 +60,14 @@
                 </ul>
             </div>
             <div class="cards cards--three">
-                <img src="https://scontent.famm7-1.fna.fbcdn.net/v/t1.0-9/90967032_3585031821571262_7966204670882349056_n.jpg?_nc_cat=109&_nc_sid=09cbfe&_nc_eui2=AeH__bXWKOLpxyoHwZL1ioF4liBK_8A73reWIEr_wDvetwKHlErzXqG5HrCmYThAYIcN7a6wUph8P5Q_atww3bG9&_nc_ohc=kEMy4Beq29QAX8Y9mNt&_nc_ht=scontent.famm7-1.fna&oh=28508b32898113852a9d0fd620e4fb1e&oe=5F3ADE4B">
+                <img
+                    src="https://scontent.famm7-1.fna.fbcdn.net/v/t1.0-9/90967032_3585031821571262_7966204670882349056_n.jpg?_nc_cat=109&_nc_sid=09cbfe&_nc_eui2=AeH__bXWKOLpxyoHwZL1ioF4liBK_8A73reWIEr_wDvetwKHlErzXqG5HrCmYThAYIcN7a6wUph8P5Q_atww3bG9&_nc_ohc=kEMy4Beq29QAX8Y9mNt&_nc_ht=scontent.famm7-1.fna&oh=28508b32898113852a9d0fd620e4fb1e&oe=5F3ADE4B">
                 <span class="cards--three__rect-1">
-                  <span class="shadow-1"></span>
-                <p>Ibrahim Majdi</p>
+                    <span class="shadow-1"></span>
+                    <p>Ibrahim Majdi</p>
                 </span>
                 <span class="cards--three__rect-2">
-                  <span class="shadow-2"></span>
+                    <span class="shadow-2"></span>
                 </span>
                 <span class="cards--three__circle"></span>
                 <ul class="cards--three__list">
@@ -53,8 +80,10 @@
     </main>
 
     <!-- // Footer //  -->
-    <%- include ('footer.ejs')  %> 
+    <%- include ('footer.ejs')  %>
     <!-- //End Footer //  -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 
 </html>

@@ -18,7 +18,31 @@
 
 <body>
     <header id="userHeader">
-        <%- include('nav.ejs')  %> 
+        <nav>
+            <ul class="menuItems">
+                <a id="anker" href="/" target="_blank">Pinned</a>
+
+                <li>
+                    <a href='/' data-item='Home'>Home</a>
+                </li>
+                <li>
+                    <a href='/about' data-item='About'>About</a>
+                </li>
+
+
+                <!-- <li id="mylist">
+                    <a href='#' data-item='My List'>My List</a>
+                </li> -->
+
+                <form action="/signupdata" method="GET" id="signupdata">
+
+                    <button class="login-btn ">Login<i id="logicon" class="fas fa-sign-in-alt"></i>
+                    </button>
+
+                </form>
+
+            </ul>
+        </nav>
     </header>
 
     <main>
@@ -62,7 +86,8 @@
         <div id="cover">
             <form method="POST" action="/search">
                 <div class="tb">
-                    <div class="td"><input class="inputTextSearch" id="idForAppend" name="search" type="text" placeholder="Search" value="" required></div>
+                    <div class="td"><input class="inputTextSearch" id="idForAppend" name="search" type="text"
+                            placeholder="Search" value="" required></div>
                     <div class="td" id="s-cover">
                         <button id="searchBtn" class="searchButton" type="submit">
                             <div id="s-circle"></div>
@@ -106,12 +131,7 @@
                                         for="checkboxNine">movies</label></li>
                                 <li><input type="checkbox" id="checkboxTen" value="technology"><label
                                         for="checkboxTen">technology</label></li>
-                                <!-- <li class="ks-selected"><input type="checkbox" id="checkboxEleven" value="Discord"><label for="checkboxEleven">Discord</label></li>
-                            <li><input type="checkbox" id="checkboxTwelve" value="Clover"><label for="checkboxTwelve">Clover</label></li>
-                            <li><input type="checkbox" id="checkboxThirteen" value="Baby Moondancer"><label for="checkboxThirteen">Baby
-                                    Moondancer</label></li>
-                            <li><input type="checkbox" id="checkboxFourteen" value="Medley"><label for="checkboxFourteen">Medley</label></li>
-                            <li><input type="checkbox" id="checkboxFifteen" value="Firefly"><label for="checkboxFifteen">Firefly</label></li> -->
+                               
                             </ul>
 
                         </div>
@@ -126,7 +146,7 @@
     </main>
 
     <!-- // Footer //  -->
-    <%- include ('footer.ejs')  %> 
+    <%- include ('footer.ejs')  %>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/userintrest.js"></script>
