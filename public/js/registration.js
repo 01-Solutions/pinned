@@ -38,10 +38,12 @@ signupBtn.addEventListener('click', (e) => {
 
 
 document.getElementById('signIn').addEventListener('click', getEmail);
+document.getElementById('signUp').addEventListener('click', signUpgetEmail);
 	// e.preventDefault();
 	// loginBtn.click();
 
 const logIn =document.getElementById('getUserEmail');
+const logUp =document.getElementById('getUserEmail2');
 
 // document.getElementById('getdata').addEventListener('click',getEmail)
 var emailforjson;
@@ -55,22 +57,31 @@ function getEmail(event){
 		getLocation()
 	}
 }
+function signUpgetEmail(event){
+	// event.preventDefault();
+	if (event.target.textContent == "Sign up") {
+		// alert('this is me')
+		let userEmail =logUp.value;
+		localStorage.setItem('key',JSON.stringify(userEmail))
+		// getLocation()
+	}
+}
 
 
 function setlocal(value){
 	localStorage.setItem('key',JSON.stringify(value))
 }
 
-function getLocation() {
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(showPosition);
-	}
-}
+// function getLocation() {
+// 	if (navigator.geolocation) {
+// 		navigator.geolocation.getCurrentPosition(showPosition);
+// 	}
+// }
 
-function showPosition(position) {
-	lat =  position.coords.latitude;
-	long = position.coords.longitude;
-	localStorage.setItem('lat',JSON.stringify(lat))
-	localStorage.setItem('long',JSON.stringify(long))
-  }
+// function showPosition(position) {
+// 	lat =  position.coords.latitude;
+// 	longlong = position.coords.longitude;
+// 	localStorage.setItem('lat',JSON.stringify(lat))
+// 	localStorage.setItem('long',JSON.stringify(long))
+//   }
 
