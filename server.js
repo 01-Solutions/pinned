@@ -295,8 +295,8 @@ function checkIfexists(userid, intrestid) {
 function saveFavFun(req, res) {
     console.log('hiiii', user_id);
     if (user_id) {
-        let SQL = ' INSERT INTO articles(title,author,img,url,source,conten) VALUES($1,$2,$3,$4,$5,$6);';
-        let safeValues = [req.body.articlTitle, req.body.articlAuthor, req.body.articlIMG, req.body.articlURL, req.body.articlSource, req.body.articlDate];
+        let SQL = ' INSERT INTO articles(title,author,img,url,source,articl_date,conten) VALUES($1,$2,$3,$4,$5,$6,$7);';
+        let safeValues = [req.body.articlTitle, req.body.articlAuthor, req.body.articlIMG, req.body.articlURL, req.body.articlSource, req.body.articlDate, req.body.articlDes];
         client.query(SQL, safeValues)
             .then(() => {
                 console.log('saved', safeValues);
@@ -316,7 +316,9 @@ function saveFavFun(req, res) {
 function getUserFavList(req, res) {
     let sql = `select * from articles,users_articles where articles.article_id = users_articles.article_id and users_articles.user_id = ${user_id};`;
     client.query(sql).then(result => {
-        res.render('list', { userFavList: result.rows })
+        // res.render('list',{userFavList : result.rows})
+        res.send(result.rows)
+
     })
 }
 
