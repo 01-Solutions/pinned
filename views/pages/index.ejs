@@ -49,45 +49,74 @@
 
         <div class="w3-content w3-display-container">
             <% let arr = [] %>
-            <% for(let i = 0; i < allArticles.length; i++){ %>
-            <%   arr.push(allArticles[i]) %>
-            <%    if(arr.length == 3){ %>
-            <div class="w3-display-container mySlides">
-                <div id='mainNews'>
-                    <div class="cardsNews">
-                        <%      arr.forEach(item =>{ %>
-                        <div class="cardNews contentNews">
-                            <div class="cardNews-content">
-                                <div class="cardNews-img">
-                                    <img src="<%= item.img %>" alt="Gamer">
-                                </div>
-                                <div class="cardNews-label">
-                                    <%= item.source %>
-                                </div>
-                                <div class="cardNews-title">
-                                    <%= item.title %>
+                <% for(let i = 0; i < allArticles.length; i++){ %>
+                    <%   arr.push(allArticles[i]) %>
+                        <%    if(arr.length == 3){ %>
+                            <div class="w3-display-container mySlides">
+                                <div id='mainNews'>
+                                    <div class="cardsNews">
+                                        <%      arr.forEach(item =>{ %>
+                                            <div class="cardNews contentNews">
+                                                <div class="cardNews-content">
+                                                    <div class="cardNews-img">
+                                                        <img src="<%= item.img %>" alt="Gamer">
+                                                    </div>
+                                                    <div class="cardNews-label">
+                                                        <%= item.source %>
+                                                    </div>
+                                                    <div class="cardNews-title">
+                                                        <%= item.title %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <%    }) %>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <%    }) %>
-                    </div>
-                </div>
-            </div>
-            <%    arr = []; %>
-            <%    } %>
-            <%  } %>
+                            <%    arr = []; %>
+                                <%    } %>
+                                    <%  } %>
 
 
-            <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
-            <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+                                        <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+                                        <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
 
         </div>
+        <!-- ///// weather ///  -->
+        <div class="container">
+            <div class="widget">
+                <div class="details">
+                    <div class="temperature">
+                        <%= weather.temp %>
+                    </div>
+                    <div class="summary">
+                        <p class="summaryText">
+                            <%= weather.description %>
+                        </p>
+                    </div>
+                    <!-- <div class="precipitation">Precipitation: 20%</div> -->
+                    <div class="wind">
+                        <%= weather.wind_spd %>
+                    </div>
+                </div>
+                <div class="pictoBackdrop"></div>
+                <div class="pictoFrame"></div>
+                <div class="pictoCloudBig"></div>
+                <div class="pictoCloudFill"></div>
+                <div class="pictoCloudSmall"></div>
+                <div class="iconCloudBig"></div>
+                <div class="iconCloudFill"></div>
+                <div class="iconCloudSmall"></div>
+            </div>
+        </div>
+
+
+        <!-- ////// End weather //////  -->
         <!-- for search  -->
         <div id="cover">
             <form method="POST" action="/search">
                 <div class="tb">
-                    <div class="td"><input class="inputTextSearch" id="idForAppend" name="search" type="text"
-                            placeholder="Search" value="" required></div>
+                    <div class="td"><input class="inputTextSearch" id="idForAppend" name="search" type="text" placeholder="Search" value="" required></div>
                     <div class="td" id="s-cover">
                         <button id="searchBtn" class="searchButton" type="submit">
                             <div id="s-circle"></div>
@@ -111,27 +140,17 @@
                     <div class="mainDiv">
                         <div id="interestcon" class="container">
                             <ul class="ks-cboxtags">
-                                <li><input type="checkbox" id="checkboxOne" value="space"><label
-                                        for="checkboxOne">space</label></li>
-                                <li><input type="checkbox" id="checkboxTwo" value="cars"><label
-                                        for="checkboxTwo">cars</label></li>
-                                <li><input type="checkbox" id="checkboxThree" value="sport"><label
-                                        for="checkboxThree">sport</label></li>
-                                <li><input type="checkbox" id="checkboxFour" value="food"><label
-                                        for="checkboxFour">food</label></li>
-                                <li><input type="checkbox" id="checkboxFive" value="cooking"><label
-                                        for="checkboxFive">cooking</label></li>
-                                <li><input type="checkbox" id="checkboxSix" value="animals"><label
-                                        for="checkboxSix">animals</label></li>
-                                <li><input type="checkbox" id="checkboxSeven" value="ants"><label
-                                        for="checkboxSeven">ants</label></li>
-                                <li><input type="checkbox" id="checkboxEight" value="history"><label
-                                        for="checkboxEight">history</label></li>
-                                <li><input type="checkbox" id="checkboxNine" value="movies"><label
-                                        for="checkboxNine">movies</label></li>
-                                <li><input type="checkbox" id="checkboxTen" value="technology"><label
-                                        for="checkboxTen">technology</label></li>
-                               
+                                <li><input type="checkbox" id="checkboxOne" value="space"><label for="checkboxOne">space</label></li>
+                                <li><input type="checkbox" id="checkboxTwo" value="cars"><label for="checkboxTwo">cars</label></li>
+                                <li><input type="checkbox" id="checkboxThree" value="sport"><label for="checkboxThree">sport</label></li>
+                                <li><input type="checkbox" id="checkboxFour" value="food"><label for="checkboxFour">food</label></li>
+                                <li><input type="checkbox" id="checkboxFive" value="cooking"><label for="checkboxFive">cooking</label></li>
+                                <li><input type="checkbox" id="checkboxSix" value="animals"><label for="checkboxSix">animals</label></li>
+                                <li><input type="checkbox" id="checkboxSeven" value="ants"><label for="checkboxSeven">ants</label></li>
+                                <li><input type="checkbox" id="checkboxEight" value="history"><label for="checkboxEight">history</label></li>
+                                <li><input type="checkbox" id="checkboxNine" value="movies"><label for="checkboxNine">movies</label></li>
+                                <li><input type="checkbox" id="checkboxTen" value="technology"><label for="checkboxTen">technology</label></li>
+
                             </ul>
 
                         </div>
@@ -147,9 +166,9 @@
 
     <!-- // Footer //  -->
     <%- include ('footer.ejs')  %>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="/js/app.js"></script>
-    <script src="/js/userintrest.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="/js/app.js"></script>
+        <script src="/js/userintrest.js"></script>
 </body>
 
 </html>
