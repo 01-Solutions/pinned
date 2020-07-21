@@ -85,26 +85,3 @@ $('#logOut').on('click', () => {
 
     localStorage.clear();
 })
-
-
-
-
-/////// weather ////// 
-
-
-
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth() + 1; //January is 0!
-var yyyy = today.getFullYear().toString().substr(2, 2);
-
-if (dd < 10) {
-    dd = '0' + dd
-}
-
-if (mm < 10) {
-    mm = '0' + mm
-}
-
-today = mm + '.' + dd + '.' + yyyy;
-document.getElementById("date").innerHTML = today;
