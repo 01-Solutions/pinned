@@ -2,7 +2,7 @@ const ifuser = `<li id="mylist">
 <a href='/favList' data-item='My List'>My List</a>
 </li>
 
-<form id='logOut' action="/signupdata" method="GET">
+<form id='logOut' action="/logOut" method="GET">
 
 <button class="login-btn-alt ">Log-out<i id="logicon" class="fas fa-sign-in-alt"></i>
 </button>
