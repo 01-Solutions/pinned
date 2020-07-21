@@ -1,6 +1,6 @@
 
 'use strict';
-
+/*this function for style registration */
 console.clear();
 
 const loginBtn = document.getElementById('login');
@@ -32,6 +32,8 @@ signupBtn.addEventListener('click', (e) => {
 	});
 });
 
+/*END function of style registration */
+
 
 
 
@@ -43,20 +45,32 @@ const logIn =document.getElementById('getUserEmail');
 
 // document.getElementById('getdata').addEventListener('click',getEmail)
 var emailforjson;
+var lat,long
 function getEmail(event){
 	// event.preventDefault();
 	if (event.target.textContent == "Log in") {
+		// alert('this is me')
 		let userEmail =logIn.value;
-		emailforjson = userEmail;
-		setlocal();
+		localStorage.setItem('key',JSON.stringify(userEmail))
+		getLocation()
 	}
 }
 
 
-function setlocal(){
-	var sendJson = JSON.stringify(emailforjson);
-	// console.log('done',emailforjson);
-	localStorage.setItem('key',sendJson)
+function setlocal(value){
+	localStorage.setItem('key',JSON.stringify(value))
 }
 
+function getLocation() {
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showPosition);
+	}
+}
+
+function showPosition(position) {
+	lat =  position.coords.latitude;
+	long = position.coords.longitude;
+	localStorage.setItem('lat',JSON.stringify(lat))
+	localStorage.setItem('long',JSON.stringify(long))
+  }
 

@@ -1,58 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Articls</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="/styles/articles.css">
-    <link rel="stylesheet" href="/styles/footer.css">
-    <link rel="stylesheet" href="/styles/nav.css">
-    
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Articls</title>
+        <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="/styles/articles.css">
+        <link rel="stylesheet" href="/styles/footer.css">
+        <link rel="stylesheet" href="/styles/nav.css">
 
-<body>
-    <header id="userHeader">
-        <nav>
-            <ul class="menuItems">
-                <a id="anker" href="/" target="_blank">Pinned</a>
+    </head>
 
-                <li>
-                    <a href='/' data-item='Home'>Home</a>
-                </li>
-                <li>
-                    <a href='/about' data-item='About'>About</a>
-                </li>
+    <body>
+        <header id="userHeader">
+            <nav>
+                <ul class="menuItems">
+                    <a id="anker" href="/" target="_blank">Pinned</a>
+
+                    <li>
+                        <a href='/' data-item='Home'>Home</a>
+                    </li>
+                    <li>
+                        <a href='/about' data-item='About'>About</a>
+                    </li>
 
 
-                <!-- <li id="mylist">
-                    <a href='#' data-item='My List'>My List</a>
-                </li> -->
+                    <!-- <li id="mylist">
+                                        <a href='#' data-item='My List'>My List</a>
+                                    </li> -->
 
-                <form action="/signupdata" method="GET" id="signupdata">
+                    <form action="/signupdata" method="GET" id="signupdata">
 
-                    <button class="login-btn ">Login<i id="logicon" class="fas fa-sign-in-alt"></i>
-                    </button>
+                        <button class="login-btn ">Login<i id="logicon" class="fas fa-sign-in-alt"></i>
+                        </button>
 
-                </form>
+                    </form>
 
-            </ul>
-        </nav>
-    </header>    <!-- <a href="signin&signyp.ejs">go to signin</a> -->
-    <!-- <a href="/sign/signin-sigup">signin</a> -->
-    <div class="card-container">
-        <% articlsKey.forEach (articl => {  %>
-            <form action="" method="post">
-                <div class="card card-1">
-                    <div id="faved">
-                        <button id="favbut"><i class="love"></i>
-                        <span id="saved">Saved!</span>
-                    </button>
+                </ul>
+            </nav>
+        </header>
+        <!-- <a href="signin&signyp.ejs">go to signin</a> -->
+        <!-- <a href="/sign/signin-sigup">signin</a> -->
+        <div class="card-container">
+            <% articlsKey.forEach ((articl,idx) => {  %>
+                <form id="<%=idx%>" action="" method="post">
+                    <div class="card card-1">
+                        <div id="faved">
+                            <button id="favbut">
+                                <i class="love"></i>
+                                <span id="saved">Saved!</span>
+                            </button>
                         </div>
                         <div class="card-img"><img id="artIMG" src="<%= articl.img %>" alt=""></div>
                         <a href="" class="card-link">
@@ -82,16 +84,15 @@
                         </div>
                     </div>
                 </form>
-                <% }) %>
+            <% }) %>
         </div>
         <!-- // Footer //  -->
         <%- include ('footer.ejs') %>
 
-            <!-- //End Footer //  -->
-            <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-            <script src="/js/fav.js"></script>
-            <script src="/js/jsForindex.js"></script>
-</body>
+        <!-- //End Footer //  -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --><script src="https://code.jquery.com/jquery-3.5.1.js"> </script>
+        <script src="/js/fav.js"></script>
+        <script src="/js/jsForindex.js"></script>
+    </body>
 
 </html>

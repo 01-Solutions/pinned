@@ -23,13 +23,16 @@ const {
     json
 } = require('express');
 server.use(methodOverride('_method'));
-/////////////////////////////////////////////
+
+
 const PORT = process.env.PORT || 3030;
 /****************************************** */
 const key = process.env.NEWSKEY;
 const url = `https://newsapi.org/v2/everything?q=latest&apiKey=${key}`;
 var user_id;
 var user_email;
+var longitud;
+var latitud;
 var weatherData;
 
 server.get('/', indexPage);
@@ -39,34 +42,6 @@ server.get('/about', aboutus);
 function aboutus(req, res) {
     res.render('aboutUs');
 }
-
-///// weather  /////
-// d0f619d98f6d165a30d828fe48ead772
-
-// 4996ab66816f4acb960aea5f5e56ecad
-
-function getWeatherData(req, res) {
-    let weatherKey = process.env.WEATHER_KEY;
-    let URL = `https://api.weatherbit.io/v2.0/current?city=arar&key=${weatherKey}`;
-
-    agent.get(URL)
-        .then(result => {
-            let weatherResult = result.body.data.map((item, idx) => {
-                let weatherOBJ = new Weather(item);
-                return weatherOBJ;
-            })
-            weatherData = weatherResult[0];
-
-        })
-}
-
-function Weather(data) {
-    this.temp = data.temp;
-    this.description = data.weather.description;
-    this.wind_spd = data.wind_spd;
-}
-///// end weather /////
-
 // if the user is a Signed up user then we will send hem to this rout
 server.get('/home', getHomeData);
 /* this route for sine in and check if user have acount ao not on our database */
@@ -77,6 +52,8 @@ server.post('/signup', signupFun);
 server.post('/search', getSearchResult);
 server.post('/getUserEmail', (req, res) => {
     user_email = req.body.email;
+    longitud = req.body.longitud;
+    latitud = req.body.latitud;
     getUserIdByEmail(user_email).then(result_id => {
         user_id = result_id;
     })
@@ -99,7 +76,7 @@ function dataTOsignin(req, res) {
 }
 
 function getHomeData(req, res) {
-    getWeatherData();
+    // getWeatherData();
     var sqlResult = [];
     let sql = `select interests.interest_desc from interests,users_interests where interests.interest_id= users_interests.interest_id and users_interests.user_id = ${user_id};`;
     client.query(sql)
@@ -128,18 +105,21 @@ function arrToObj(arr, myProperty) {
 
 function indexPage(req, res) {
     if (user_email) {
-        setTimeout(res.redirect('/home'), 1000);
+        getWeatherData(longitud,latitud,'').then(()=>{
+            res.redirect('/home');
+        })
     } else {
-        getWeatherData();
-        console.log('hehehehhehehheh');
-        agent.get(url).then(result => {
-            let APIResult = JSON.parse(result.text).articles
-            let myArticls = APIResult.map(item => {
-                return new Article(item);
+        getWeatherData('','','Amman').then(()=>{
+            console.log('Guuuuuuuuuuuuuuust');
+            agent.get(url).then(result => {
+                let APIResult = JSON.parse(result.text).articles
+                let myArticls = APIResult.map(item => {
+                    return new Article(item);
+                });
+                // console.log(weatherData);
+                res.render('index', { allArticles: myArticls, weather: weatherData });
             });
-            // console.log(weatherData);
-            res.render('index', { allArticles: myArticls, weather: weatherData });
-        });
+        })
 
     }
 };
@@ -157,7 +137,7 @@ function signinFun(req, res) {
         if (dbResult.rows.length > 0) {
             if (dbResult.rows[0].user_pass == password) {
                 user_id = dbResult.rows[0].user_id;
-                res.redirect('/home')
+                res.redirect('/')
             } else {
                 res.render('signin-sigup', { singinMsg: 'WrongPass' });
             }
@@ -295,7 +275,7 @@ function checkIfexists(userid, intrestid) {
 function saveFavFun(req, res) {
     console.log('hiiii', user_id);
     if (user_id) {
-        let SQL = ' INSERT INTO articles(title,author,img,url,source,articl_date,conten) VALUES($1,$2,$3,$4,$5,$6,$7);';
+        let SQL = ' INSERT INTO articles(title,author,img,src_url,source,articl_date,conten) VALUES($1,$2,$3,$4,$5,$6,$7);';
         let safeValues = [req.body.articlTitle, req.body.articlAuthor, req.body.articlIMG, req.body.articlURL, req.body.articlSource, req.body.articlDate, req.body.articlDes];
         client.query(SQL, safeValues)
             .then(() => {
@@ -312,15 +292,47 @@ function saveFavFun(req, res) {
         res.redirect('/signupdata')
     }
 }
-
 function getUserFavList(req, res) {
     let sql = `select * from articles,users_articles where articles.article_id = users_articles.article_id and users_articles.user_id = ${user_id};`;
     client.query(sql).then(result => {
-        // res.render('list',{userFavList : result.rows})
-        res.send(result.rows)
+        res.render('list', { userFavList: result.rows })
 
+        // res.send(result.rows)
     })
 }
+
+
+function getWeatherData(lang,lat,locationCity) {
+    console.log(lang,lat,locationCity);
+    let URL ;
+    let weatherKey = process.env.WEATHER_KEY;
+    if(locationCity != ''){
+        console.log('city');
+        URL = `https://api.weatherbit.io/v2.0/current?city=${locationCity}&key=${weatherKey}`;
+    }else if(lang != '' && lat != '' && lat && lang){
+        console.log('location');
+        URL = `https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lang}&key=${weatherKey}`;
+    }else{
+        console.log('else');
+        URL = `https://api.weatherbit.io/v2.0/current?city=Amman&key=${weatherKey}`;
+    }
+   return agent.get(URL)
+        .then(result => {
+            let weatherResult = result.body.data.map((item, idx) => {
+                let weatherOBJ = new Weather(item);
+                return weatherOBJ;
+            })
+            weatherData = weatherResult[0];
+
+        })
+}
+
+function Weather(data) {
+    this.temp = data.temp;
+    this.description = data.weather.description;
+    this.wind_spd = data.wind_spd;
+}
+
 
 function Article(articleData) {
     this.title = articleData.title;
