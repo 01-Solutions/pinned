@@ -3,9 +3,13 @@
 
 /* this is for check if the user login or not when he open the site */
 if (localStorage.getItem('key')) {
+    let long = localStorage.getItem('long');
+    let lat = localStorage.getItem('lat');
     var testlocal = JSON.parse(localStorage.getItem('key'))
     $.post('/getUserEmail', {
-        email: testlocal
+        email: testlocal,
+        longitud: long,
+        latitud: lat
     });
 }
 
