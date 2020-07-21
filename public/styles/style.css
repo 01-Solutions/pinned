@@ -81,7 +81,45 @@ body {
     line-height: 28px;
     font-family: 'Roboto';
     margin-top: 10px;
+    position: relative;
+    display: inline-block;
 }
+
+/* line  style*/
+.subtitle{
+    margin-top: 10px;
+}
+
+  .fancy {
+    line-height: 0.5;
+    text-align: center;
+  }
+  .fancy #line {
+    display: inline-block;
+    position: relative;  
+  }
+  .fancy #line:before,
+  .fancy #line:after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    /* border-top: 1px solid white; */
+    top: 0;
+    width: 200px;
+  }
+  .fancy #line:before {
+    right: 100%;
+    margin-right: 15px;
+  }
+  .fancy #line:after {
+    left: 100%;
+    margin-left: 15px;
+  }
+
+
+  /*line style end  */
+
 #PinnedLogoText{
     font-family: 'Varela';
     font-size: 20px;
@@ -101,13 +139,6 @@ body {
     font-weight: bold !important;
 }
 
-#hr{
-    width: 52%;
-    text-align: center;
-    border: 0.5px solid #d9524a;
-    background-color: #d9524a;
-    margin: 24px 24%;
-}
 
 #bottick {
     content: "";
@@ -451,7 +482,7 @@ input[type="text"]::placeholder {
 }
 
 ul.ks-cboxtags {
-    margin: -20px 12.5% 20px 12.5%;
+    margin: 15px 12.5% 20px 12.5%;
     list-style: none;
     width: 75%;
 }
@@ -475,6 +506,7 @@ ul.ks-cboxtags li label {
     user-select: none;
     -webkit-tap-highlight-color: transparent;
     transition: all .2s;
+    font-size: 20px;
 }
 
 ul.ks-cboxtags li label {
