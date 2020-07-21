@@ -28,6 +28,7 @@ function sendDataToBackEnd() {
         let cardUrl = document.getElementById('cardUrl').href;
         let cardTitle = document.getElementById('cardTitle').textContent;
         let cardAuthor = document.getElementById('cardAuthor').textContent;
+        let articlDesc = document.getElementById('articlDesc').textContent;
 
         console.log(artIMG);
         console.log(cardTag);
@@ -35,7 +36,7 @@ function sendDataToBackEnd() {
         console.log(cardUrl);
         console.log(cardTitle);
         console.log(cardAuthor);
-        $.post('/saveFavorate', { articlIMG: artIMG, articlSource: cardTag, articlDate: cardTime, articlURL: cardUrl, articlTitle: cardTitle, articlAuthor: cardAuthor });
+        $.post('/saveFavorate', { articlIMG: artIMG, articlSource: cardTag, articlDes: articlDesc, articlURL: cardUrl, articlTitle: cardTitle,articlDate: cardTime, articlAuthor: cardAuthor });
     } else {
         // console.log('im out');
         alert('im out');
