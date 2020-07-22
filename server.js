@@ -58,11 +58,11 @@ server.post('/getUserEmail', (req, res) => {
         user_id = result_id;
     })
 });
-server.get('/logOut',(req,res)=>{
-    user_id = '';
-    res.redirect('/')
-})
-/* this route for sinein data */
+server.get('/logOut', (req, res) => {
+        user_id = '';
+        res.redirect('/')
+    })
+    /* this route for sinein data */
 server.get('/signupdata', dataTOsignin);
 /* this route for move ypo from article page to sign in&&sign up page */
 
@@ -109,7 +109,7 @@ function arrToObj(arr, myProperty) {
 
 function indexPage(req, res) {
     if (user_email && user_id && user_id != '') {
-        getWeatherData(longitud,latitud,'').then(()=>{
+        getWeatherData(longitud, latitud, '').then(() => {
             console.log('I am User');
             // res.redirect('/home');
             var sqlResult = [];
@@ -117,11 +117,11 @@ function indexPage(req, res) {
             let sql = `select interests.interest_desc from interests,users_interests where interests.interest_id= users_interests.interest_id and users_interests.user_id = ${user_id};`;
             client.query(sql)
                 .then(sqlData => { // get the SQL result
-                    console.log('***********',sqlData.rows);
+                    console.log('***********', sqlData.rows);
                     if (sqlData.rows.length < 1) {
                         // res.redirect('/')
                         myURL = `https://newsapi.org/v2/everything?q=TopNews&apiKey=${key}`;
-                    }else{
+                    } else {
                         sqlResult = arrToObj(sqlData.rows, 'interest_desc')
                         sqlResult = sqlResult.join(' OR ')
                         myURL = `https://newsapi.org/v2/everything?q=(${sqlResult})&apiKey=${key}`;
@@ -136,7 +136,7 @@ function indexPage(req, res) {
                 })
         })
     } else {
-        getWeatherData('','','Irbid').then(()=>{
+        getWeatherData('', '', 'Irbid').then(() => {
             console.log('I am Gust');
             agent.get(url).then(result => {
                 let APIResult = JSON.parse(result.text).articles
@@ -302,8 +302,8 @@ function checkIfexists(userid, intrestid) {
 function saveFavFun(req, res) {
     // console.log('hiiii', user_id);
     if (user_id) {
-        client.query(`select * from articles where title = '${req.body.articlTitle}';`).then(dbResult=>{
-            if (dbResult.rows.length <= 0){
+        client.query(`select * from articles where title = '${req.body.articlTitle}';`).then(dbResult => {
+            if (dbResult.rows.length <= 0) {
 
                 let SQL = ' INSERT INTO articles(title,author,img,src_url,source,articl_date,conten) VALUES($1,$2,$3,$4,$5,$6,$7);';
                 let safeValues = [req.body.articlTitle, req.body.articlAuthor, req.body.articlIMG, req.body.articlURL, req.body.articlSource, req.body.articlDate, req.body.articlDes];
@@ -315,22 +315,23 @@ function saveFavFun(req, res) {
                         // console.log('this is user id');
                         client.query(q, safeVal)
                     })
-            }else{
+            } else {
                 client.query(`select * from users_articles where user_id = ${user_id} and article_id = ${dbResult.rows[0].article_id};`)
-                .then(artResult =>{
-                    if(artResult.rows.length <= 0){
-                        let q = `INSERT INTO users_articles(user_id,article_id) VALUES($1,(select max(article_id) FROM articles));`;
-                        let safeVal = [user_id];
-                        // console.log('this is user id');
-                        client.query(q, safeVal)
-                    }
-                })
+                    .then(artResult => {
+                        if (artResult.rows.length <= 0) {
+                            let q = `INSERT INTO users_articles(user_id,article_id) VALUES($1,(select max(article_id) FROM articles));`;
+                            let safeVal = [user_id];
+                            // console.log('this is user id');
+                            client.query(q, safeVal)
+                        }
+                    })
             }
         })
     } else {
         res.redirect('/signupdata')
     }
 }
+
 function getUserFavList(req, res) {
     let sql = `select * from articles,users_articles where articles.article_id = users_articles.article_id and users_articles.user_id = ${user_id};`;
     client.query(sql).then(result => {
@@ -341,21 +342,21 @@ function getUserFavList(req, res) {
 }
 
 
-function getWeatherData(lang,lat,locationCity) {
+function getWeatherData(lang, lat, locationCity) {
     // console.log(lang,lat,locationCity);
-    let URL ;
+    let URL;
     let weatherKey = process.env.WEATHER_KEY;
-    if(locationCity != ''){
+    if (locationCity != '') {
         // console.log('city');
         URL = `https://api.weatherbit.io/v2.0/current?city=${locationCity}&key=${weatherKey}`;
-    }else if(lang != '' && lat != '' && lat && lang){
+    } else if (lang != '' && lat != '' && lat && lang) {
         // console.log('location');
         URL = `https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lang}&key=${weatherKey}`;
-    }else{
+    } else {
         // console.log('else');
         URL = `https://api.weatherbit.io/v2.0/current?city=Irbid&key=${weatherKey}`;
     }
-   return agent.get(URL)
+    return agent.get(URL)
         .then(result => {
             let weatherResult = result.body.data.map((item, idx) => {
                 let weatherOBJ = new Weather(item);
