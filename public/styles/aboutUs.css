@@ -4,23 +4,14 @@
     box-sizing: border-box;
 }
 
-body {
-    background: #ebecf0;
-    font-family: "Open Sans", sans-serif;
+main {
+    height: 100vh;
 }
-
-
-/* main {
-    height: 150vh;
-} */
 
 
 /* ///// card About /////  */
 
 @media (min-width: 1960px) and (max-width: 4000px) {
-    main {
-        height: 100vh;
-    }
     @import "https://fonts.googleapis.com/css?family=Do+Hyeon";
     .clear-fix:after {
         display: block;
@@ -50,17 +41,14 @@ body {
         align-content: space-around;
     }
     .card__collection {
-        /* margin: 70px auto auto 70px; */
         margin: auto auto;
         position: relative;
         display: block;
         padding: 10px;
         font-family: 'Do Hyeon', sans-serif;
-        /* overflow: hidden; */
     }
     .card__collection .cards {
         width: 20%;
-        /* height: 600px; */
         display: block;
         background-size: cover;
         float: left;
@@ -504,7 +492,7 @@ body {
     .card__collection .cards--two__tri:before {
         border-top: 220px solid transparent;
         border-bottom: 190px solid transparent;
-        border-right: 288px solid #57ccfd;
+        border-right: 288px solid #d9524a;
         position: absolute;
         content: '';
         display: block;
@@ -587,9 +575,9 @@ body {
         56%,
         100% {
             color: #fccaff;
-            text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff, 0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
-            text-shadow: 0 0 5px #d9524a, 0 0 15px #d9524a, 0 0 20px #d9524a, 0 0 40px #d9524a, 0 0 60px #ff0000, 0 0 10px #d9524a, 0 0 98px #d9524a;
-            color: #fff6a9;
+            /* text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff, 0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
+            /* text-shadow: 0 0 5px #d9524a, 0 0 15px #d9524a, 0 0 20px #d9524a, 0 0 40px #d9524a, 0 0 60px #ff0000, 0 0 10px #d9524a, 0 0 98px #d9524a; */
+            /* color: #fff6a9; */
         }
     }
     @keyframes blink {
@@ -610,7 +598,7 @@ body {
             /*     color: #fccaff;
     text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
       0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092; */
-            text-shadow: 0 0 5px black, 0 0 15px black, 0 0 20px black, 0 0 40px black, 0 0 60px #ff0000, 0 0 10px black, 0 0 98px #ff0000;
+            text-shadow: 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 4px black, 0 0 6px #ff0000, 0 0 8px black, 0 0 10px #ff0000;
             /* text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000; */
             color: #d9524a;
         }
@@ -619,9 +607,9 @@ body {
     #who {
         font-size: calc(9% + 8vh);
         line-height: calc(21% + 23vh);
-        text-shadow: 0 0 5px black, 0 0 15px black, 0 0 25px black, 0 0 20px black, 0 0 30px black, 0 0 80px black, 0 0 80px black;
+        text-shadow: 0 0 2px black, 0 0 15px black, 0 0 25px black, 0 0 20px black, 0 0 30px black, 0 0 80px black, 0 0 80px black;
         color: #fccaff;
-        text-shadow: 0 0 5px #d9524a, 0 0 15px #d9524a, 0 0 20px #d9524a, 0 0 40px #d9524a, 0 0 60px #d9524a, 0 0 10px #d9524a, 0 0 98px #d9524a;
+        text-shadow: 0 0 2px #d9524a, 0 0 15px #d9524a, 0 0 20px #d9524a, 0 0 40px #d9524a, 0 0 60px #d9524a, 0 0 10px #d9524a, 0 0 98px #d9524a;
         color: #fff6a9;
         font-family: 'Kadwa';
         text-align: center;
