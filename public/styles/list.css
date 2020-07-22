@@ -14,6 +14,7 @@ body,html {
 background-repeat:no-repeat ;
 background-size: cover;
 width: 100%;
+height: 100%;
 }
 
 #allfav{
@@ -154,12 +155,17 @@ width: 100%;
 
 .blog-card .description .read-more {
   text-align: right;
+  padding: 10px 20px 0 0;
+    font-family: 'Playfair Display', serif;
 }
 
 .blog-card .description .read-more a {
   color: #d9524a;
   display: inline-block;
   position: relative;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: 600;
 }
 
 .blog-card .description .read-more a:after {
@@ -179,11 +185,14 @@ width: 100%;
 
 .blog-card p {
   position: relative;
-  margin: 1rem 0 0;
+  margin: 3rem 0 0;
+    font-family: 'Playfair Display', serif;
+    line-height: 25px;
+  
 }
 
 .blog-card p:first-of-type {
-  margin-top: 1.25rem;
+  margin-top: 2.25rem;
 }
 
 .blog-card p:first-of-type:before {
@@ -192,7 +201,7 @@ width: 100%;
   height: 5px;
   background: #d9524a;
   width: 35px;
-  top: -0.75rem;
+  top: -1.25rem;
   border-radius: 3px;
 }
 
