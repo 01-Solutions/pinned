@@ -7,8 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles/list.css">
     <link rel="stylesheet" href="/styles/footer.css">
     <link rel="stylesheet" href="/styles/nav.css">
@@ -51,31 +50,41 @@
         <div id="allfav">
             <% for(let i = 0; i < userFavList.length; i++){ %>
 
-            <div class="blog-card alt">
-                <div class="meta">
-                    <div class="photo">
-                        <img src="<%= userFavList[i].img %>" alt="">
+                <div class="blog-card alt">
+                    <div class="meta">
+                        <div class="photo">
+                            <img src="<%= userFavList[i].img %>" alt="">
+                        </div>
+                        <ul class="details">
+                            <li class="author">
+                                <a href="#">
+                                    <%= userFavList[i].author %>
+                                </a>
+                            </li>
+                            <li class="date">
+                                <%= userFavList[i].articl_date %>
+                            </li>
+                        </ul>
                     </div>
-                    <ul class="details">
-                        <li class="author"><a href="#"><%= userFavList[i].author %></a></li>
-                        <li class="date"><%= userFavList[i].articl_date %></li>
-                    </ul>
+                    <div class="description">
+                        <h1>
+                            <%= userFavList[i].title %>
+                        </h1>
+                        <p>
+                            <%= userFavList[i].conten %>
+                        </p>
+                        <p class="read-more">
+                            <a href="<%= userFavList[i].url %>">read more</a>
+                        </p>
+                    </div>
                 </div>
-                <div class="description">
-                    <h1><%= userFavList[i].title %></h1>
-                    <p><%= userFavList[i].conten %></p>
-                    <p class="read-more">
-                        <a href="<%= userFavList[i].url %>">read more</a>
-                    </p>
-                </div>
-            </div>
-            <%  } %>
+                <%  } %>
         </div>
         <!-- // Footer //  -->
         <%- include ('footer.ejs')  %>
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-        <script src="/js/forHeader.js"></script>
-        <script src="/js/jsForindex.js"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <script src="/js/forHeader.js"></script>
+            <script src="/js/jsForindex.js"></script>
     </div>
 
 </body>
