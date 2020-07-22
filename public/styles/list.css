@@ -4,11 +4,16 @@
   box-sizing: border-box;
 }
 
-body {
+body,html {
   background: #ebecf0;
   font-family: "Open Sans", sans-serif;
+  height: 100%;
+  position: relative;
 }
 
+#allfav{
+  margin-top: 50px;
+}
 .blog-card {
   display: -webkit-box;
   display: flex;
