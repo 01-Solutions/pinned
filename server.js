@@ -136,7 +136,7 @@ function indexPage(req, res) {
                 })
         })
     } else {
-        getWeatherData('','','Amman').then(()=>{
+        getWeatherData('','','Irbid').then(()=>{
             console.log('I am Gust');
             agent.get(url).then(result => {
                 let APIResult = JSON.parse(result.text).articles
@@ -353,7 +353,7 @@ function getWeatherData(lang,lat,locationCity) {
         URL = `https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lang}&key=${weatherKey}`;
     }else{
         // console.log('else');
-        URL = `https://api.weatherbit.io/v2.0/current?city=Amman&key=${weatherKey}`;
+        URL = `https://api.weatherbit.io/v2.0/current?city=Irbid&key=${weatherKey}`;
     }
    return agent.get(URL)
         .then(result => {
@@ -367,7 +367,7 @@ function getWeatherData(lang,lat,locationCity) {
 }
 
 function Weather(data) {
-    this.location = data.timezone;
+    this.location = data.city_name;
     this.temp = data.temp;
     this.description = data.weather.description;
     this.wind_spd = data.wind_spd;
