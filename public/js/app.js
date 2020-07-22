@@ -42,15 +42,12 @@ const searshStr = document.getElementById('idForAppend');
 searchBtn.addEventListener('click', searchBtnHandler)
 
 function searchBtnHandler() {
-    // event.preventDefault();
     let localStorageData = getlocal();
-
     $.post('/getUserEmail', {
         email: localStorageData,
         search: searshStr.value
     });
 }
-
 function getlocal(){
     
     if(localStorage.getItem('key')){
