@@ -13,7 +13,6 @@ if (localStorage.getItem('key')) {
     });
 }
 
-
 ///////////////////////////* start style with js *///////////////////////
 
 /* for slider */
@@ -35,8 +34,6 @@ function showDivs(n) {
     x[slideIndex - 1].style.display = "block";
 }
 
-
-
 ///////////////////////////* start style with js *///////////////////////
 
 /* this is for send data to back-end (useremail-search&&intrest) */
@@ -53,7 +50,6 @@ function searchBtnHandler() {
         search: searshStr.value
     });
 }
-
 
 function getlocal(){
     
