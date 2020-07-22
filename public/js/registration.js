@@ -39,19 +39,16 @@ signupBtn.addEventListener('click', (e) => {
 
 document.getElementById('signIn').addEventListener('click', getEmail);
 document.getElementById('signUp').addEventListener('click', signUpgetEmail);
-	// e.preventDefault();
-	// loginBtn.click();
+
 
 const logIn =document.getElementById('getUserEmail');
 const logUp =document.getElementById('getUserEmail2');
 
-// document.getElementById('getdata').addEventListener('click',getEmail)
 var emailforjson;
 var lat,long
 function getEmail(event){
-	// event.preventDefault();
+	// evnt.preventDefault();
 	if (event.target.textContent == "Log in") {
-		// alert('this is me')
 		let userEmail =logIn.value;
 		localStorage.setItem('key',JSON.stringify(userEmail))
 		getLocation()
@@ -59,9 +56,7 @@ function getEmail(event){
 	$('#errMsg').css('display','inline')
 }
 function signUpgetEmail(event){
-	// event.preventDefault();
 	if (event.target.textContent == "Sign up") {
-		// alert('this is me')
 		let userEmail =logUp.value;
 		localStorage.setItem('key',JSON.stringify(userEmail))
 		getLocation()
@@ -84,7 +79,5 @@ function showPosition(position) {
 	long = position.coords.longitude;
 	localStorage.setItem('lat',JSON.stringify(lat))
 	localStorage.setItem('long',JSON.stringify(long))
-	// localStorage.setItem('lat',JSON.stringify(33.5102))
-	// localStorage.setItem('long',JSON.stringify(36.29128))
   }
 
