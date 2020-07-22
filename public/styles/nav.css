@@ -10,7 +10,9 @@
 /* ////// new nav Bar //////  */
 
 @import url("https://fonts.googleapis.com/css?family=Varela+Round");
-
+*{
+    outline: hidden;
+}
 nav {
     background: #1c1d22;
 
