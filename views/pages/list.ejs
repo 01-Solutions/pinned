@@ -9,10 +9,10 @@
     <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="/styles/nav.css">
     <link rel="stylesheet" href="/styles/list.css">
     <link rel="stylesheet" href="/styles/footer.css">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <title></title>
 </head>
@@ -33,11 +33,6 @@
                     <li>
                         <a href='/about' data-item='About'>About</a>
                     </li>
-
-
-                    <!-- <li id="mylist">
-                    <a href='#' data-item='My List'>My List</a>
-                </li> -->
                 </ul>
                 <form action="/signupdata" method="GET" id="signupdata">
 
@@ -54,7 +49,7 @@
             <div class="blog-card alt">
                 <div class="meta">
                     <div class="photo">
-                        <img src="<%= userFavList[i].img %>" alt="">
+                        <img id='favImg' src="<%= userFavList[i].img %>" alt="">
                     </div>
                     <ul class="details">
                         <li class="author"><a href="#"><%= userFavList[i].author %></a></li>
