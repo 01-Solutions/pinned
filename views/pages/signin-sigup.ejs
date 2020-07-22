@@ -48,10 +48,10 @@
         <% console.log(singinMsg) %>
         <% var ErrMsg ='' %>
         <% if(singinMsg == 'WrongPass'){ %>
-        <% ErrMsg = 'WrongPAss' %>
+        <% ErrMsg = 'Password incorrect, Try Again !!' %>
         <% }else if(singinMsg == 'notExist'){ %>
-        <%    ErrMsg = 'notEdddddddxist' %>
-        <%  }else{ErrMsg = ''} %>
+        <%    ErrMsg = 'Email incorrect, Try Again !!' %>
+        <%  }else{ErrMsg = 'Email is not Exist'} %>
         <main>
             <div id="passport">
                 <div class="form-structor">
@@ -59,12 +59,12 @@
                         <div class="signup">
                             <h2 class="form-title" id="signup"><span>or</span>Log in</h2>
                             <div class="form-holder">
-                                <input id="getUserEmail" type="email" class="input" name="Email" value=""
-                                    placeholder="Email">
-                                <input type="password" class="input" name="Password" value="" placeholder="Password">
                                 <p id="errMsg">
                                     <%= ErrMsg %>
                                 </p>
+                                <input id="getUserEmail" type="email" class="input" name="Email" value=""
+                                    placeholder="Email" required>
+                                <input type="password" class="input" name="Password" value="" placeholder="Password" required>
                             </div>
                             <button id="signInBtn" class="submit-btn" type="submit">Log in</button>
                         </div>
@@ -74,13 +74,13 @@
                             <div class="center">
                                 <h2 class="form-title" id="login"><span>or</span>Sign up</h2>
                                 <div class="form-holder">
-                                    <input type="text" class="input" name="UserName" value="" placeholder="Name">
+                                    <input type="text" class="input" name="UserName" value="" placeholder="Name" required>
                                     <input id="getUserEmail2" type="email" class="input" name="Email" value=""
                                         placeholder="Email">
                                     <input type="password" class="input" name="Password" value=""
-                                        placeholder="Password">
+                                        placeholder="Password" required>
                                     <input type="password" class="input" name="confirmPassword" value=""
-                                        placeholder="confirm password">
+                                        placeholder="confirm password" required>
                                     <input type="radio" id="male" name="gender" value="1">
                                     <label for="male">Male</label>
                                     <input type="radio" id="female" name="gender" value="0">

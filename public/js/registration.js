@@ -56,6 +56,7 @@ function getEmail(event){
 		localStorage.setItem('key',JSON.stringify(userEmail))
 		getLocation()
 	}
+	$('#errMsg').css('display','inline')
 }
 function signUpgetEmail(event){
 	// event.preventDefault();
