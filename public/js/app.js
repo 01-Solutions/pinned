@@ -13,7 +13,6 @@ if (localStorage.getItem('key')) {
     });
 }
 
-
 ///////////////////////////* start style with js *///////////////////////
 
 /* for slider */
@@ -35,8 +34,6 @@ function showDivs(n) {
     x[slideIndex - 1].style.display = "block";
 }
 
-
-
 ///////////////////////////* start style with js *///////////////////////
 
 /* this is for send data to back-end (useremail-search&&intrest) */
@@ -45,16 +42,12 @@ const searshStr = document.getElementById('idForAppend');
 searchBtn.addEventListener('click', searchBtnHandler)
 
 function searchBtnHandler() {
-    // event.preventDefault();
     let localStorageData = getlocal();
-
     $.post('/getUserEmail', {
         email: localStorageData,
         search: searshStr.value
     });
 }
-
-
 function getlocal(){
     
     if(localStorage.getItem('key')){
