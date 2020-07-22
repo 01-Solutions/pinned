@@ -19,9 +19,6 @@ function interestFun(){
             
         }
         var newarr =array.join(' ');
-        console.log(array);
-        console.log(newarr);
-
         appendSearsh.value = newarr;
         
     }

@@ -79,26 +79,6 @@ function dataTOsignin(req, res) {
     res.render('signin-sigup', { singinMsg: datasignin })
 }
 
-function getHomeData(req, res) {
-    // getWeatherData();
-    // var sqlResult = [];
-    // let sql = `select interests.interest_desc from interests,users_interests where interests.interest_id= users_interests.interest_id and users_interests.user_id = ${user_id};`;
-    // client.query(sql)
-    //     .then(sqlData => { // get the SQL result
-    //         if (sqlData.rows.length < 1) {
-    //             res.redirect('/')
-    //         }
-    //         sqlResult = arrToObj(sqlData.rows, 'interest_desc')
-    //         sqlResult = sqlResult.join(' OR ')
-    //         let myURL = `https://newsapi.org/v2/everything?q=(${sqlResult})&apiKey=${key}`;
-    //         agent.get(myURL).then(apiResult => {
-    //             let result = JSON.parse(apiResult.text).articles.map(item => {
-    //                 return new Article(item);
-    //             })
-    //             res.render('index', { allArticles: result, weather: weatherData });
-    //         });
-    //     })
-}
 // this is a fuction to transfare array of objects to array
 function arrToObj(arr, myProperty) {
     let result = arr.map(item => {

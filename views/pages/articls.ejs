@@ -31,12 +31,6 @@
                     <li>
                         <a href='/about' data-item='About'>About</a>
                     </li>
-
-
-                    <!-- <li id="mylist">
-                                        <a href='#' data-item='My List'>My List</a>
-                                    </li> -->
-
                     <form action="/signupdata" method="GET" id="signupdata">
 
                         <button class="login-btn ">Login<i id="logicon" class="fas fa-sign-in-alt"></i>
@@ -47,8 +41,6 @@
                 </ul>
             </nav>
         </header>
-        <!-- <a href="signin&signyp.ejs">go to signin</a> -->
-        <!-- <a href="/sign/signin-sigup">signin</a> -->
         <div class="card-container">
             <% articlsKey.forEach ((articl,idx) => {  %>
             <form id="<%=idx%>" action="" method="post">
@@ -93,7 +85,6 @@
         <%- include ('footer.ejs') %>
 
         <!-- //End Footer //  -->
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
         <script src="https://code.jquery.com/jquery-3.5.1.js"> </script>
         <script src="/js/forHeader.js"></script>
         <script src="/js/fav.js"></script>
