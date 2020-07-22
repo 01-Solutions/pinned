@@ -306,8 +306,9 @@ input {
     -webkit-transition: all .3s ease;
 }
 
-#errMsg{
+#errMsg {
     color: white;
-    font-family: ;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
 /*# sourceMappingURL=registration.css.map */
