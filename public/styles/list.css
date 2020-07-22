@@ -31,7 +31,7 @@ body {
 }
 
 .blog-card a:hover {
-  color: #5ad67d;
+  color: #d9524a;
 }
 
 /* .blog-card:hover .photo {
@@ -146,7 +146,7 @@ body {
 }
 
 .blog-card .description .read-more a {
-  color: #5ad67d;
+  color: #d9524a;
   display: inline-block;
   position: relative;
 }
@@ -179,7 +179,7 @@ body {
   content: "";
   position: absolute;
   height: 5px;
-  background: #5ad67d;
+  background: #d9524a;
   width: 35px;
   top: -0.75rem;
   border-radius: 3px;

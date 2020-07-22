@@ -8,6 +8,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,900");
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
 
+
 * {
     margin: 0;
     padding: 0;
@@ -19,6 +20,10 @@ body {
     min-height: 100vh;
 }
 
+/* override W3 styles */
+.w3-content {
+    max-width: 1400px !important;
+}
 
 /* /////////// slider /////// */
 
@@ -81,6 +86,7 @@ body {
     line-height: 80px;
     font-family: 'Playfair Display', serif;
 }
+
 #secondTit {
     font-size: 22px;
     line-height: 28px;
@@ -91,20 +97,22 @@ body {
 }
 
 /* line  style*/
-.subtitle{
+.subtitle {
     margin-top: 20px;
 }
 
-  .fancy {
+.fancy {
     line-height: 0.5;
     text-align: center;
-  }
-  .fancy #line {
+}
+
+.fancy #line {
     display: inline-block;
-    position: relative;  
-  }
-  .fancy #line:before,
-  .fancy #line:after {
+    position: relative;
+}
+
+.fancy #line:before,
+.fancy #line:after {
     content: "";
     position: absolute;
     height: 5px;
@@ -112,20 +120,22 @@ body {
     /* border-top: 1px solid white; */
     top: 0;
     width: 200px;
-  }
-  .fancy #line:before {
+}
+
+.fancy #line:before {
     right: 100%;
     margin-right: 15px;
-  }
-  .fancy #line:after {
+}
+
+.fancy #line:after {
     left: 100%;
     margin-left: 15px;
-  }
+}
 
 
-  /*line style end  */
+/*line style end  */
 
-#PinnedLogoText{
+#PinnedLogoText {
     font-family: 'Varela';
     font-size: 20px;
     font-weight: bold;
@@ -134,7 +144,7 @@ body {
 
 
 #newsPar {
-    margin-left: 24%;
+    margin-left: 13%;
     margin-top: 5%;
 
 }
@@ -256,11 +266,12 @@ body {
     position: absolute;
     left: 1em;
     bottom: 1em;
-    color: #d6dbeb;
+    color: #ffffff;
     z-index: 5;
     font-family: "Roboto", sans-serif;
     font-weight: 300px;
-    font-size: 20px;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 .cardNews {
@@ -311,13 +322,14 @@ body {
 }
 
 #cover {
+    margin: 30px 0px 0px -11%;
     margin-top: 30px;
     background-color: white;
     border-radius: 20px;
     transform: scale(0.6);
     background-color: #eee;
     border: 1px solid gray;
-    /* box-shadow: 0 5px 20px rgba(0, 0, 0, .05), 0 5px 20px rgba(0, 0, 0, .05); */
+    width: 122%;
 }
 
 #cover:hover {
