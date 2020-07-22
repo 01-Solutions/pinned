@@ -20,7 +20,7 @@ nav {
     display: flex;
     height: 85px;
     list-style: none;
-    font-family:'Kadwa';
+    font-family: 'Kadwa';
 }
 
 
@@ -115,7 +115,7 @@ nav {
 }
 
 #mylist {
-    margin-left: 31%;
+    margin-left: 43%;
     color: black;
 }
 
@@ -174,7 +174,7 @@ nav {
 
 .login-btn-alt {
     margin-top: 20px;
-    font-family: 'Varela', cursive;
+    font-family: 'Kadwa';
     background: #d9524a;
     color: white;
     cursor: pointer;

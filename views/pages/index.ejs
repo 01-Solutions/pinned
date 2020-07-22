@@ -137,25 +137,29 @@
                 <%   arr.push(allArticles[i]) %>
                 <%    if(arr.length == 3){ %>
                 <div class="w3-display-container mySlides">
+
                     <div id='mainNews'>
                         <div class="cardsNews">
                             <%      arr.forEach(item =>{ %>
                             <div class="cardNews contentNews">
-                                <div class="cardNews-content">
-                                    <div class="cardNews-img">
-                                        <img src="<%= item.img %>" alt="Gamer">
+                                <a href="<%= item.url %>" target="_blank">
+                                    <div class="cardNews-content">
+                                        <div class="cardNews-img">
+                                            <img src="<%= item.img %>" alt="Gamer">
+                                        </div>
+                                        <div class="cardNews-label">
+                                            <%= item.source %>
+                                        </div>
+                                        <div class="cardNews-title">
+                                            <%= item.title %>
+                                        </div>
                                     </div>
-                                    <div class="cardNews-label">
-                                        <%= item.source %>
-                                    </div>
-                                    <div class="cardNews-title">
-                                        <%= item.title %>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                             <%    }) %>
                         </div>
                     </div>
+
                 </div>
                 <%    arr = []; %>
                 <%    } %>
