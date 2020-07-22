@@ -15,14 +15,18 @@
     box-sizing: border-box;
 }
 
-body {
+body,
+html {
     background: rgb(255, 255, 255);
-    min-height: 100vh;
+    height: 100%;
+    position: relative;
 }
 
 /* override W3 styles */
 .w3-content {
     max-width: 1400px !important;
+    margin-bottom: 50px !important;
+
 }
 
 /* /////////// slider /////// */

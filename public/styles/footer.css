@@ -1,11 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Kadwa&display=swap');
 
 
-
+.mainC {
+    min-height: 100vh; /* will cover the 100% of viewport */
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding-bottom: 60px; /* height of your footer */
+   }
 
 footer {
     font-family: 'Kadwa';
-    padding: 17px;
     background: #000000;
     height: 60px;
     text-align: center;
@@ -13,4 +18,8 @@ footer {
     /* font-weight: 600; */
     color: #fff;
     margin-top: 50px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+
 }

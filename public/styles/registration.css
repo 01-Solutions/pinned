@@ -1,9 +1,20 @@
 @import url("https://fonts.googleapis.com/css?family=Fira+Sans");
-/* html, */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(255, 255, 255);
+    min-height: 100vh;
+}
+
 #passport {
     position: relative;
     /* min-height: 100vh; */
-    background-color: #f5f5f5;
+    /* background-color: #f5f5f5; */
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -16,6 +27,7 @@
     font-family: "Fira Sans", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
 }
 
 .form-structor {
@@ -27,6 +39,10 @@
     overflow: hidden;
     border: 1px solid #222;
     box-shadow: 0 5px 20px rgba(0, 0, 0, .05), 0 5px 20px rgba(0, 0, 0, .05);
+    margin-bottom: 50px;
+    margin-top: 50px;
+
+
 }
 
 .form-structor::after {
@@ -128,7 +144,7 @@ input {
 }
 
 .form-structor .signup .submit-btn {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #d9524a;
     color: rgba(255, 255, 255, 0.7);
     border: 0;
     border-radius: 15px;
@@ -147,7 +163,8 @@ input {
 .form-structor .signup .submit-btn:hover {
     -webkit-transition: all .3s ease;
     transition: all .3s ease;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #d9524a;
+    color: black;
 }
 
 .form-structor .login {
@@ -232,7 +249,7 @@ input {
 }
 
 .form-structor .login .center .submit-btn {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #d9524a;
     color: rgba(255, 255, 255, 0.7);
     border: 0;
     border-radius: 15px;
@@ -243,7 +260,6 @@ input {
     font-size: 13px;
     font-weight: bold;
     cursor: pointer;
-    opacity: 1;
     visibility: visible;
     -webkit-transition: all .3s ease;
 }
@@ -251,7 +267,10 @@ input {
 .form-structor .login .center .submit-btn:hover {
     -webkit-transition: all .3s ease;
     transition: all .3s ease;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #d9524a;
+    color: black;
+    color: rgba(0, 0, 0, 0.7);
+
 }
 
 .form-structor .login.slide-up {
@@ -287,5 +306,8 @@ input {
     -webkit-transition: all .3s ease;
 }
 
-
+#errMsg{
+    color: white;
+    font-family: ;
+}
 /*# sourceMappingURL=registration.css.map */
