@@ -200,7 +200,7 @@ body {
     font-style: normal;
 }
 
-#saved {
+.saved {
     position: absolute;
     bottom: 10px;
     left: 0;
@@ -218,7 +218,7 @@ body {
     color: #e23b3b;
 }
 
-#saved.press {
+.saved.press {
     bottom: 40px;
     font-size: 14px;
     visibility: visible;

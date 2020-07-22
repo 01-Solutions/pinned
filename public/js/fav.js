@@ -8,7 +8,7 @@ let cardAuthor;
 let articlDesc;
 $('.love').click(function(event) {
     event.preventDefault();
-    $(this).closest('div').find('#saved,.love').toggleClass("press", 1000);
+    $(this).parents('button').find('.saved,.love').toggleClass("press", 1000);
     artIMG = $(this).parents('form').find('#artIMG').attr('src');
     cardTag = $(this).parents('form').find('#cardTag').text();
     cardTime = $(this).parents('form').find('#cardTime').text();

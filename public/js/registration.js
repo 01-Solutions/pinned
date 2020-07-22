@@ -81,9 +81,9 @@ function getLocation() {
 function showPosition(position) {
 	lat =  position.coords.latitude;
 	long = position.coords.longitude;
-	// localStorage.setItem('lat',JSON.stringify(lat))
-	// localStorage.setItem('long',JSON.stringify(long))
-	localStorage.setItem('lat',JSON.stringify(33.5102))
-	localStorage.setItem('long',JSON.stringify(36.29128))
+	localStorage.setItem('lat',JSON.stringify(lat))
+	localStorage.setItem('long',JSON.stringify(long))
+	// localStorage.setItem('lat',JSON.stringify(33.5102))
+	// localStorage.setItem('long',JSON.stringify(36.29128))
   }
 
