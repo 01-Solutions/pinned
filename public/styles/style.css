@@ -13,7 +13,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+    outline: none;
 }
 
 body,
@@ -349,6 +349,7 @@ input[type="text"] {
     line-height: 1;
     padding-left: 35px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    outline: none;
 }
 
 input[type="text"]::placeholder {
