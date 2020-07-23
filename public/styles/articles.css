@@ -5,7 +5,7 @@
 }
 
 body {
-    background: #ebecf0;
+    background: #fff;
     font-family: "Open Sans", sans-serif;
     min-height: 100vh;
 }
@@ -36,6 +36,8 @@ body {
     margin: 1.25rem 0.75rem;
     background: white;
     transition: all 300ms ease-in-out;
+    height: 525px;
+    box-shadow: 0 5px 20px rgb(0 0 0 / 28%), 0 5px 20px rgba(0,0,0,.05);
 }
 
 .card .card-img {
@@ -75,8 +77,8 @@ body {
 }
 
 .card .card-info .card-about .card-tag {
-    width: 60px;
-    max-width: 100px;
+    width: fit-content;
+    /* max-width: 100px; */
     padding: 0.2rem 0.5rem;
     font-size: 12px;
     text-align: center;
@@ -245,4 +247,10 @@ input[type="text"]::placeholder {
     width: 84px;
     height: 96px;
     cursor: pointer;
+}
+a{
+    text-decoration: none;
+}
+#cardUrl{
+    font-size: 1.2em;
 }
