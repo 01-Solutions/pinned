@@ -242,7 +242,6 @@ height: 100%;
   .blog-card.alt {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: reverse;
-    /* flex-direction: row-reverse; */
     width: 60%;
     height: 300px;
   }
